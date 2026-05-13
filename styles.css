@@ -94,6 +94,13 @@ nav a:hover {
   background: #fffdfa;
 }
 
+.inline-link {
+  color: var(--accent-strong);
+  font-weight: 750;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 main {
   width: min(1180px, calc(100% - 36px));
   margin: 0 auto;
@@ -319,12 +326,24 @@ h3 {
 
 footer {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: 16px;
   width: min(1180px, calc(100% - 36px));
   margin: 30px auto 50px;
   color: var(--muted);
   font-size: 14px;
+}
+
+.footer-links {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer-links a {
+  color: var(--accent-strong);
+  font-weight: 650;
 }
 
 .article-page {
@@ -334,6 +353,51 @@ footer {
 .article {
   margin: 38px 0 54px;
   padding: clamp(24px, 5vw, 58px);
+}
+
+.plain-page {
+  width: min(920px, calc(100% - 36px));
+  margin: 38px auto 54px;
+}
+
+.plain-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: clamp(24px, 5vw, 54px);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.plain-card section {
+  margin-top: 30px;
+}
+
+.plain-card ul,
+.plain-card ol {
+  color: var(--muted);
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.info-box {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 16px;
+  background: white;
+}
+
+.status-pill {
+  display: inline-flex;
+  border-radius: 999px;
+  padding: 6px 10px;
+  background: #eef8f4;
+  color: var(--accent-strong);
+  font-size: 13px;
+  font-weight: 800;
 }
 
 .article h1 {
@@ -376,7 +440,8 @@ code {
 
   .dashboard,
   .tool-grid,
-  .method {
+  .method,
+  .info-grid {
     grid-template-columns: 1fr;
   }
 

@@ -18,9 +18,10 @@ http://127.0.0.1:4177/
 ## 当前状态
 
 - 首页：工具候选、内容管线、披露说明。
-- 文章页：Frase / SEO-GEO 大纲、Reclaim.ai 日程工作流大纲。
+- 基础信任页：About、Affiliate Disclosure、Privacy、Contact。
+- 文章页：Frase / SEO-GEO 大纲、Reclaim.ai 日程工作流大纲、Sembly AI 会议工作流、DFIRST AI 营销漏斗。
 - 联盟链接：尚未上线真实 affiliate link，所有内容保留披露和待补检查项。
-- 发布建议：先发布到 GitHub Pages，拿到公开 URL 后用于申请 Frase、Reclaim.ai、Descript 等项目。
+- 发布建议：先用公开站点补齐联盟审核材料，再按内容主题申请 Frase、Contentpen、Outwrite、Reclaim.ai 等项目。
 
 ## 外部动作边界
 
