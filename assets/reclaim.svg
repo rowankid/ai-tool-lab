@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Reclaim.ai">
+  <rect width="96" height="96" rx="18" fill="#315f9f"/>
+  <circle cx="48" cy="48" r="27" fill="none" stroke="#fffdfa" stroke-width="10"/>
+  <path d="M48 22v27l18 13" fill="none" stroke="#fffdfa" stroke-width="10" stroke-linecap="round"/>
+</svg>

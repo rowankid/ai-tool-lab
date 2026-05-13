@@ -1,0 +1,27 @@
+# AI 工具实测库
+
+这是用于申请 affiliate program 的中文内容站雏形。
+
+## 本地预览
+
+```bash
+cd /Users/luowenqi/codex-workspace/ai-affiliate-site
+python3 -m http.server 4177
+```
+
+打开：
+
+```text
+http://127.0.0.1:4177/
+```
+
+## 当前状态
+
+- 首页：工具候选、内容管线、披露说明。
+- 文章页：Frase / SEO-GEO 大纲、Reclaim.ai 日程工作流大纲。
+- 联盟链接：尚未上线真实 affiliate link，所有内容保留披露和待补检查项。
+- 发布建议：先发布到 GitHub Pages，拿到公开 URL 后用于申请 Frase、Reclaim.ai、Descript 等项目。
+
+## 外部动作边界
+
+创建公开仓库、发布 GitHub Pages、提交联盟申请、绑定收款和发布公开文章前，需要用户确认。
