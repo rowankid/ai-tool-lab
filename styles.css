@@ -242,6 +242,36 @@ h3 {
   gap: 16px;
 }
 
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.hub-card {
+  display: block;
+  min-height: 184px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 18px;
+  background: white;
+}
+
+.hub-card.priority {
+  border-color: rgba(15, 124, 110, 0.45);
+  background: #f5fbf8;
+}
+
+.hub-card span {
+  color: var(--amber);
+  font-weight: 850;
+}
+
+.hub-card p {
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
 .tool-card {
   display: grid;
   grid-template-columns: 56px minmax(0, 1fr);
@@ -475,6 +505,7 @@ code {
 
   .dashboard,
   .tool-grid,
+  .hub-grid,
   .method,
   .info-grid {
     grid-template-columns: 1fr;
