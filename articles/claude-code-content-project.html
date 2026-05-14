@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Claude Code 第一个内容项目：上下文、计划、修改、验证</title>
+    <meta
+      name="description"
+      content="用 Claude Code 做第一个内容项目的四步法：给上下文、先计划、再修改、最后验证。适合内容站、知识库和静态网站维护。"
+    />
+    <link rel="canonical" href="http://blog.luowq.cn/ai-tool-lab/articles/claude-code-content-project.html" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark">AI</span>
+        <span>
+          <strong>AI 内容增长实验室</strong>
+          <small>内容变成流量与收入资产</small>
+        </span>
+      </a>
+      <nav aria-label="主导航">
+        <a href="../index.html#tools">工具</a>
+        <a href="../index.html#hubs">主题</a>
+        <a href="../learn/ai-learning.html">AI 学习</a>
+        <a href="../disclosure.html">披露</a>
+      </nav>
+    </header>
+
+    <main class="article-page">
+      <article class="article">
+        <p class="eyebrow">Claude Code / Agent Workflow</p>
+        <h1>Claude Code 第一个内容项目：上下文、计划、修改、验证</h1>
+        <p class="disclosure-note">
+          披露：本文可能包含 affiliate 链接。本文不包含 Claude 或 Anthropic 的联盟链接，主要记录 AI Agent 内容工作流。
+        </p>
+
+        <section>
+          <h2>一句话结论</h2>
+          <p>
+            Claude Code 不只是“帮你写代码”的工具。对内容站来说，它更像一个能读代码库、改文件、跑命令、验证结果的项目协作者。
+            第一个项目不要让它全自动，而要按“上下文、计划、修改、验证”四步走。
+          </p>
+        </section>
+
+        <section>
+          <h2>Claude Code 能做什么</h2>
+          <p>
+            Claude 官方文档把 Claude Code 描述为 agentic coding tool：可以读取代码库、编辑文件、运行命令，并和开发工具集成。
+            对内容站来说，这些能力可以用于：批量改首页文案、生成静态 HTML、更新 sitemap、做链接检查、提交 git。
+          </p>
+          <p>
+            但它不应该替你做事实判断、外部发布、验证码、KYC、收款、投放或任何高风险账号动作。
+          </p>
+        </section>
+
+        <section>
+          <h2>第一步：给足上下文</h2>
+          <p>
+            不要只说“帮我写几篇文章”。更好的上下文包括：站点定位、目标读者、已有页面、内容题库、合规边界、文件路径和验收标准。
+          </p>
+          <ul>
+            <li>站点定位：AI 内容增长实验室。</li>
+            <li>主题主线：SEO/GEO、Agent 工作流、Newsletter、合规避坑。</li>
+            <li>发布边界：不伪造日期、不发薄内容、不隐藏 affiliate。</li>
+            <li>验证要求：HTML 解析、站内链接检查、线上 200。</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>第二步：先要计划</h2>
+          <p>
+            让 Agent 先列出要改哪些文件、为什么改、怎么验证。内容站尤其需要计划，因为首页、Hub、sitemap、看板和文章页会互相影响。
+            没计划就批量写，最容易出现死链、重复主题和不一致定位。
+          </p>
+        </section>
+
+        <section>
+          <h2>第三步：小批量修改</h2>
+          <p>
+            一次写 3-5 篇比一次写 30 篇更稳。每批控制在一个主题簇里，例如先写 AI SEO/GEO 支柱页，再写 Contentpen/Outwrite 商业承接页。
+            这样内链自然，读者也不会感觉站点突然变成低质内容农场。
+          </p>
+        </section>
+
+        <section>
+          <h2>第四步：验证再发布</h2>
+          <ol>
+            <li>解析所有 HTML，确认没有结构错误。</li>
+            <li>检查站内链接，确认没有相对路径死链。</li>
+            <li>同步公开仓库并提交。</li>
+            <li>线上用 curl 验证 200 和关键标题。</li>
+            <li>更新看板、数据表和内容题库状态。</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>一个适合第一次做的任务</h2>
+          <p>
+            “把 4 篇 SEO/GEO 支柱页写出来，接入首页、Hub、sitemap，并验证线上可访问。”
+            这个任务范围清楚、风险低、验证明确。它比“帮我自动赚钱”更适合交给 Agent，也更容易长期复用。
+          </p>
+        </section>
+
+        <section>
+          <h2>下一步读什么</h2>
+          <ul>
+            <li><a class="inline-link" href="./agents-md-content-site.html">AGENTS.md 怎么写，才能让 Agent 真懂边界</a></li>
+            <li><a class="inline-link" href="./ai-search-content-growth-roadmap.html">AI 搜索时代的内容增长路线图</a></li>
+            <li><a class="inline-link" href="./ai-content-fact-checking.html">AI 内容事实核查清单</a></li>
+            <li><a class="inline-link" href="../learn/ai-learning.html">AI 学习路线</a></li>
+          </ul>
+        </section>
+
+        <section class="source-box">
+          <h2>来源</h2>
+          <ul>
+            <li>
+              Claude Code docs：
+              <a class="inline-link" href="https://code.claude.com/docs" target="_blank" rel="noopener">Overview</a>
+            </li>
+            <li>
+              Claude Code docs：
+              <a class="inline-link" href="https://code.claude.com/docs/en/tutorials" target="_blank" rel="noopener">Common workflows</a>
+            </li>
+          </ul>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>

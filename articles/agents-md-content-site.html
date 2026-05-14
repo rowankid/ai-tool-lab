@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AGENTS.md 怎么写，才能让 Agent 真懂边界？</title>
+    <meta
+      name="description"
+      content="内容站如何编写 AGENTS.md：站点定位、文件结构、发布规则、SEO/GEO 质量门槛、合规边界、验证命令和不能自动执行的事项。"
+    />
+    <link rel="canonical" href="http://blog.luowq.cn/ai-tool-lab/articles/agents-md-content-site.html" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark">AI</span>
+        <span>
+          <strong>AI 内容增长实验室</strong>
+          <small>内容变成流量与收入资产</small>
+        </span>
+      </a>
+      <nav aria-label="主导航">
+        <a href="../index.html#tools">工具</a>
+        <a href="../index.html#hubs">主题</a>
+        <a href="../learn/ai-learning.html">AI 学习</a>
+        <a href="../disclosure.html">披露</a>
+      </nav>
+    </header>
+
+    <main class="article-page">
+      <article class="article">
+        <p class="eyebrow">AGENTS.md / AI Agent Ops</p>
+        <h1>AGENTS.md 怎么写，才能让 Agent 真懂边界？</h1>
+        <p class="disclosure-note">
+          披露：本文可能包含 affiliate 链接。本文重点是内容站的 Agent 操作边界和质量门槛。
+        </p>
+
+        <section>
+          <h2>一句话结论</h2>
+          <p>
+            AGENTS.md 不是写给人看的愿望清单，而是写给 Agent 的操作边界。它要告诉 Agent：
+            站点是什么、哪些文件能改、什么叫高质量内容、哪些动作必须停下来等用户确认。
+          </p>
+        </section>
+
+        <section>
+          <h2>内容站 AGENTS.md 应该包含什么</h2>
+          <div class="info-grid">
+            <div class="info-box">
+              <strong>站点定位</strong>
+              <p>一句话说明站点主线，例如 AI 内容增长实验室，而不是泛 AI 工具列表。</p>
+            </div>
+            <div class="info-box">
+              <strong>文件边界</strong>
+              <p>哪些文件是公开站点、哪些是知识库、哪些是 secrets，不能混写。</p>
+            </div>
+            <div class="info-box">
+              <strong>质量门槛</strong>
+              <p>首段结论、事实来源、内链、适合/不适合人群、披露和验证命令。</p>
+            </div>
+            <div class="info-box">
+              <strong>禁止动作</strong>
+              <p>不伪造日期、不刷量、不自动外发、不处理 KYC/税务/收款/验证码。</p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>可以直接使用的结构</h2>
+          <pre><code># 项目定位
+本站是 AI 内容增长实验室，主线为 SEO/GEO、AI Agent 工作流、Newsletter 和合规避坑。
+
+# 发布规则
+- 只发布通过质量门槛的页面。
+- 不伪造发布日期；公开页可写“持续更新中”。
+- 未获批工具只放普通官方链接。
+- affiliate 链接必须披露并使用 rel="sponsored"。
+
+# 质量门槛
+- 标题回答明确搜索意图。
+- 首段给结论。
+- 至少 3 个事实核查点。
+- 至少 3 个内部链接。
+- 有适合/不适合人群或风险边界。
+
+# 必须暂停的动作
+验证码、登录、注册最终提交、外部发帖、投放、购买、提现、税务、银行卡、KYC。</code></pre>
+        </section>
+
+        <section>
+          <h2>为什么这对 SEO 有帮助</h2>
+          <p>
+            Agent 最大的问题不是不会写，而是太容易把站点写散。AGENTS.md 把定位、内链、披露和质量门槛固定下来，
+            让每次批量写作都沿着同一套框架推进。长期看，这比一次性生成很多文章更重要。
+          </p>
+        </section>
+
+        <section>
+          <h2>常见错误</h2>
+          <ul>
+            <li>只写“请写高质量文章”，但没有定义高质量。</li>
+            <li>没有说明哪些外部动作不能自动做。</li>
+            <li>没有把 secrets、账号、验证码和公开内容分开。</li>
+            <li>没有要求验证命令，导致发布后才发现死链。</li>
+            <li>允许 Agent 为了 SEO 修改日期或夸大收益。</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>下一步读什么</h2>
+          <ul>
+            <li><a class="inline-link" href="./claude-code-content-project.html">Claude Code 第一个内容项目</a></li>
+            <li><a class="inline-link" href="./geo-publishing-checklist.html">GEO 内容页发布前检查清单</a></li>
+            <li><a class="inline-link" href="./ai-content-fact-checking.html">AI 内容事实核查清单</a></li>
+            <li><a class="inline-link" href="../about.html">关于本站方法</a></li>
+          </ul>
+        </section>
+
+        <section class="source-box">
+          <h2>来源</h2>
+          <ul>
+            <li>
+              Claude Code docs：
+              <a class="inline-link" href="https://code.claude.com/docs" target="_blank" rel="noopener">Overview</a>
+            </li>
+            <li>
+              Claude Code docs：
+              <a class="inline-link" href="https://code.claude.com/docs/en/tutorials" target="_blank" rel="noopener">Common workflows</a>
+            </li>
+            <li>
+              Google Search Central：
+              <a class="inline-link" href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content" target="_blank" rel="noopener">Helpful content</a>
+            </li>
+          </ul>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>

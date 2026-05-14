@@ -1,4 +1,4 @@
-# AI 工具实测库
+# AI 内容增长实验室
 
 这是用于申请 affiliate program 的中文内容站雏形。
 
