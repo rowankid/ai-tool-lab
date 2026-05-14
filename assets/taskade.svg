@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Taskade">
+  <rect width="96" height="96" rx="18" fill="#eef8f4"/>
+  <path d="M23 25h50v12H54v36H42V37H23z" fill="#0f7c6e"/>
+  <path d="M22 72h52" stroke="#c76b1d" stroke-width="7" stroke-linecap="round"/>
+</svg>

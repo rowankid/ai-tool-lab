@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>用 Make 搭一条 AI 内容流水线：从资料收集到发布前检查</title>
+    <meta
+      name="description"
+      content="用 Make 设计 AI 内容运营流水线：资料收集、候选池、草稿、事实核查、发布检查和看板更新，并说明申请前的 Wise、税务和合规边界。"
+    />
+    <link rel="canonical" href="http://blog.luowq.cn/ai-tool-lab/articles/make-ai-content-automation.html" />
+    <link rel="stylesheet" href="../styles.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "用 Make 搭一条 AI 内容流水线：从资料收集到发布前检查",
+        "datePublished": "2026-05-14",
+        "dateModified": "2026-05-14",
+        "inLanguage": "zh-CN",
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "AI 工具实测库",
+          "url": "http://blog.luowq.cn/ai-tool-lab/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark">AI</span>
+        <span>
+          <strong>AI 工具实测库</strong>
+          <small>中文用户的 AI 工具决策台</small>
+        </span>
+      </a>
+      <nav aria-label="主导航">
+        <a href="../index.html#tools">工具</a>
+        <a href="../index.html#hubs">主题</a>
+        <a href="../learn/ai-learning.html">AI 学习</a>
+        <a href="../disclosure.html">披露</a>
+      </nav>
+    </header>
+
+    <main class="article-page">
+      <article class="article">
+        <p class="eyebrow">Make / AI automation</p>
+        <h1>用 Make 搭一条 AI 内容流水线：从资料收集到发布前检查</h1>
+        <p class="disclosure-note">
+          披露：本文未来可能加入 Make affiliate 链接。当前页面只使用官方普通链接，不是获批 affiliate link。
+          自动化相关内容只讨论合规准备和内部流程，不自动外发、刷量、注册、购买、提现或绕过验证码。
+        </p>
+
+        <section>
+          <h2>一句话结论</h2>
+          <p>
+            Make 的价值不在于“把所有事都自动化”，而在于把每天重复搬运、整理、提醒和检查的环节串起来。
+            对 AI 内容站来说，最稳的自动化不是自动发几百篇文章，而是自动整理候选、生成检查清单、提醒人工审核、
+            更新追踪表，再把需要授权的步骤留给人。
+          </p>
+          <p>
+            可以先看
+            <a class="inline-link" href="https://www.make.com/en" target="_blank" rel="noopener">Make 官方站</a>
+            和
+            <a class="inline-link" href="https://www.make.com/en/affiliate" target="_blank" rel="noopener"
+              >Make affiliate 页面</a
+            >。申请前还要确认 Wise 收款、税务资料、地区资格和后台验证。
+          </p>
+        </section>
+
+        <section>
+          <h2>一条合规 AI 内容流水线应该长什么样</h2>
+          <p>
+            这里用本站项目做例子。目标不是无人值守发文，而是把准备工作自动化，让人把时间花在判断、核验和编辑上。
+          </p>
+          <div class="info-grid">
+            <div class="info-box">
+              <strong>资料收集</strong>
+              <p>收集官方 program、help center、terms、pricing 和产品页，生成待核查清单。</p>
+            </div>
+            <div class="info-box">
+              <strong>候选评分</strong>
+              <p>按内容匹配、购买意图、佣金质量、新站友好、后台可达和收款可行打分。</p>
+            </div>
+            <div class="info-box">
+              <strong>草稿准备</strong>
+              <p>生成文章大纲、事实核查点、内部链接建议和发布前检查清单。</p>
+            </div>
+            <div class="info-box">
+              <strong>人工闸门</strong>
+              <p>注册、登录、外部发布、投放、购买、提现、税务、CAPTCHA 和 KYC 都由人确认。</p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>可以让 Make 做的事</h2>
+          <ol>
+            <li>每天读取候选池，提醒只推进一个最值得做的项目。</li>
+            <li>把新官方来源链接追加到研究队列，并标记需要人工核验的字段。</li>
+            <li>把内容草稿、事实来源、内部链接、披露检查和 sitemap 检查合成一个任务包。</li>
+            <li>在后台点击、注册或收益变化后，提醒更新每日数据表。</li>
+            <li>生成分发摘要草稿，但不自动发布到公众号、X、LinkedIn 或社群。</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>不应该自动化的事</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>动作</th>
+                  <th>为什么不能自动硬跑</th>
+                  <th>正确做法</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>批量注册 affiliate 平台</td>
+                  <td>容易触发风控，也可能提交不完整或不真实资料</td>
+                  <td>先做内容资产和申请材料，逐个合规提交</td>
+                </tr>
+                <tr>
+                  <td>自动外发文章或广告</td>
+                  <td>可能误导读者、违反平台规则或传播未经核查内容</td>
+                  <td>只生成草稿和 checklist，人审核后发布</td>
+                </tr>
+                <tr>
+                  <td>绕过 CAPTCHA/KYC/税务</td>
+                  <td>这是平台确认真人和主体资格的边界</td>
+                  <td>用户手动完成，系统只记录状态和下一步</td>
+                </tr>
+                <tr>
+                  <td>刷点击、刷注册、EMU</td>
+                  <td>违反联盟规则，也会毁掉收款资格</td>
+                  <td>只做真实内容、真实流量、真实转化</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section>
+          <h2>Zapier、Make、n8n 怎么选</h2>
+          <p>
+            如果你更看重简单上手，Zapier 的路径通常更直；如果你想要更灵活的流程编排和性价比，Make 值得看；
+            如果你有服务器和工程能力，n8n 更适合自托管和深度控制。中文内容运营早期不必纠结工具，先把流程拆清楚。
+          </p>
+          <ul>
+            <li>手动流程还没跑通时，不要急着自动化。</li>
+            <li>只自动化“低风险重复动作”，保留人类判断。</li>
+            <li>所有外部动作都要有日志和可回滚记录。</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Make affiliate 申请前要核查什么</h2>
+          <p>
+            Make 官方 affiliate 页面公开写到 35% commission for 12 months。官方帮助中心另有更新说明：
+            affiliate payout 已由 PayPal 改为 Wise。因此申请前要先确认 Wise 是否能满足当前收款主体、是否要求税务资料、
+            是否支持中国主体，以及后台是否触发 CAPTCHA 或额外验证。
+          </p>
+          <ul>
+            <li>不要把自动化写成“躺赚机器”。</li>
+            <li>不要推荐用户用自动化做垃圾外发、刷量或虚假注册。</li>
+            <li>如果后续获批，站内链接必须加披露、link id 和每日追踪。</li>
+          </ul>
+        </section>
+
+        <section class="source-box">
+          <h2>来源与待补</h2>
+          <ul>
+            <li>
+              Make official site：
+              <a class="inline-link" href="https://www.make.com/en" target="_blank" rel="noopener">官方首页</a>
+            </li>
+            <li>
+              Make affiliate program：
+              <a class="inline-link" href="https://www.make.com/en/affiliate" target="_blank" rel="noopener">官方联盟页面</a>
+            </li>
+            <li>
+              Make payout update：
+              <a
+                class="inline-link"
+                href="https://help.make.com/affiliate-payouts-incomplete-execution-retries-new-apps"
+                target="_blank"
+                rel="noopener"
+                >官方帮助中心更新</a
+              >
+            </li>
+          </ul>
+          <p>待补：真实 Make 场景截图、Wise 收款可行性、税务资料要求、cookie 和最低 payout 后台字段。</p>
+          <p>最后更新：2026-05-14</p>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>
