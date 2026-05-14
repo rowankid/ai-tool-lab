@@ -421,6 +421,41 @@ footer {
   background: #eef4ff;
 }
 
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  min-width: 760px;
+  border: 1px solid var(--line);
+  border-collapse: collapse;
+  border-radius: 8px;
+  background: white;
+}
+
+th,
+td {
+  border-bottom: 1px solid var(--line);
+  padding: 14px;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background: #f2ebe1;
+  color: var(--ink);
+  font-size: 14px;
+}
+
+td {
+  color: var(--muted);
+}
+
+tr:last-child td {
+  border-bottom: 0;
+}
+
 code {
   border-radius: 6px;
   padding: 2px 5px;
