@@ -170,6 +170,22 @@ h3 {
   font-size: 18px;
 }
 
+.pillar-list {
+  display: grid;
+  gap: 10px;
+  max-width: 760px;
+  margin-top: 22px;
+}
+
+.pillar-list span {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px 14px;
+  background: #fffdfa;
+  color: var(--ink);
+  font-weight: 750;
+}
+
 .quick-actions {
   display: flex;
   flex-wrap: wrap;
