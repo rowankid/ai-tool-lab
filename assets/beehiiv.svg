@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+  <title id="title">beehiiv logo placeholder</title>
+  <desc id="desc">Stylized newsletter grid mark for the AI Tool Lab beehiiv article.</desc>
+  <rect width="160" height="160" rx="18" fill="#ffe15a" />
+  <rect x="38" y="34" width="84" height="20" rx="8" fill="#161412" />
+  <rect x="26" y="66" width="108" height="20" rx="8" fill="#161412" />
+  <rect x="38" y="98" width="84" height="20" rx="8" fill="#161412" />
+  <circle cx="42" cy="44" r="8" fill="#fffdfa" />
+  <circle cx="118" cy="76" r="8" fill="#fffdfa" />
+  <circle cx="42" cy="108" r="8" fill="#fffdfa" />
+</svg>
