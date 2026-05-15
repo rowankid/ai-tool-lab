@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>多 Agent 协作什么时候有用，什么时候浪费：Claude Code / Codex 内容站工作流边界</title>
+    <meta
+      name="description"
+      content="用中文内容站视角拆解多 agent、subagent、worktree 和并行会话：什么任务适合拆开并行，什么任务应该留在单线程主会话里，避免上下文污染、重复劳动和薄内容。"
+    />
+    <link
+      rel="canonical"
+      href="https://blog.luowq.cn/ai-tool-lab/articles/multi-agent-content-workflows.html"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark">AI</span>
+        <span>
+          <strong>AI 内容增长实验室</strong>
+          <small>内容变成流量与收入资产</small>
+        </span>
+      </a>
+      <nav aria-label="主导航">
+        <a href="../index.html#tools">工具</a>
+        <a href="../index.html#hubs">主题</a>
+        <a href="../learn/ai-learning.html">AI 学习</a>
+        <a href="../disclosure.html">披露</a>
+      </nav>
+    </header>
+
+    <main class="article-page">
+      <article class="article">
+        <p class="eyebrow">Agent Workflow / Parallel Work</p>
+        <h1>多 Agent 协作什么时候有用，什么时候浪费：Claude Code / Codex 内容站工作流边界</h1>
+        <p class="disclosure-note">
+          披露：本文不包含 Claude Code、Codex 或其他 agent 工具的联盟链接。目的不是鼓励你“多开越多越好”，而是把多
+          agent 的适用边界、验证方法和中文内容站场景写清楚。
+        </p>
+
+        <section>
+          <h2>一句话结论</h2>
+          <p>
+            对内容站来说，多 agent 只在<strong>任务彼此独立</strong>、<strong>输出容易汇总</strong>、<strong>主会话不该被大量日志和检索结果淹没</strong>时有用。
+            如果任务需要反复改同一篇文章、频繁来回确认或共享大量上下文，单主会话通常更稳。
+          </p>
+        </section>
+
+        <section>
+          <h2>先看 4 个事实：为什么现在大家都在讨论多 agent</h2>
+          <ul>
+            <li>
+              <strong>X 上的公开讨论已经从“会不会用 agent”转到“怎么并行跑”：</strong>例如
+              <a class="inline-link" href="https://x.com/yanndine/status/2026382902406123654" target="_blank" rel="noopener">Yann 的公开帖</a>
+              把“10 到 15 个 Claude 会话、Plan Mode、subagent、safe permissions setup”打包成增长卖点，说明痛点已从单次提示词转到工作流设计。
+            </li>
+            <li>
+              <strong>Anthropic 官方把 subagent 定义成“上下文隔离器”：</strong>官方文档明确说，适合在搜索结果、日志、文件内容会淹没主会话时，把侧任务交给 subagent，在独立上下文里做完后只回传摘要。
+            </li>
+            <li>
+              <strong>Anthropic 也明确区分了何时该并行：</strong>官方 tutorials 直接把 `worktrees`、`plan mode` 和 “delegate research to subagents” 列为常见工作流，说明并行不是黑科技，而是可预期的协作模式。
+            </li>
+            <li>
+              <strong>OpenAI 官方也把多 agent 视为正式工作流：</strong>Codex app 的产品介绍写明，多个 agent 可以在独立线程和内建 worktrees 里并行工作，彼此不冲突；Codex CLI 官方文档也把 “Use subagents to parallelize complex tasks” 作为标准入口。
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>中文内容站里，哪些任务适合拆成多 agent</h2>
+          <div class="info-grid">
+            <div class="info-box">
+              <strong>适合并行</strong>
+              <ul>
+                <li>一个 agent 查官方来源并补事实核查，另一个只做首页、Hub、`sitemap.xml` 和链接入口同步。</li>
+                <li>一个 agent 扫站内死链与相对路径错误，另一个只核对披露、`rel="sponsored"` 和 CTA 边界。</li>
+                <li>一个 agent 跑 HTML 解析/站内链接检查，另一个整理灵感库、题库与运营看板状态。</li>
+                <li>针对彼此独立的 2 个主题簇做只读研究，例如一个查 Claude Code 官方文档，一个查 Codex 官方文档，最后主会话汇总。</li>
+              </ul>
+            </div>
+            <div class="info-box">
+              <strong>不适合并行</strong>
+              <ul>
+                <li>5 个 agent 同时改同一篇文章的结构、标题、结论与 CTA，最后只会带来合并成本。</li>
+                <li>需要你边看边改方向的任务，例如“这篇文章的论点还不够稳，先跟我讨论再写”。</li>
+                <li>需要共享大量上下文的链路，例如“从题库判断、到文章框架、到改首页入口”全都强耦合在一起。</li>
+                <li>任何带登录态、验证码、付款、KYC、删除或外部发布的动作。</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>一个最实用的判断标准：这件事会不会污染主会话上下文？</h2>
+          <p>
+            如果某个子任务会生成一大堆你最终并不想反复引用的内容，比如检索结果、测试日志、HTML 检查输出、几十个文件路径，那么它很适合交给
+            subagent 或独立 worktree 会话。Anthropic 文档把这类场景直接列为 subagent 的核心用途。
+          </p>
+          <p>
+            但如果子任务的产出本身就是你下一步必须逐句推敲的正文、框架和商业边界，那就别急着并行。此时上下文不是负担，而是你判断质量的基础。
+          </p>
+        </section>
+
+        <section>
+          <h2>Claude Code / Codex 各自给了什么官方信号</h2>
+          <ul>
+            <li>
+              <strong>Claude Code：</strong>官方 tutorials 把 `claude --worktree feature-auth`、`claude --permission-mode plan` 和
+              “use a subagent to investigate ...” 明确写进常见工作流；subagents 文档还给了 `background`、`permissionMode`、`isolation: worktree`
+              这些配置位。
+            </li>
+            <li>
+              <strong>Codex：</strong>OpenAI 在 2026 年 2 月 2 日发布的 Codex app 介绍里，直接把 “multiple agents in parallel” 和 “built-in support for worktrees”
+              作为产品核心；Codex CLI 官方页则把 subagents 和 approval modes 一起列为正式能力，不是隐藏开关。
+            </li>
+          </ul>
+          <p>
+            这两个官方信号都指向同一件事：并行是为了<strong>隔离风险与上下文</strong>，不是为了把所有任务一股脑拆碎。
+          </p>
+        </section>
+
+        <section>
+          <h2>内容站里的 3 个推荐并行模式</h2>
+          <ol>
+            <li>
+              <strong>研究与发布拆开：</strong>主会话负责定标题、结论和风险边界；子 agent 只查来源、提炼事实点和整理链接。
+            </li>
+            <li>
+              <strong>写作与站点同步拆开：</strong>主会话产出正文；另一个 agent 只负责把新页接到首页、学习页、Hub、`sitemap.xml` 和 QA 流程。
+            </li>
+            <li>
+              <strong>验证单独拆出：</strong>把 HTML 解析、站内链接检查、`curl` 校验、`rsync` 预发布快照交给独立 agent，避免验证日志挤满主对话。
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>最常见的 4 个误区</h2>
+          <ul>
+            <li><strong>误区 1：</strong>任务一复杂就该多开。实际上，高耦合任务更需要单线程判断。</li>
+            <li><strong>误区 2：</strong>多 agent 一定更快。很多时候你只是把串行思考换成了并行返工。</li>
+            <li><strong>误区 3：</strong>subagent 越多越专业。Anthropic 官方也提醒，返回结果过多仍会消耗主会话上下文。</li>
+            <li><strong>误区 4：</strong>用了 worktree 就等于安全。worktree 只隔离文件改动，不替你决定哪些动作必须人工确认。</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>适合谁 / 不适合谁</h2>
+          <ul>
+            <li>
+              <strong>适合：</strong>已经有基础内容 SOP，知道什么叫完成、什么叫不该发布，只是想把研究、同步和验证并行化的内容团队或一人公司。
+            </li>
+            <li>
+              <strong>不适合：</strong>还没有题库、内链规则、披露边界和验证清单，却想靠“多开 agent” 直接提高产量的人。
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>如果你只拿走一条执行建议</h2>
+          <p>
+            先把多 agent 用在<strong>研究、同步、验证</strong>这三类副任务上，不要先把它用在“共同写一篇文章”。对中文内容站来说，最稳定的模式通常是：
+            <strong>主会话定结论，子会话查事实，独立会话做站点同步和验证</strong>。
+          </p>
+        </section>
+
+        <section>
+          <h2>下一步读什么（站内内链）</h2>
+          <ul>
+            <li><a class="inline-link" href="./claude-code-content-project.html">Claude Code 第一个内容项目：上下文、计划、修改、验证</a></li>
+            <li><a class="inline-link" href="./claude-code-permission-modes-human-checkpoints.html">Claude Code 权限设置：哪些操作必须人工确认</a></li>
+            <li><a class="inline-link" href="./ai-agent-preflight-audit-checklist.html">AI Agent 自动化前的任务审计清单</a></li>
+            <li><a class="inline-link" href="./codex-cli-goal-content-ops.html">Codex CLI /goal 怎么用：把内容站迭代变成可复现任务</a></li>
+            <li><a class="inline-link" href="./obsidian-notes-to-seo-pipeline.html">从 Obsidian 笔记到 SEO 文章：一条可复用的内容管线</a></li>
+            <li><a class="inline-link" href="../learn/ai-learning.html">AI 学习路线：Claude、Codex、知识库和自动化</a></li>
+          </ul>
+        </section>
+
+        <section class="source-box">
+          <h2>来源（官方/可信）</h2>
+          <ul>
+            <li>
+              X 公开讨论线索：
+              <a class="inline-link" href="https://x.com/yanndine/status/2026382902406123654" target="_blank" rel="noopener">Yann 关于多会话 / Plan Mode / subagents / safe permissions setup 的公开帖</a>
+            </li>
+            <li>
+              Anthropic 官方文档：
+              <a class="inline-link" href="https://code.claude.com/docs/en/sub-agents" target="_blank" rel="noopener">Create custom subagents</a>
+            </li>
+            <li>
+              Anthropic 官方文档：
+              <a class="inline-link" href="https://code.claude.com/docs/en/tutorials" target="_blank" rel="noopener">Common workflows</a>
+            </li>
+            <li>
+              OpenAI 官方产品页：
+              <a class="inline-link" href="https://openai.com/index/introducing-the-codex-app/" target="_blank" rel="noopener">Introducing the Codex app</a>
+            </li>
+            <li>
+              OpenAI 官方开发者文档：
+              <a class="inline-link" href="https://developers.openai.com/codex/cli" target="_blank" rel="noopener">Codex CLI</a>
+            </li>
+          </ul>
+        </section>
+
+        <p class="article-updated">最后更新：2026-05-15</p>
+      </article>
+    </main>
+
+    <footer>
+      <span>AI 内容增长实验室</span>
+      <span class="footer-links">
+        <a href="../about.html">About</a>
+        <a href="../disclosure.html">Disclosure</a>
+        <a href="../privacy.html">Privacy</a>
+        <a href="../contact.html">Contact</a>
+      </span>
+      <span>持续更新中</span>
+    </footer>
+  </body>
+</html>
