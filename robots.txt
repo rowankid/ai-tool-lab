@@ -10,4 +10,4 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
-Sitemap: http://blog.luowq.cn/ai-tool-lab/sitemap.xml
+Sitemap: https://blog.luowq.cn/ai-tool-lab/sitemap.xml

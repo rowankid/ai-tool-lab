@@ -1,103 +1,159 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://blog.luowq.cn/ai-tool-lab/</loc>
+    <loc>https://blog.luowq.cn/ai-tool-lab/</loc>
+    <lastmod>2026-05-15</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.luowq.cn/ai-tool-lab/llms.txt</loc>
+    <lastmod>2026-05-15</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.luowq.cn/ai-tool-lab/start.html</loc>
+    <lastmod>2026-05-15</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.luowq.cn/ai-tool-lab/about.html</loc>
     <lastmod>2026-05-14</lastmod>
   </url>
   <url>
-    <loc>http://blog.luowq.cn/ai-tool-lab/about.html</loc>
+    <loc>https://blog.luowq.cn/ai-tool-lab/disclosure.html</loc>
     <lastmod>2026-05-14</lastmod>
   </url>
   <url>
-    <loc>http://blog.luowq.cn/ai-tool-lab/disclosure.html</loc>
+    <loc>https://blog.luowq.cn/ai-tool-lab/privacy.html</loc>
     <lastmod>2026-05-14</lastmod>
   </url>
   <url>
-    <loc>http://blog.luowq.cn/ai-tool-lab/privacy.html</loc>
+    <loc>https://blog.luowq.cn/ai-tool-lab/contact.html</loc>
     <lastmod>2026-05-14</lastmod>
   </url>
   <url>
-    <loc>http://blog.luowq.cn/ai-tool-lab/contact.html</loc>
+    <loc>https://blog.luowq.cn/ai-tool-lab/topics/ai-seo-geo.html</loc>
+    <lastmod>2026-05-15</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.luowq.cn/ai-tool-lab/learn/ai-learning.html</loc>
+    <lastmod>2026-05-15</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.luowq.cn/ai-tool-lab/articles/frase-seo-geo.html</loc>
     <lastmod>2026-05-14</lastmod>
   </url>
   <url>
-    <loc>http://blog.luowq.cn/ai-tool-lab/topics/ai-seo-geo.html</loc>
+    <loc>https://blog.luowq.cn/ai-tool-lab/articles/seo-geo-aeo-llmo.html</loc>
     <lastmod>2026-05-14</lastmod>
   </url>
   <url>
-    <loc>http://blog.luowq.cn/ai-tool-lab/learn/ai-learning.html</loc>
+    <loc>https://blog.luowq.cn/ai-tool-lab/articles/ai-search-content-growth-roadmap.html</loc>
     <lastmod>2026-05-14</lastmod>
   </url>
   <url>
-    <loc>http://blog.luowq.cn/ai-tool-lab/articles/frase-seo-geo.html</loc>
+    <loc>https://blog.luowq.cn/ai-tool-lab/articles/geo-publishing-checklist.html</loc>
     <lastmod>2026-05-14</lastmod>
   </url>
   <url>
-    <loc>http://blog.luowq.cn/ai-tool-lab/articles/seo-geo-aeo-llmo.html</loc>
+    <loc>https://blog.luowq.cn/ai-tool-lab/articles/ai-content-fact-checking.html</loc>
     <lastmod>2026-05-14</lastmod>
   </url>
   <url>
-    <loc>http://blog.luowq.cn/ai-tool-lab/articles/ai-search-content-growth-roadmap.html</loc>
+    <loc>https://blog.luowq.cn/ai-tool-lab/articles/frase-contentpen-outwrite.html</loc>
     <lastmod>2026-05-14</lastmod>
   </url>
   <url>
-    <loc>http://blog.luowq.cn/ai-tool-lab/articles/geo-publishing-checklist.html</loc>
+    <loc>https://blog.luowq.cn/ai-tool-lab/articles/contentpen-chinese-indie-site.html</loc>
     <lastmod>2026-05-14</lastmod>
   </url>
   <url>
-    <loc>http://blog.luowq.cn/ai-tool-lab/articles/ai-content-fact-checking.html</loc>
+    <loc>https://blog.luowq.cn/ai-tool-lab/articles/wechat-articles-to-seo.html</loc>
     <lastmod>2026-05-14</lastmod>
   </url>
   <url>
-    <loc>http://blog.luowq.cn/ai-tool-lab/articles/frase-contentpen-outwrite.html</loc>
+    <loc>https://blog.luowq.cn/ai-tool-lab/articles/claude-code-content-project.html</loc>
+    <lastmod>2026-05-15</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.luowq.cn/ai-tool-lab/articles/agents-md-content-site.html</loc>
     <lastmod>2026-05-14</lastmod>
   </url>
   <url>
-    <loc>http://blog.luowq.cn/ai-tool-lab/articles/contentpen-chinese-indie-site.html</loc>
+    <loc>https://blog.luowq.cn/ai-tool-lab/articles/writerbuddy-ai-writing.html</loc>
     <lastmod>2026-05-14</lastmod>
   </url>
   <url>
-    <loc>http://blog.luowq.cn/ai-tool-lab/articles/wechat-articles-to-seo.html</loc>
+    <loc>https://blog.luowq.cn/ai-tool-lab/articles/reclaim-ai-calendar.html</loc>
     <lastmod>2026-05-14</lastmod>
   </url>
   <url>
-    <loc>http://blog.luowq.cn/ai-tool-lab/articles/claude-code-content-project.html</loc>
+    <loc>https://blog.luowq.cn/ai-tool-lab/articles/sembly-meeting-ai.html</loc>
     <lastmod>2026-05-14</lastmod>
   </url>
   <url>
-    <loc>http://blog.luowq.cn/ai-tool-lab/articles/agents-md-content-site.html</loc>
+    <loc>https://blog.luowq.cn/ai-tool-lab/articles/dfirst-ai-marketing.html</loc>
     <lastmod>2026-05-14</lastmod>
   </url>
   <url>
-    <loc>http://blog.luowq.cn/ai-tool-lab/articles/writerbuddy-ai-writing.html</loc>
+    <loc>https://blog.luowq.cn/ai-tool-lab/articles/taskade-ai-workspace.html</loc>
     <lastmod>2026-05-14</lastmod>
   </url>
   <url>
-    <loc>http://blog.luowq.cn/ai-tool-lab/articles/reclaim-ai-calendar.html</loc>
+    <loc>https://blog.luowq.cn/ai-tool-lab/articles/make-ai-content-automation.html</loc>
     <lastmod>2026-05-14</lastmod>
   </url>
   <url>
-    <loc>http://blog.luowq.cn/ai-tool-lab/articles/sembly-meeting-ai.html</loc>
+    <loc>https://blog.luowq.cn/ai-tool-lab/articles/outwrite-solo-founder.html</loc>
     <lastmod>2026-05-14</lastmod>
   </url>
   <url>
-    <loc>http://blog.luowq.cn/ai-tool-lab/articles/dfirst-ai-marketing.html</loc>
+    <loc>https://blog.luowq.cn/ai-tool-lab/articles/beehiiv-newsletter-monetization.html</loc>
     <lastmod>2026-05-14</lastmod>
   </url>
   <url>
-    <loc>http://blog.luowq.cn/ai-tool-lab/articles/taskade-ai-workspace.html</loc>
-    <lastmod>2026-05-14</lastmod>
+    <loc>https://blog.luowq.cn/ai-tool-lab/articles/ai-agent-preflight-audit-checklist.html</loc>
+    <lastmod>2026-05-15</lastmod>
   </url>
   <url>
-    <loc>http://blog.luowq.cn/ai-tool-lab/articles/make-ai-content-automation.html</loc>
-    <lastmod>2026-05-14</lastmod>
+    <loc>https://blog.luowq.cn/ai-tool-lab/articles/avoid-thin-affiliate-ai-content.html</loc>
+    <lastmod>2026-05-15</lastmod>
   </url>
   <url>
-    <loc>http://blog.luowq.cn/ai-tool-lab/articles/outwrite-solo-founder.html</loc>
-    <lastmod>2026-05-14</lastmod>
+    <loc>https://blog.luowq.cn/ai-tool-lab/articles/newsletter-deliverability-spf-dkim-dmarc.html</loc>
+    <lastmod>2026-05-15</lastmod>
   </url>
   <url>
-    <loc>http://blog.luowq.cn/ai-tool-lab/articles/beehiiv-newsletter-monetization.html</loc>
-    <lastmod>2026-05-14</lastmod>
+    <loc>https://blog.luowq.cn/ai-tool-lab/articles/obsidian-notes-to-seo-pipeline.html</loc>
+    <lastmod>2026-05-15</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.luowq.cn/ai-tool-lab/articles/llms-txt-for-content-sites.html</loc>
+    <lastmod>2026-05-15</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.luowq.cn/ai-tool-lab/articles/newsletter-second-growth-loop.html</loc>
+    <lastmod>2026-05-15</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.luowq.cn/ai-tool-lab/articles/newsletter-lead-magnet-design.html</loc>
+    <lastmod>2026-05-15</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.luowq.cn/ai-tool-lab/articles/newsletter-editorial-columns.html</loc>
+    <lastmod>2026-05-15</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.luowq.cn/ai-tool-lab/articles/newsletter-double-opt-in-smart-nudge.html</loc>
+    <lastmod>2026-05-15</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.luowq.cn/ai-tool-lab/articles/beehiiv-boosts-growth-after-deprecation.html</loc>
+    <lastmod>2026-05-15</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.luowq.cn/ai-tool-lab/articles/codex-cli-goal-content-ops.html</loc>
+    <lastmod>2026-05-15</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.luowq.cn/ai-tool-lab/articles/faq-schema-after-google-faq-rich-results.html</loc>
+    <lastmod>2026-05-15</lastmod>
   </url>
 </urlset>

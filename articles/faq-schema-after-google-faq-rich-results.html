@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FAQ schema 还有用吗？Google 不再展示 FAQ rich results 后怎么做（2026）</title>
+    <meta
+      name="description"
+      content="Google 已不再在搜索结果中展示 FAQ rich results。本文用中文内容团队视角解释：FAQ schema 还要不要做、FAQ 仍然该怎么写、哪些做法会变成 thin content，以及一份可执行的替代清单（兼顾 GEO）。"
+    />
+    <link
+      rel="canonical"
+      href="https://blog.luowq.cn/ai-tool-lab/articles/faq-schema-after-google-faq-rich-results.html"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark">AI</span>
+        <span>
+          <strong>AI 内容增长实验室</strong>
+          <small>内容变成流量与收入资产</small>
+        </span>
+      </a>
+      <nav aria-label="主导航">
+        <a href="../index.html#tools">工具</a>
+        <a href="../index.html#hubs">主题</a>
+        <a href="../learn/ai-learning.html">AI 学习</a>
+        <a href="../disclosure.html">披露</a>
+      </nav>
+    </header>
+
+    <main class="article-page">
+      <article class="article">
+        <p class="eyebrow">SEO / GEO</p>
+        <h1>FAQ schema 还有用吗？Google 不再展示 FAQ rich results 后怎么做（2026）</h1>
+        <p class="disclosure-note">
+          披露：本文不包含新增 affiliate 链接；只讨论内容结构与合规表达。若站内其他页面包含 affiliate link，会在推荐点附近明确披露并使用
+          <code>rel="sponsored"</code>。
+        </p>
+
+        <section>
+          <h2>一句话结论</h2>
+          <p>
+            <strong>不要再把 FAQ schema 当作“能换来 SERP 富摘要”的捷径。</strong>但 FAQ 作为内容结构仍然值得写：
+            用它把读者最关心的问题回答清楚、可核查、可引用——这对 SEO 和 GEO 都更重要。
+          </p>
+        </section>
+
+        <section>
+          <h2>发生了什么变化（事实核查点）</h2>
+          <ul>
+            <li>
+              Google Search Central 的 FAQPage 文档在 <strong>2026-05-07</strong> 更新：明确说明
+              <strong>FAQ rich results 已不再在 Google Search 中展示</strong>（文档仍保留结构化数据规范与示例）。
+            </li>
+            <li>
+              这意味着：你就算继续输出 FAQPage JSON-LD，也不应再期待它带来“FAQ 展开式富摘要”的展示收益。
+            </li>
+            <li>
+              但这不等价于“FAQ 不该写”或“结构化表达都没用”——变化的是 SERP 展示形态，不是读者理解需求。
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>FAQ 还要不要写？先按搜索意图分 3 类</h2>
+          <div class="info-grid">
+            <div class="info-box">
+              <strong>类 1：决策型（强烈建议写）</strong>
+              <p>例如“适合谁/不适合谁”“替代方案”“价格/限制”“风险与合规”。FAQ 可以直接减少读者跳出与二次搜索。</p>
+            </div>
+            <div class="info-box">
+              <strong>类 2：排障型（建议写，但要写到能复现）</strong>
+              <p>例如“为什么抓取不到”“为什么没收录”“为什么进垃圾箱”。答案要给出可执行步骤与边界，不要给“玄学结论”。</p>
+            </div>
+            <div class="info-box">
+              <strong>类 3：百科型（谨慎写，容易变薄）</strong>
+              <p>例如“X 是什么”。如果只是复述公开定义，很容易变成薄内容；更适合写进支柱页的“术语小节”。</p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>FAQ schema 还要不要加？把它当成“可选项”，不是 KPI</h2>
+          <p>
+            如果你的页面已经有<strong>真实可见</strong>的 FAQ 内容（不是为了塞关键词），你可以把结构化数据当作“可选加分项”来维护；
+            但别再为了“富摘要”去新增一堆低质量问题。
+          </p>
+          <ul>
+            <li>先保证页面本身可抓取、可理解、可核查。</li>
+            <li>FAQ 必须在正文里真实可见；结构化数据不应标注页面里没有的内容。</li>
+            <li>把 FAQ 写成“读者下一步决策所需的最小信息”，而不是把整篇文章拆成几十个问答。</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>替代清单：用 6 个可控项替代“期待富摘要”</h2>
+          <ul>
+            <li>
+              <strong>首段答案摘要</strong>：前 150 字直接给结论（可参考
+              <a class="inline-link" href="./geo-publishing-checklist.html">GEO 内容页发布前检查清单</a>）。
+            </li>
+            <li>
+              <strong>事实核查锚点</strong>：至少 3 个“可点击的官方来源”（可参考
+              <a class="inline-link" href="./ai-content-fact-checking.html">AI 内容事实核查清单</a>）。
+            </li>
+            <li>
+              <strong>适合/不适合人群</strong>：把边界说清楚，减少误导与投诉（也是 thin content 的防线）。
+            </li>
+            <li>
+              <strong>替代方案与不用工具怎么做</strong>：避免写成“功能清单 + 链接”的 thin affiliate（可参考
+              <a class="inline-link" href="./avoid-thin-affiliate-ai-content.html">怎么避免 AI 内容变成 thin affiliate</a>）。
+            </li>
+            <li>
+              <strong>站内内链</strong>：至少 3 个内部链接（同簇 + 跨簇 + 信任页），并确保有主题入口（例如
+              <a class="inline-link" href="../topics/ai-seo-geo.html">AI SEO / GEO 工具与内容工作流</a>）。
+            </li>
+            <li>
+              <strong>站点级可读目录</strong>：为“AI 阅读器/研究者”提供入口目录（可参考
+              <a class="inline-link" href="./llms-txt-for-content-sites.html">llms.txt 是什么？</a>）。
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>适合谁 / 不适合谁</h2>
+          <div class="info-grid">
+            <div class="info-box">
+              <strong>适合</strong>
+              <ul>
+                <li>有明确搜索意图的教程、清单、对比与避坑页。</li>
+                <li>需要降低客服/评论重复问题的内容站。</li>
+                <li>希望把 SEO/GEO 的可控项做扎实，而不是追“技巧”。</li>
+              </ul>
+            </div>
+            <div class="info-box">
+              <strong>不适合</strong>
+              <ul>
+                <li>只想靠 JSON-LD 拿“额外展示位”的做法。</li>
+                <li>没有原创增量、没有来源、没有边界的工具软文页。</li>
+                <li>把 FAQ 当作关键词堆砌区、把文章拆成几十个空问答。</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>下一步读什么</h2>
+          <ul>
+            <li><a class="inline-link" href="./seo-geo-aeo-llmo.html">SEO、GEO、AEO、LLMO 到底有什么区别？</a></li>
+            <li><a class="inline-link" href="./geo-publishing-checklist.html">GEO 内容页发布前检查清单</a></li>
+            <li><a class="inline-link" href="./ai-content-fact-checking.html">AI 内容事实核查清单</a></li>
+            <li><a class="inline-link" href="../disclosure.html">Affiliate Disclosure</a></li>
+          </ul>
+        </section>
+
+        <section class="source-box">
+          <h2>来源</h2>
+          <ul>
+            <li>
+              Google Search Central：
+              <a class="inline-link" href="https://developers.google.com/search/docs/appearance/structured-data/faqpage" target="_blank" rel="noopener"
+                >FAQPage structured data（含 2026-05-07 更新说明）</a
+              >
+            </li>
+            <li>
+              Google Search Central：
+              <a class="inline-link" href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content" target="_blank" rel="noopener"
+                >Creating helpful, reliable, people-first content</a
+              >
+            </li>
+            <li>
+              Google Search Central：
+              <a class="inline-link" href="https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview" target="_blank" rel="noopener"
+                >Sitemaps overview</a
+              >
+            </li>
+          </ul>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>
+

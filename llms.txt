@@ -1,0 +1,43 @@
+# AI 内容增长实验室（AI Tool Lab）
+#
+# 目的：给 LLM/agent 一个“先看什么”的入口目录，降低误读与错过关键页面的概率。
+# 更新时间（真实）：2026-05-15
+# 说明：这不是 sitemap/robots 的替代品；不保证被任何 AI 引用或用于排名。
+
+Site: https://blog.luowq.cn/ai-tool-lab/
+
+## Start here
+- 首页（定位与入口）：https://blog.luowq.cn/ai-tool-lab/
+- 从这里开始（推广入口）：https://blog.luowq.cn/ai-tool-lab/start.html
+- 披露（affiliate/广告关系）：https://blog.luowq.cn/ai-tool-lab/disclosure.html
+- 关于（作者/原则）：https://blog.luowq.cn/ai-tool-lab/about.html
+- 隐私：https://blog.luowq.cn/ai-tool-lab/privacy.html
+- 联系方式：https://blog.luowq.cn/ai-tool-lab/contact.html
+
+## Hub (reading path)
+- AI SEO / GEO Hub（推荐阅读顺序）：https://blog.luowq.cn/ai-tool-lab/topics/ai-seo-geo.html
+- AI 学习路线（Agent/写作/站点维护）：https://blog.luowq.cn/ai-tool-lab/learn/ai-learning.html
+
+## Core pages (most cite-worthy)
+- 推广入口：从这 5 篇开始：https://blog.luowq.cn/ai-tool-lab/start.html
+- SEO、GEO、AEO、LLMO 区别与工作流：https://blog.luowq.cn/ai-tool-lab/articles/seo-geo-aeo-llmo.html
+- 内容增长路线图（题库→内链→发布）：https://blog.luowq.cn/ai-tool-lab/articles/ai-search-content-growth-roadmap.html
+- GEO 发布前检查清单（质量门槛）：https://blog.luowq.cn/ai-tool-lab/articles/geo-publishing-checklist.html
+- AI 内容事实核查清单（哪些必须人工确认）：https://blog.luowq.cn/ai-tool-lab/articles/ai-content-fact-checking.html
+- FAQ schema 在 2026 后怎么用（别再期待富摘要）：https://blog.luowq.cn/ai-tool-lab/articles/faq-schema-after-google-faq-rich-results.html
+- 薄 affiliate 防线（thin affiliate）：https://blog.luowq.cn/ai-tool-lab/articles/avoid-thin-affiliate-ai-content.html
+- llms.txt 的用途与写法：https://blog.luowq.cn/ai-tool-lab/articles/llms-txt-for-content-sites.html
+
+## Agent / content workflow
+- Claude Code 内容项目模板：https://blog.luowq.cn/ai-tool-lab/articles/claude-code-content-project.html
+- AGENTS.md 边界模板：https://blog.luowq.cn/ai-tool-lab/articles/agents-md-content-site.html
+- Agent 自动化前任务审计清单：https://blog.luowq.cn/ai-tool-lab/articles/ai-agent-preflight-audit-checklist.html
+- Codex CLI /goal 任务模板：https://blog.luowq.cn/ai-tool-lab/articles/codex-cli-goal-content-ops.html
+- Obsidian 笔记→SEO 文章内容管线：https://blog.luowq.cn/ai-tool-lab/articles/obsidian-notes-to-seo-pipeline.html
+
+## Newsletter / owned audience
+- Newsletter 投递排障（SPF/DKIM/DMARC）：https://blog.luowq.cn/ai-tool-lab/articles/newsletter-deliverability-spf-dkim-dmarc.html
+- Substack vs beehiiv 选型：https://blog.luowq.cn/ai-tool-lab/articles/beehiiv-newsletter-monetization.html
+- Lead magnet 设计（订阅价值交换）：https://blog.luowq.cn/ai-tool-lab/articles/newsletter-lead-magnet-design.html
+- Newsletter 第二增长曲线（搜索→订阅闭环）：https://blog.luowq.cn/ai-tool-lab/articles/newsletter-second-growth-loop.html
+- double opt-in / Smart Nudge 取舍：https://blog.luowq.cn/ai-tool-lab/articles/newsletter-double-opt-in-smart-nudge.html

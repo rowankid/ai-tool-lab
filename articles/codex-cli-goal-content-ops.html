@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Codex CLI /goal 怎么用：把内容站迭代变成可复现任务（含验证与安全边界）</title>
+    <meta
+      name="description"
+      content="用中文内容站的视角拆解 Codex CLI 的 /goal：如何把“写文章/改站点/补内链”从一句话需求，变成可复现的任务描述、验收标准与验证清单。"
+    />
+    <link
+      rel="canonical"
+      href="https://blog.luowq.cn/ai-tool-lab/articles/codex-cli-goal-content-ops.html"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark">AI</span>
+        <span>
+          <strong>AI 内容增长实验室</strong>
+          <small>内容变成流量与收入资产</small>
+        </span>
+      </a>
+      <nav aria-label="主导航">
+        <a href="../index.html#tools">工具</a>
+        <a href="../index.html#hubs">主题</a>
+        <a href="../learn/ai-learning.html">AI 学习</a>
+        <a href="../disclosure.html">披露</a>
+      </nav>
+    </header>
+
+    <main class="article-page">
+      <article class="article">
+        <p class="eyebrow">Codex CLI / Agent Workflow</p>
+        <h1>Codex CLI /goal 怎么用：把内容站迭代变成可复现任务（含验证与安全边界）</h1>
+        <p class="disclosure-note">
+          披露：本文不包含任何必须点击的商业链接；本站其他页面可能包含 affiliate 链接。本文目标是把“怎么让 Agent
+          稳定推进内容站迭代”讲清楚，并给你一份可复用的任务模板。
+        </p>
+
+        <section>
+          <h2>一句话结论</h2>
+          <p>
+            /goal 的价值不在于“更聪明的提示词”，而在于把模糊需求变成<strong>可验收</strong>、<strong>可回滚</strong>、<strong>可复现</strong>的任务：
+            让 Agent 知道要改哪些文件、什么算完成、以及怎么验证没把站点改坏。
+          </p>
+        </section>
+
+        <section>
+          <h2>先看 3 个事实：为什么 /goal 值得写得更具体</h2>
+          <ul>
+            <li>
+              <strong>Codex 的任务本来就是“隔离执行”的：</strong>OpenAI 在产品介绍里明确把 Codex 定义为可并行处理任务的工程 agent，
+              每个任务在独立环境里运行，可读写代码并执行测试、lint 和类型检查。
+            </li>
+            <li>
+              <strong>它会给你可验证证据：</strong>官方说明强调，完成任务后会附带终端日志和测试输出引用；这意味着你不该只看“写完了没有”，而要把验证标准写进任务本身。
+            </li>
+            <li>
+              <strong>命令与行为变化很快：</strong>截至 2026-05-15，OpenAI 的 Codex GitHub releases 页面仍在持续更新
+              <code>0.131.0-alpha.*</code> 预发布版本（2026-05-12、2026-05-14 均有新条目），所以旧教程很容易过时，release notes 应该成为你的事实源。
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>/goal 是什么（以及它不是什麽）</h2>
+          <ul>
+            <li>
+              它是一个“任务对齐器”：把你的目标、范围与验收条件固定下来，减少 Agent 自行扩写范围导致的偏航。（命令与语义以 release notes 为准）
+            </li>
+            <li>
+              它不是“自动发布按钮”：注册/登录、验证码、KYC、收款、外部发帖、投放等高风险动作仍然必须人工确认。
+            </li>
+            <li>
+              它也不是 SEO 黑魔法：内容能否被搜索与 AI 引用，核心仍是可抓取、可理解、可引用的高质量原创增量内容，而不是某个命令。
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>中文内容站最容易漏掉的 /goal 字段</h2>
+          <p>对内容站来说，真正让任务可复现的，往往不是“多写两句提示词”，而是把下面 4 类约束写死。</p>
+          <ol>
+            <li>
+              <strong>入口同步：</strong>新增或重写文章后，是否必须同步首页、主题 Hub、<code>sitemap.xml</code>、必要时同步
+              <code>llms.txt</code>。
+            </li>
+            <li>
+              <strong>事实门槛：</strong>至少 3 个事实核查点，优先官方来源；如果只是 X 上的讨论热词，必须退回到官方 release notes 或文档核验。
+            </li>
+            <li>
+              <strong>商业边界：</strong>是否允许加入 affiliate 链接；如果允许，要不要加披露和 <code>rel="sponsored"</code>；如果未获批，只能放普通官方链接。
+            </li>
+            <li>
+              <strong>发布验证：</strong>是否要做 HTML 解析、站内链接检查、<code>rsync</code> 到临时目录、本地 HTTP + <code>curl</code> 校验标题存在。
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>谁适合用 /goal</h2>
+          <p>下面 3 类任务，特别适合用 /goal 作为“第一步”。</p>
+          <ol>
+            <li>
+              <strong>内容资产迭代</strong>：补 FAQ、补来源、补“适合/不适合”、补内部链接，把一篇文章从“能读”升级成“能长期带来流量与转化”。
+            </li>
+            <li>
+              <strong>站点一致性维护</strong>：新增文章后同步首页/Hub/sitemap/llms.txt，避免漏入口、漏内链、漏披露。
+            </li>
+            <li>
+              <strong>低风险批量修复</strong>：统一标题格式、修复站内死链、修正 canonical、修复披露文案或 rel 属性。
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>不适合交给 Agent 自动做的事（必须人工确认）</h2>
+          <ul>
+            <li>任何“最终提交”动作：支付、购买、提现、税务表格、银行卡、KYC、邮箱验证码/人机验证。</li>
+            <li>任何外部发布：X/公众号/邮件群发/论坛发帖（包括自动点赞、关注、私信）。</li>
+            <li>任何会泄露秘密的内容：账号信息、token、内部链接、未授权截图与后台数据。</li>
+          </ul>
+          <p>
+            如果你希望 Agent 推进这些事情，正确方式是：让它做<strong>材料准备</strong>与<strong>检查清单</strong>，并在关键节点停下来等你确认。
+          </p>
+        </section>
+
+        <section>
+          <h2>一个可直接复用的 /goal 模板（内容站迭代版）</h2>
+          <p>你可以把下面结构复制到 /goal 里（把方括号内容替换为你的实际信息）。</p>
+          <ol>
+            <li><strong>目标</strong>：要解决的读者问题 + 期望产出（例如：新增 1 篇文章页，并接入首页与 sitemap）。</li>
+            <li><strong>范围</strong>：允许修改的目录（例如：`ai-affiliate-site/`）与明确要改的文件清单。</li>
+            <li><strong>禁区</strong>：禁止做的事情（例如：不外部发布、不伪造发布日期、不提交任何表单、不处理验证码）。</li>
+            <li><strong>质量门槛</strong>：首段给结论；至少 3 个事实核查点；中文用户角度；适合/不适合；≥3 个内部链接；披露与外链 rel。</li>
+            <li><strong>验证</strong>：HTML 解析、站内链接检查、sitemap/llms.txt 更新、rsync 到 `/tmp`、curl 校验关键标题。</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>内容站的“最小验证闭环”清单</h2>
+          <ul>
+            <li>解析所有 HTML：确认每页都有 <code>&lt;title&gt;</code>、无明显结构错误。</li>
+            <li>站内链接检查：不允许出现新增的相对路径死链。</li>
+            <li>sitemap/首页/Hub/llms.txt：确保新增页在至少 2 个入口出现（首页文章区 + 主题 Hub/学习路线）。</li>
+            <li>本地可读性：用 curl 读取新页面并校验关键 <code>&lt;title&gt;</code> 是否匹配。</li>
+          </ul>
+          <p>
+            这套闭环比“让 Agent 一次写 20 篇”更能长期产出稳定资产：它直接约束了薄内容、死链和站点漂移的风险。
+          </p>
+        </section>
+
+        <section>
+          <h2>下一步读什么（站内内链）</h2>
+          <ul>
+            <li><a class="inline-link" href="./claude-code-content-project.html">Claude Code 第一个内容项目：上下文、计划、修改、验证</a></li>
+            <li><a class="inline-link" href="./ai-agent-preflight-audit-checklist.html">AI Agent 自动化前的任务审计清单（Claude Code / Codex 版）</a></li>
+            <li><a class="inline-link" href="./agents-md-content-site.html">AGENTS.md 怎么写，才能让 Agent 真懂边界？</a></li>
+            <li><a class="inline-link" href="./geo-publishing-checklist.html">GEO 内容页发布前检查清单</a></li>
+            <li><a class="inline-link" href="../learn/ai-learning.html">AI 学习路线：Claude、Codex、知识库和自动化</a></li>
+          </ul>
+        </section>
+
+        <section class="source-box">
+          <h2>来源（官方/可信）</h2>
+          <ul>
+            <li>
+              OpenAI：Introducing Codex（产品定位、独立执行环境、日志与测试证据、AGENTS.md 作用）：
+              <a class="inline-link" href="https://openai.com/index/introducing-codex/">https://openai.com/index/introducing-codex/</a>
+            </li>
+            <li>
+              Codex GitHub releases（命令与行为变化以这里为准）：
+              <a class="inline-link" href="https://github.com/openai/codex/releases">https://github.com/openai/codex/releases</a>
+            </li>
+            <li>
+              AI 学习路线页（站内 Agent/Codex 学习入口）：
+              <a class="inline-link" href="../learn/ai-learning.html">../learn/ai-learning.html</a>
+            </li>
+          </ul>
+        </section>
+
+        <p class="article-updated">最后更新：2026-05-15</p>
+      </article>
+    </main>
+
+    <footer>
+      <span>AI 内容增长实验室</span>
+      <span class="footer-links">
+        <a href="../about.html">About</a>
+        <a href="../disclosure.html">Disclosure</a>
+        <a href="../privacy.html">Privacy</a>
+        <a href="../contact.html">Contact</a>
+      </span>
+      <span>持续更新中</span>
+    </footer>
+  </body>
+</html>

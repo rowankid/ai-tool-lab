@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>从 Obsidian 笔记到 SEO 文章：一条可复用的内容管线（Claude Code / Codex 版）</title>
+    <meta
+      name="description"
+      content="把 Obsidian 里的笔记变成可被搜索发现、可被引用的公开内容资产：选题→证据→结构→写作→发布前检查→内链→上线验证。本文给出一条可复用的 SOP，并明确哪些步骤必须人工确认。"
+    />
+    <link
+      rel="canonical"
+      href="https://blog.luowq.cn/ai-tool-lab/articles/obsidian-notes-to-seo-pipeline.html"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark">AI</span>
+        <span>
+          <strong>AI 内容增长实验室</strong>
+          <small>内容变成流量与收入资产</small>
+        </span>
+      </a>
+      <nav aria-label="主导航">
+        <a href="../index.html#tools">工具</a>
+        <a href="../index.html#hubs">主题</a>
+        <a href="../learn/ai-learning.html">AI 学习</a>
+        <a href="../disclosure.html">披露</a>
+      </nav>
+    </header>
+
+    <main class="article-page">
+      <article class="article">
+        <p class="eyebrow">Agent · Obsidian · SEO/GEO</p>
+        <h1>从 Obsidian 笔记到 SEO 文章：一条可复用的内容管线（Claude Code / Codex 版）</h1>
+        <p class="disclosure-note">
+          披露：本文包含工具与服务的提及。若出现 affiliate 链接，我会在链接附近明确标注，并遵循
+          <a href="../disclosure.html">披露说明</a>。本文目标是把“知识库 → 公开内容资产”的流程写清楚，
+          不鼓励刷量、站群或批量薄内容。
+        </p>
+
+        <section>
+          <h2>一句话结论</h2>
+          <p>
+            你缺的通常不是“再多写几条笔记”，而是一条可以重复执行的管线：把笔记变成
+            <strong>回答明确搜索意图</strong>、<strong>有可核验证据</strong>、<strong>能被站内内链网络承接</strong> 的页面；
+            同时把“必须人工确认”的关口放在发布前，而不是出事故后补救。
+          </p>
+        </section>
+
+        <section>
+          <h2>这条管线适合谁 / 不适合谁</h2>
+          <div class="info-grid">
+            <div class="info-box">
+              <strong>适合</strong>
+              <ul>
+                <li>你已经在 Obsidian 有笔记，但产出不稳定。</li>
+                <li>你想做 SEO/GEO 的长期内容资产，而不是一次性发帖。</li>
+                <li>你愿意为事实核查、内链和发布验证投入“最后 20% 的时间”。</li>
+              </ul>
+            </div>
+            <div class="info-box">
+              <strong>不适合</strong>
+              <ul>
+                <li>你追求“全自动批量上百篇”，且不打算人工核对。</li>
+                <li>你要做品牌词投放、刷量、cookie stuffing 或其他灰黑产。</li>
+                <li>你无法接受：有些步骤就是必须人工确认（合规/发布/付款/KYC）。</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>最小可用 SOP（从 0 到上线）</h2>
+          <ol>
+            <li>
+              <strong>选一条“可被搜索的问题”：</strong>不要从“我想写什么”出发，而从“读者会搜什么/问什么”出发。
+              先写清楚搜索意图（教程/清单/对比/避坑/复盘）。
+            </li>
+            <li>
+              <strong>在 Obsidian 里建“证据先行”的笔记：</strong>笔记里至少包含：结论、证据链接（官方优先）、可引用事实点、
+              以及你自己的中文场景判断（访问/支付/协作/合规）。
+            </li>
+            <li>
+              <strong>写结构，再写正文：</strong>先把 H2/H3 和结论段落写出来，再让 AI 辅助补全；避免“先生成一大坨再改”。
+            </li>
+            <li>
+              <strong>把 AI 当编辑/助理，不当作者：</strong>让它做改写、补充反例、提炼清单、检查逻辑断点；但事实点与边界由你确认。
+            </li>
+            <li>
+              <strong>发布前必须过三道闸：</strong>
+              <ul>
+                <li>事实核查：至少 3 个可核验事实点（官方来源优先）。</li>
+                <li>质量门槛：不做 thin affiliate，不用空话堆字数。</li>
+                <li>站内承接：至少 3 个内部链接，且能把读者带到下一步。</li>
+              </ul>
+            </li>
+            <li>
+              <strong>上线后做“可验证”而不是“感觉很好”：</strong>更新 sitemap，并在本地做链接检查；再用静态文件方式确认标题和入口存在。
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>最容易翻车的 5 个点（以及怎么补救）</h2>
+          <ul>
+            <li>
+              <strong>把“笔记堆积”当成“内容资产化”：</strong>补救：为每篇文章建立一个“发布清单”（意图、证据、结构、内链、边界）。
+            </li>
+            <li>
+              <strong>只有观点，没有可核验事实：</strong>补救：每篇至少引用 2-4 个官方/可信来源，并把“哪些是推断”写清楚。
+            </li>
+            <li>
+              <strong>只写工具，不写任务：</strong>补救：让工具出现在“任务步骤”里，并写清楚不用工具怎么做。
+            </li>
+            <li>
+              <strong>站内没有内链网络：</strong>补救：固定放“本主题 Hub + 同簇 2-4 篇 + 跨簇下一步 + 信任页”。
+            </li>
+            <li>
+              <strong>想全自动发布：</strong>补救：发布/删除/外部提交/付款/KYC 一律人工确认；其余环节才谈自动化。
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>3 个“必须核验”的事实点（官方口径）</h2>
+          <ol>
+            <li>
+              <strong>Google 对 AI 内容的核心口径：</strong>是否使用 AI 不是重点，重点是内容是否对用户有帮助、是否符合搜索质量与垃圾内容政策。
+            </li>
+            <li>
+              <strong>Google 垃圾内容政策：</strong>规模化生成/拼接内容如果缺乏原创增量、只为操纵排名，风险会显著上升（需要回到政策逐条对照）。
+            </li>
+            <li>
+              <strong>Obsidian 数据形态：</strong>Obsidian 的 vault 文件是本地存储的（以普通文件夹形式），内容以 Markdown 为主，
+              这使得“可迁移、可审计、可批处理”成为可能（但发布/SEO 仍要在站点侧完成）。
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>相关内容（站内内链）</h2>
+          <ul>
+            <li><a href="../topics/ai-seo-geo.html">AI SEO / GEO 主题 Hub</a></li>
+            <li><a href="./geo-publishing-checklist.html">GEO 内容页发布前检查清单</a></li>
+            <li><a href="./ai-content-fact-checking.html">AI 内容事实核查清单：哪些必须人工确认</a></li>
+            <li><a href="./ai-agent-preflight-audit-checklist.html">AI Agent 自动化前的任务审计清单：Claude Code / Codex 版</a></li>
+            <li><a href="./avoid-thin-affiliate-ai-content.html">怎么避免 AI 内容变成 thin affiliate：质量门槛清单</a></li>
+            <li><a href="./newsletter-deliverability-spf-dkim-dmarc.html">Newsletter 投递排障：SPF/DKIM/DMARC 最小清单</a></li>
+            <li><a href="../disclosure.html">Affiliate 披露说明</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>来源（可核验）</h2>
+          <ul>
+            <li>
+              Google Search Central：<a
+                href="https://developers.google.com/search/blog/2023/02/google-search-and-ai-content"
+                rel="nofollow noopener"
+                target="_blank"
+                >Google Search’s guidance about AI-generated content</a
+              >
+            </li>
+            <li>
+              Google Search Central：<a href="https://developers.google.com/search/docs/essentials/spam-policies" rel="nofollow noopener" target="_blank"
+                >Spam policies for Google web search</a
+              >
+            </li>
+            <li>
+              Obsidian Help：<a
+                href="https://help.obsidian.md/Files+and+folders/How+Obsidian+stores+data"
+                rel="nofollow noopener"
+                target="_blank"
+                >How Obsidian stores data</a
+              >
+            </li>
+          </ul>
+          <p class="last-updated">持续更新中 · 最近核对：2026-05-15</p>
+        </section>
+      </article>
+    </main>
+
+    <footer class="footer">
+      <p>© 2026 AI 内容增长实验室 · 持续更新中</p>
+    </footer>
+  </body>
+</html>

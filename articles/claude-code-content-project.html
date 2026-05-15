@@ -8,7 +8,7 @@
       name="description"
       content="用 Claude Code 做第一个内容项目的四步法：给上下文、先计划、再修改、最后验证。适合内容站、知识库和静态网站维护。"
     />
-    <link rel="canonical" href="http://blog.luowq.cn/ai-tool-lab/articles/claude-code-content-project.html" />
+    <link rel="canonical" href="https://blog.luowq.cn/ai-tool-lab/articles/claude-code-content-project.html" />
     <link rel="stylesheet" href="../styles.css" />
   </head>
   <body>
@@ -53,6 +53,11 @@
           <p>
             但它不应该替你做事实判断、外部发布、验证码、KYC、收款、投放或任何高风险账号动作。
           </p>
+          <p>
+            截至 <strong>2026-05-15</strong>，Claude Code 官方 tutorials 里对内容站最有价值的 4 个动作是：
+            <strong>继续已有会话</strong>、<strong>用 git worktrees 并行开任务</strong>、<strong>先进入 Plan Mode 再动手</strong>、
+            以及<strong>把独立子任务交给 subagents</strong>。X 上的公开讨论也集中在这些点，但是否稳定可用要以官方文档为准。
+          </p>
         </section>
 
         <section>
@@ -74,6 +79,11 @@
             让 Agent 先列出要改哪些文件、为什么改、怎么验证。内容站尤其需要计划，因为首页、Hub、sitemap、看板和文章页会互相影响。
             没计划就批量写，最容易出现死链、重复主题和不一致定位。
           </p>
+          <ul>
+            <li><strong>Plan Mode 适合先做结构判断：</strong>例如先确认是补一篇旧文，还是要同时改首页、Hub、`sitemap.xml`。</li>
+            <li><strong>计划里要写验收：</strong>至少写清 HTML 解析、站内链接检查、`curl` 标题校验和哪些高风险动作禁止自动执行。</li>
+            <li><strong>社媒讨论可以拿来找问题，不拿来当事实：</strong>X 上常见“多开会话很爽”的经验，但对内容站更关键的是每个会话有没有明确范围和回滚边界。</li>
+          </ul>
         </section>
 
         <section>
@@ -81,6 +91,10 @@
           <p>
             一次写 3-5 篇比一次写 30 篇更稳。每批控制在一个主题簇里，例如先写 AI SEO/GEO 支柱页，再写 Contentpen/Outwrite 商业承接页。
             这样内链自然，读者也不会感觉站点突然变成低质内容农场。
+          </p>
+          <p>
+            如果任务彼此独立，可以考虑用 <strong>worktrees</strong> 或 <strong>subagents</strong> 分开跑：
+            例如一个会话补文章事实核查，另一个会话只处理 `sitemap.xml`、首页入口和链接检查。这样比让一个长会话同时改所有东西更容易追踪。
           </p>
         </section>
 
@@ -93,6 +107,32 @@
             <li>线上用 curl 验证 200 和关键标题。</li>
             <li>更新看板、数据表和内容题库状态。</li>
           </ol>
+          <p>
+            这一步也是 Claude Code 与“普通聊天助手”的最大区别：你不是看它“写得像不像”，而是看它有没有留下<strong>可复查证据</strong>。
+            对内容站来说，证据通常就是命令输出、变更文件列表和失败/成功的验证记录。
+          </p>
+        </section>
+
+        <section>
+          <h2>适合 / 不适合交给 Claude Code 的任务</h2>
+          <div class="info-grid">
+            <div class="info-box">
+              <strong>适合</strong>
+              <ul>
+                <li>补事实核查、FAQ、适合/不适合人群、内部链接。</li>
+                <li>同步首页、Hub、`sitemap.xml`、`llms.txt` 这类低风险站内结构更新。</li>
+                <li>把知识库笔记整理成公开草稿，再由人审稿定稿。</li>
+              </ul>
+            </div>
+            <div class="info-box">
+              <strong>不适合</strong>
+              <ul>
+                <li>代替你判断热点真伪、平台政策或收款/KYC 结论。</li>
+                <li>自动外部发布到 X、邮件列表、论坛或任何登录态平台。</li>
+                <li>处理密码、token、验证码、付款和最终提交动作。</li>
+              </ul>
+            </div>
+          </div>
         </section>
 
         <section>
@@ -123,6 +163,10 @@
             <li>
               Claude Code docs：
               <a class="inline-link" href="https://code.claude.com/docs/en/tutorials" target="_blank" rel="noopener">Common workflows</a>
+            </li>
+            <li>
+              Claude Code docs：
+              <a class="inline-link" href="https://docs.anthropic.com/en/docs/claude-code/team" target="_blank" rel="noopener">Manage Claude Code settings and permissions</a>
             </li>
           </ul>
         </section>

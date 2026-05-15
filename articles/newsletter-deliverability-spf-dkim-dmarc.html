@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Newsletter 发不出去/进垃圾箱？SPF、DKIM、DMARC 最小排查清单（含 Gmail/Yahoo 要求）</title>
+    <meta
+      name="description"
+      content="中文创作者常见的 newsletter 投递问题，90% 都能用“认证 + 退订 + 投诉率”三件事先排掉：SPF、DKIM、DMARC、one-click unsubscribe、域名对齐与冷启动节奏。本文给最小排查顺序、边界与可核验的官方来源。"
+    />
+    <link
+      rel="canonical"
+      href="https://blog.luowq.cn/ai-tool-lab/articles/newsletter-deliverability-spf-dkim-dmarc.html"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark">AI</span>
+        <span>
+          <strong>AI 内容增长实验室</strong>
+          <small>内容变成流量与收入资产</small>
+        </span>
+      </a>
+      <nav aria-label="主导航">
+        <a href="../index.html#tools">工具</a>
+        <a href="../index.html#hubs">主题</a>
+        <a href="../learn/ai-learning.html">AI 学习</a>
+        <a href="../disclosure.html">披露</a>
+      </nav>
+    </header>
+
+    <main class="article-page">
+      <article class="article">
+        <p class="eyebrow">Newsletter · Deliverability</p>
+        <h1>Newsletter 发不出去/进垃圾箱？SPF、DKIM、DMARC 最小排查清单（含 Gmail/Yahoo 要求）</h1>
+        <p class="disclosure-note">
+          披露：本文包含工具与服务的提及。若出现 affiliate 链接，我会在链接附近明确标注，并遵循
+          <a href="../disclosure.html">披露说明</a>。本文主要用于“投递排障与边界”，不是让你为了发送而绕过合规要求。
+        </p>
+
+        <section>
+          <h2>一句话结论</h2>
+          <p>
+            先别纠结模板和标题党：如果你用自定义域名发 newsletter，优先把
+            <strong>SPF / DKIM / DMARC</strong>、
+            <strong>一键退订（one-click unsubscribe）</strong>、以及
+            <strong>投诉率/名单质量</strong> 三件事做对；它们是 2024 起 Gmail/Yahoo 等邮箱服务商的最低基线，
+            也是大多数“进垃圾箱/直接拒收”的第一原因。
+          </p>
+        </section>
+
+        <section>
+          <h2>你现在遇到的是什么问题？先把症状分型</h2>
+          <div class="info-grid">
+            <div class="info-box">
+              <strong>A. 收件箱里找不到</strong>
+              <p>通常是进 spam/promotions，或者被自动折叠。优先查认证与退订，再查名单与发送节奏。</p>
+            </div>
+            <div class="info-box">
+              <strong>B. 直接被拒收/退信</strong>
+              <p>常见是 SPF/DKIM/DMARC 未通过、域名不对齐、或缺少 one-click unsubscribe 等硬性要求。</p>
+            </div>
+            <div class="info-box">
+              <strong>C. 只有部分邮箱收不到</strong>
+              <p>Gmail/Outlook/Yahoo 的规则不同。先确保“认证可核验”，再分别查每家要求与反馈工具。</p>
+            </div>
+            <div class="info-box">
+              <strong>D. 冷启动第一周就掉进垃圾箱</strong>
+              <p>技术配置没问题也会发生：发送量陡增、名单不干净、没有确认订阅、退订不顺畅。</p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>最小排查顺序（按“收益/风险比”排序）</h2>
+          <ol>
+            <li>
+              <strong>确认你用的是哪一个 From 域名：</strong>是 `@你的根域名` 还是 `@newsletter.子域名`？
+              下面所有检查都围绕“From 域名”展开。
+            </li>
+            <li>
+              <strong>先把 DNS 记录备份：</strong>在域名服务商里导出/截图当前 DNS 记录（至少包含 TXT/CNAME/MX）。
+              避免“改错一次，问题更难定位”。
+            </li>
+            <li>
+              <strong>跑通 SPF：</strong>确保 From 域名（或其组织域）发布了 SPF，且包含你实际的发送服务商（ESP）。
+            </li>
+            <li>
+              <strong>跑通 DKIM：</strong>确保你发出的邮件带 DKIM 签名，且签名域名与你的 From 域名能对齐（alignment）。
+            </li>
+            <li>
+              <strong>补齐 DMARC：</strong>哪怕先从 `p=none` 开始，也要确保“From 域名”的 DMARC 可被验证，并能出报告（rua）。
+            </li>
+            <li>
+              <strong>确认 one-click unsubscribe：</strong>营销/订阅类邮件建议支持一键退订（不仅仅是正文里放一个退订链接）。
+            </li>
+            <li>
+              <strong>再谈冷启动节奏与名单清洁：</strong>避免第一周给“几乎不互动”的名单发高频；确认订阅与退订要好用。
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>3 个“必须核验”的事实点（官方口径）</h2>
+          <ol>
+            <li>
+              <strong>Gmail（2024 起）：</strong>对所有发往个人 Gmail 的发件人，要求至少配置 SPF 或 DKIM；
+              对“每天发往 Gmail 超过 5000 封”的 bulk sender，要求同时满足 SPF、DKIM 和 DMARC，并对营销/订阅类邮件提出
+              one-click unsubscribe 等要求（并强调投诉率控制）。
+            </li>
+            <li>
+              <strong>Yahoo（2024 起）：</strong>对 bulk sender 要求 SPF & DKIM、发布 DMARC（至少 `p=none` 且 DMARC 必须通过），
+              支持 one-click unsubscribe，并在一定时限内处理退订。
+            </li>
+            <li>
+              <strong>beehiiv 自定义域名（官方说明）：</strong>beehiiv 在自定义域名接入过程中会让你添加用于 SPF/DKIM 的 CNAME；
+              但自定义域名场景下，DMARC 仍需要你在 DNS 里显式配置并通过验证（并建议用报告工具持续观察）。
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>中文创作者常见坑：别把“投递问题”当成“文案问题”</h2>
+          <ul>
+            <li>
+              <strong>把共享域名当自定义域名：</strong>看起来更“品牌”，但一旦你换域/换发件地址，认证和声誉要重新建立。
+            </li>
+            <li>
+              <strong>盲改 DNS：</strong>SPF/DKIM/DMARC 里一个分号、一个引号都可能导致记录失效；先备份，再一条条改，改完再验证。
+            </li>
+            <li>
+              <strong>没有确认订阅（double opt-in）：</strong>冷启动期名单质量比发送技巧更重要；投诉率上去会把域名声誉打坏。
+            </li>
+            <li>
+              <strong>退订不顺畅：</strong>用户点不到退订，最后就会点“举报垃圾邮件”。你的投递问题往往从这里开始。
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>边界：什么时候该停下来找官方支持</h2>
+          <p>如果你遇到下面任意一种情况，建议暂停“继续改 DNS”，先回到官方支持/域名服务商工单：</p>
+          <ul>
+            <li>你不确定“From 域名”到底是哪一个（站点域名、发件域名、跟踪域名经常是三套）。</li>
+            <li>你没有权限改 DNS（公司域名、外包注册、或多人共管），无法确认变更历史。</li>
+            <li>你已经改了 2 轮记录仍然失败，且不同工具给出矛盾结果（可能是 DNS 缓存/传播、或多重 ESP 发送）。</li>
+            <li>你要做 `p=quarantine/reject` 等强制策略，但没有监控报告与回滚预案。</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>相关内容（站内内链）</h2>
+          <ul>
+            <li><a href="./newsletter-second-growth-loop.html">Newsletter 为什么是 AI 内容站的第二增长曲线</a></li>
+            <li><a href="./beehiiv-newsletter-monetization.html">beehiiv 适合中文创作者做 newsletter 变现吗？</a></li>
+            <li><a href="./ai-content-fact-checking.html">AI 内容事实核查清单：哪些必须人工确认</a></li>
+            <li><a href="./avoid-thin-affiliate-ai-content.html">怎么避免 AI 内容变成 thin affiliate：质量门槛清单</a></li>
+            <li><a href="../disclosure.html">Affiliate 披露说明</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>来源（可核验）</h2>
+          <ul>
+            <li>
+              Google：<a href="https://support.google.com/a/answer/81126" rel="nofollow noopener" target="_blank"
+                >Email sender guidelines</a
+              >
+            </li>
+            <li>
+              Yahoo：<a href="https://senders.yahooinc.com/best-practices/" rel="nofollow noopener" target="_blank"
+                >Sender Requirements & Recommendations</a
+              >
+            </li>
+            <li>
+              beehiiv：<a
+                href="https://www.beehiiv.com/support/article/13650078276375-setting-up-dmarc-for-a-custom-domain-how-to-create-a-record-and-authenticate"
+                rel="nofollow noopener"
+                target="_blank"
+                >Setting up DMARC for a custom domain</a
+              >
+            </li>
+          </ul>
+          <p class="last-updated">持续更新中 · 最近核对：2026-05-15</p>
+        </section>
+      </article>
+    </main>
+
+    <footer class="footer">
+      <p>© 2026 AI 内容增长实验室 · 持续更新中</p>
+    </footer>
+  </body>
+</html>

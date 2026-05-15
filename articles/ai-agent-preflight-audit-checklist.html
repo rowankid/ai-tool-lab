@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Agent 自动化前的任务审计清单：Claude Code / Codex 版</title>
+    <meta
+      name="description"
+      content="一份面向内容站与静态站维护的 AI Agent 任务审计清单：在把任务交给 Claude Code / Codex 之前，先做边界、权限、数据、验证与回滚检查，避免误改、泄密与合规踩坑。"
+    />
+    <link
+      rel="canonical"
+      href="https://blog.luowq.cn/ai-tool-lab/articles/ai-agent-preflight-audit-checklist.html"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark">AI</span>
+        <span>
+          <strong>AI 内容增长实验室</strong>
+          <small>内容变成流量与收入资产</small>
+        </span>
+      </a>
+      <nav aria-label="主导航">
+        <a href="../index.html#tools">工具</a>
+        <a href="../index.html#hubs">主题</a>
+        <a href="../learn/ai-learning.html">AI 学习</a>
+        <a href="../disclosure.html">披露</a>
+      </nav>
+    </header>
+
+    <main class="article-page">
+      <article class="article">
+        <p class="eyebrow">Agent Safety / Workflow</p>
+        <h1>AI Agent 自动化前的任务审计清单：Claude Code / Codex 版</h1>
+        <p class="disclosure-note">
+          披露：本文不包含 Claude/Anthropic 或 OpenAI/Codex 的联盟链接。目的不是“追求全自动”，而是把自动化边界和验证写清楚。
+        </p>
+
+        <section>
+          <h2>一句话结论</h2>
+          <p>
+            Claude Code、Codex 这类 agentic coding 工具可以读代码库、改文件、跑命令。
+            真正的风险不在“它会不会写”，而在“你有没有把任务边界、权限、数据与验证写清楚”。
+            在你按下执行前，先用这份审计清单把不可逆风险拦在门外。
+          </p>
+        </section>
+
+        <section>
+          <h2>适合谁 / 不适合谁</h2>
+          <ul>
+            <li><strong>适合</strong>：维护静态站、内容库、脚本化发布流程；希望把“重复性改动 + 可验证结果”交给 Agent。</li>
+            <li><strong>不适合</strong>：把“注册/登录/验证码/KYC/付款/投放/外部发帖”交给 Agent；或希望在没有验证与回滚的情况下批量改站。</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>先看 3 个官方事实：权限模式不是装饰项</h2>
+          <ul>
+            <li>
+              <strong>Claude Code 的权限系统是分层的：</strong>官方文档把工具大致分成只读、Bash 和文件修改三类，后两类默认都可能需要审批。
+            </li>
+            <li>
+              <strong>Permission modes 至少有 4 种常见模式：</strong><code>default</code>、<code>acceptEdits</code>、<code>plan</code>、
+              <code>bypassPermissions</code>；它们不是“效率选项”，而是风险边界。
+            </li>
+            <li>
+              <strong>Plan Mode 适合先看后改：</strong>Anthropic 的 common workflows 文档明确把它用于读代码、规划复杂改动和安全 review；
+              对内容站来说，它很适合先做题库盘点、链接审计和改动计划。
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>审计清单（发布前 15 分钟）</h2>
+          <ol>
+            <li>
+              <strong>任务是否可验证？</strong>
+              给出可检查的验收标准：新增页面能被解析、站内链接不死、sitemap 更新、curl 返回 200、标题匹配。
+            </li>
+            <li>
+              <strong>是否拆成“可回滚的小步”？</strong>
+              一次只做一个主题簇或一个页面；避免“一口气生成 20 篇”。
+            </li>
+            <li>
+              <strong>是否明确人工边界？</strong>
+              写清楚：验证码、登录、注册、外部发布、购买、收款、税务/KYC、删除数据、`--delete` 同步等必须人工确认。
+            </li>
+            <li>
+              <strong>是否限制写入范围？</strong>
+              只允许改 `ai-affiliate-site/`、`codex/wiki/01-项目/AI联盟内容收益实验/` 这类明确目录；禁止改 `.secrets/`、账号配置与未授权截图目录。
+            </li>
+            <li>
+              <strong>是否限制命令范围？</strong>
+              优先只允许只读命令（`rg`、`ls`、`cat`）+ 明确可验证命令（HTML 检查、链接检查、测试）。
+            </li>
+            <li>
+              <strong>是否明确“不可访问外网”的前提？</strong>
+              如果当前环境无法联网，就不要让 Agent “查官网并引用最新版本”；改成“只写方法与检查表，链接官方来源”。
+            </li>
+            <li>
+              <strong>是否预先列出需要更新的文件清单？</strong>
+              例如：新增文章页、更新首页文章列表、更新 sitemap、更新题库状态、更新看板与数据表。
+            </li>
+            <li>
+              <strong>是否先过“thin content”风险门槛？</strong>
+              每篇内容至少：首段结论、3 个事实核查点、中文用户角度、适合/不适合、替代方案、3 个内部链接。
+            </li>
+            <li>
+              <strong>是否准备回滚点？</strong>
+              在大改动前确保 git 工作区干净；改动后先本地校验，再提交。
+            </li>
+            <li>
+              <strong>是否有发布后的“复检动作”？</strong>
+              同步到 `/tmp` 发布目录做快照；本地起 HTTP server 用 curl 验证新增页面 200 与标题存在。
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>一个可直接复用的“安全任务模板”</h2>
+          <p>把下面 5 句写进你的任务描述，能显著降低误改和返工：</p>
+          <ul>
+            <li>目标：只新增 1 篇文章页，并接入首页、sitemap、题库与看板。</li>
+            <li>边界：不做登录/注册/验证码/KYC/付款/外部发布；不改 secrets 与账号配置。</li>
+            <li>验证：HTML 解析、站内链接检查、`rsync` 到 `/tmp`、本地 curl 200 + 标题校验。</li>
+            <li>质量：首段结论 + 事实核查点 + 中文用户角度 + 适合/不适合 + 3+ 内链。</li>
+            <li>提交：通过校验后再 git commit；不要提交 `.env`、token 或截图。</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>内容站场景下，权限模式怎么选</h2>
+          <ul>
+            <li>
+              <strong><code>plan</code>：</strong>先用于盘点文章、找死链、列修改计划、审查题库状态。适合“先研究再决定要不要改”的小时迭代。
+            </li>
+            <li>
+              <strong><code>default</code>：</strong>适合单篇文章补来源、补内链、补 FAQ 这种中低风险改动；仍然保留逐步确认。
+            </li>
+            <li>
+              <strong><code>acceptEdits</code>：</strong>只适合你已经写清范围、文件集和验证命令的批量改动，例如统一披露文案、修 canonical、补 sitemap 入口。
+            </li>
+            <li>
+              <strong><code>bypassPermissions</code>：</strong>不适合公开站点发布链路。除非环境完全可控、任务完全可回滚，否则不要把它当成默认选择。
+            </li>
+          </ul>
+          <p>
+            一个务实原则是：如果任务里出现“登录、付款、验证码、删除、大范围同步、外部发布”任一关键词，就别把权限模式往更激进方向切。
+          </p>
+        </section>
+
+        <section>
+          <h2>下一步读什么</h2>
+          <ul>
+            <li><a class="inline-link" href="./claude-code-content-project.html">Claude Code 第一个内容项目：上下文、计划、修改、验证</a></li>
+            <li><a class="inline-link" href="./agents-md-content-site.html">AGENTS.md 怎么写，才能让 Agent 真懂边界</a></li>
+            <li><a class="inline-link" href="./ai-content-fact-checking.html">AI 内容事实核查清单：哪些必须人工确认</a></li>
+            <li><a class="inline-link" href="./geo-publishing-checklist.html">GEO 内容页发布前检查清单</a></li>
+            <li><a class="inline-link" href="../disclosure.html">Affiliate 披露与推荐边界</a></li>
+          </ul>
+        </section>
+
+        <section class="source-box">
+          <h2>来源</h2>
+          <ul>
+            <li>
+              Anthropic docs：
+              <a class="inline-link" href="https://docs.anthropic.com/en/docs/claude-code/team" target="_blank" rel="noopener">Claude Code 权限系统与 permission modes</a>
+            </li>
+            <li>
+              Anthropic docs：
+              <a class="inline-link" href="https://docs.anthropic.com/en/docs/claude-code/tutorials" target="_blank" rel="noopener">Common workflows / Plan Mode</a>
+            </li>
+            <li>
+              Anthropic docs：
+              <a class="inline-link" href="https://docs.anthropic.com/en/docs/claude-code/interactive-mode" target="_blank" rel="noopener">Interactive mode / 权限模式切换</a>
+            </li>
+            <li>
+              Google Search Central：
+              <a
+                class="inline-link"
+                href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+                target="_blank"
+                rel="noopener"
+                >Creating helpful, reliable, people-first content</a
+              >
+            </li>
+            <li>
+              Google Search Central Blog：
+              <a
+                class="inline-link"
+                href="https://developers.google.com/search/blog/2023/02/google-search-and-ai-content"
+                target="_blank"
+                rel="noopener"
+                >Google Search's guidance about AI-generated content</a
+              >
+            </li>
+          </ul>
+        </section>
+
+        <p class="article-updated">最后更新：2026-05-15</p>
+      </article>
+    </main>
+  </body>
+</html>

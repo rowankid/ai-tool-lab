@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>llms.txt 是什么？内容站怎么用它做 GEO/LLMO 的“可引用目录”</title>
+    <meta
+      name="description"
+      content="用中文内容站的视角解释 llms.txt 的用途、它和 sitemap/robots 的关系、怎么写、写什么不写什么，以及一份可直接复用的模板与检查清单。"
+    />
+    <link rel="canonical" href="https://blog.luowq.cn/ai-tool-lab/articles/llms-txt-for-content-sites.html" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark">AI</span>
+        <span>
+          <strong>AI 内容增长实验室</strong>
+          <small>内容变成流量与收入资产</small>
+        </span>
+      </a>
+      <nav aria-label="主导航">
+        <a href="../index.html#tools">工具</a>
+        <a href="../index.html#hubs">主题</a>
+        <a href="../learn/ai-learning.html">AI 学习</a>
+        <a href="../disclosure.html">披露</a>
+      </nav>
+    </header>
+
+    <main class="article-page">
+      <article class="article">
+        <p class="eyebrow">AI SEO / GEO / LLMO</p>
+        <h1>llms.txt 是什么？内容站怎么用它做 GEO/LLMO 的“可引用目录”</h1>
+        <p class="disclosure-note">
+          披露：本文不包含任何必须点击的商业链接；本站其他页面可能包含 affiliate 链接。若你通过 affiliate 链接注册或付费，
+          站点维护者可能获得佣金，这不会增加你的费用。本文目标是把概念讲清楚，并给你一份可复用模板。
+        </p>
+
+        <section>
+          <h2>一句话结论</h2>
+          <p>
+            <code>llms.txt</code> 不是“排名黑魔法”，也不是 sitemap 的替代品：它更像你给 AI 阅读器准备的一份“入口目录 + 关键页面摘要”，
+            用来降低理解成本、减少误读，并把最值得引用的内容聚合到一个可抓取的入口里。
+          </p>
+        </section>
+
+        <section>
+          <h2>它解决什么问题（中文内容站视角）</h2>
+          <ul>
+            <li>你的站点页面很多，但 AI/爬虫读到的是随机入口，容易错过最重要的支柱页和质量门槛页。</li>
+            <li>某些页面对“引用”不友好：没有清晰结论、没有来源、没有边界，容易被模型转述时产生误差。</li>
+            <li>你希望把“读者真正应该从哪里开始看”表达得更直接：Hub → 支柱页 → 清单页 → 细分页。</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>它和 sitemap / robots 的关系</h2>
+          <div class="info-grid">
+            <div class="info-box">
+              <strong>sitemap.xml</strong>
+              <p>解决“页面发现/抓取线索”。它告诉搜索引擎有哪些 URL、何时更新，但不负责表达阅读顺序和重点。</p>
+            </div>
+            <div class="info-box">
+              <strong>robots.txt</strong>
+              <p>解决“允许/禁止抓取”。它是访问控制与礼貌协议，不负责解释内容该怎么读。</p>
+            </div>
+            <div class="info-box">
+              <strong>llms.txt</strong>
+              <p>解决“AI 阅读入口”。它更像是一份给 LLM/agent 的站点导览：哪些页面最重要、各自讲什么、先看什么。</p>
+            </div>
+          </div>
+          <p>
+            结论：基础 SEO 的地基（可抓取、可索引、链接结构清晰）仍然优先；<code>llms.txt</code> 只能作为“额外的可读性层”，不能替代地基。
+          </p>
+        </section>
+
+        <section>
+          <h2>怎么写：最小可用模板（建议从 20 行开始）</h2>
+          <p>你可以直接复用本站的 <a class="inline-link" href="../llms.txt">llms.txt</a> 结构，核心原则是“少而精”。</p>
+          <ul>
+            <li><strong>只放最重要的 10-30 个 URL：</strong>Hub、支柱页、清单页、合规/披露页、联系方式。</li>
+            <li><strong>每个 URL 写 1 句摘要：</strong>说明它回答什么问题、适合谁、有什么边界。</li>
+            <li><strong>不要放隐私/机密：</strong>不要写内部系统、未公开接口、个人信息、API key、后台地址。</li>
+            <li><strong>加更新时间：</strong>用真实日期（例如 <code>2026-05-15</code>），不要伪造“最新”。</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>什么时候值得做（以及什么时候不值得）</h2>
+          <div class="info-grid">
+            <div class="info-box">
+              <strong>适合</strong>
+              <ul>
+                <li>你有清晰主题簇（Hub）与阅读路径。</li>
+                <li>你有“质量门槛”页面（发布前清单、事实核查、薄内容防线）。</li>
+                <li>你希望 AI 更稳定地引用“结论 + 来源 + 边界”。</li>
+              </ul>
+            </div>
+            <div class="info-box">
+              <strong>不适合/先别做</strong>
+              <ul>
+                <li>站点还没做到可抓取、内链清楚、标题描述稳定。</li>
+                <li>内容大部分是薄工具页或未经核验的堆砌。</li>
+                <li>你想把它当作“提升排名/引用的捷径”。</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>发布前自检清单</h2>
+          <ol>
+            <li><strong>先做地基：</strong>站点可抓取、<a class="inline-link" href="./geo-publishing-checklist.html">发布前检查清单</a>通过。</li>
+            <li><strong>再做入口：</strong><code>llms.txt</code> 只保留 10-30 个最重要链接。</li>
+            <li><strong>保证可核验：</strong>每个关键页面至少有 <a class="inline-link" href="./ai-content-fact-checking.html">3 个事实核查点</a>。</li>
+            <li><strong>加边界与披露：</strong>商业推荐附近清楚披露；不确定的结论写清“不确定性”。</li>
+            <li><strong>避免误导：</strong>不要暗示“写了 llms.txt 就会被任何 AI 引用/排名提升”。</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>下一步读什么</h2>
+          <ul>
+            <li><a class="inline-link" href="../topics/ai-seo-geo.html">AI SEO / GEO 工具与内容工作流（Hub）</a></li>
+            <li><a class="inline-link" href="./seo-geo-aeo-llmo.html">SEO、GEO、AEO、LLMO 到底有什么区别？</a></li>
+            <li><a class="inline-link" href="./ai-search-content-growth-roadmap.html">AI 搜索时代的内容增长路线图</a></li>
+            <li><a class="inline-link" href="./avoid-thin-affiliate-ai-content.html">怎么避免 AI 内容变成 thin affiliate</a></li>
+          </ul>
+        </section>
+
+        <section class="source-box">
+          <h2>来源</h2>
+          <ul>
+            <li>
+              X Docs：
+              <a class="inline-link" href="https://docs.x.com/resources/fundamentals/llms-txt" target="_blank" rel="noopener">llms.txt</a>
+            </li>
+            <li>
+              Google Search Central：
+              <a class="inline-link" href="https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview" target="_blank" rel="noopener">Learn about sitemaps</a>
+            </li>
+            <li>
+              Google Search Central：
+              <a class="inline-link" href="https://developers.google.com/search/docs/crawling-indexing/robots/intro" target="_blank" rel="noopener">Introduction to robots.txt</a>
+            </li>
+          </ul>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>
+
