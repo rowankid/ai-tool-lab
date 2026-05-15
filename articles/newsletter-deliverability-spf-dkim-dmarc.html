@@ -112,13 +112,31 @@
             </li>
             <li>
               <strong>Yahoo（2024 起）：</strong>对 bulk sender 要求 SPF & DKIM、发布 DMARC（至少 `p=none` 且 DMARC 必须通过），
-              支持 one-click unsubscribe，并在一定时限内处理退订。
+              支持 one-click unsubscribe，并在 <strong>2 天内</strong>处理退订。
             </li>
             <li>
               <strong>beehiiv 自定义域名（官方说明）：</strong>beehiiv 在自定义域名接入过程中会让你添加用于 SPF/DKIM 的 CNAME；
               但自定义域名场景下，DMARC 仍需要你在 DNS 里显式配置并通过验证（并建议用报告工具持续观察）。
             </li>
           </ol>
+        </section>
+
+        <section>
+          <h2>这次补强的 4 个细节，直接影响你排障顺序</h2>
+          <ul>
+            <li>
+              <strong>Gmail 不只看“有没有记录”，还看对齐：</strong>对于 direct email，From 域名需要与 SPF 域名或 DKIM 域名对齐，才能通过 DMARC alignment。
+            </li>
+            <li>
+              <strong>Gmail/Yahoo 都把投诉率当硬信号：</strong>公开要求都提到垃圾邮件投诉率应低于 <strong>0.3%</strong>，所以“名单质量”不是文案优化问题，而是投递底线。
+            </li>
+            <li>
+              <strong>beehiiv 自定义域名验证不是秒生效：</strong>官方当前写明域名验证可能需要 <strong>最多 72 小时</strong>；这段时间不要反复删除再重加记录，否则会拖慢验证甚至触发限制。
+            </li>
+            <li>
+              <strong>Yahoo 明确说正文退订链接不够：</strong>只有正文里的“取消订阅”链接，不等于满足 one-click unsubscribe；还需要正确的 `List-Unsubscribe` 头，最好按 RFC 8058 支持 POST。
+            </li>
+          </ul>
         </section>
 
         <section>
@@ -147,6 +165,7 @@
             <li>你没有权限改 DNS（公司域名、外包注册、或多人共管），无法确认变更历史。</li>
             <li>你已经改了 2 轮记录仍然失败，且不同工具给出矛盾结果（可能是 DNS 缓存/传播、或多重 ESP 发送）。</li>
             <li>你要做 `p=quarantine/reject` 等强制策略，但没有监控报告与回滚预案。</li>
+            <li>你在 beehiiv 自定义域名接入的 72 小时内反复移除/重加记录，或者验证状态长期卡住没有前进。</li>
           </ul>
         </section>
 
@@ -175,11 +194,24 @@
               >
             </li>
             <li>
+              Yahoo：
+              <a href="https://senders.yahooinc.com/faqs/" rel="nofollow noopener" target="_blank">FAQs（one-click unsubscribe / 2 天内退订）</a>
+            </li>
+            <li>
               beehiiv：<a
                 href="https://www.beehiiv.com/support/article/13650078276375-setting-up-dmarc-for-a-custom-domain-how-to-create-a-record-and-authenticate"
                 rel="nofollow noopener"
                 target="_blank"
                 >Setting up DMARC for a custom domain</a
+              >
+            </li>
+            <li>
+              beehiiv：
+              <a
+                href="https://www.beehiiv.com/support/article/14492990172823-How-to-add-and-configure-custom-domains"
+                rel="nofollow noopener"
+                target="_blank"
+                >How to use a custom domain for your publication</a
               >
             </li>
           </ul>

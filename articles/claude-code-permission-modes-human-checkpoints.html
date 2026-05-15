@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Claude Code 权限设置：哪些操作必须人工确认</title>
+    <meta
+      name="description"
+      content="中文内容团队用 Claude Code 时，真正要先想清楚的不是“能不能自动化”，而是哪些动作必须人工确认。本文把 Plan Mode、permission modes、文件写入、外部操作和发布验证拆成一套可执行边界。"
+    />
+    <link
+      rel="canonical"
+      href="https://blog.luowq.cn/ai-tool-lab/articles/claude-code-permission-modes-human-checkpoints.html"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark">AI</span>
+        <span>
+          <strong>AI 内容增长实验室</strong>
+          <small>内容变成流量与收入资产</small>
+        </span>
+      </a>
+      <nav aria-label="主导航">
+        <a href="../index.html#tools">工具</a>
+        <a href="../index.html#hubs">主题</a>
+        <a href="../learn/ai-learning.html">AI 学习</a>
+        <a href="../disclosure.html">披露</a>
+      </nav>
+    </header>
+
+    <main class="article-page">
+      <article class="article">
+        <p class="eyebrow">Claude Code · Permissions</p>
+        <h1>Claude Code 权限设置：哪些操作必须人工确认</h1>
+        <p class="disclosure-note">
+          披露：本文不包含 Claude 或 Anthropic 的联盟链接。目的不是鼓励“全自动跑站点”，而是把内容站最容易踩坑的权限边界写清楚。
+        </p>
+
+        <section>
+          <h2>一句话结论</h2>
+          <p>
+            对内容站和知识库工作流来说，<strong>Plan Mode、permission modes 和人工确认点</strong>比“提示词技巧”更重要。
+            凡是涉及<strong>外部发布、登录态、付款/KYC、删除或覆盖同步、大范围写入</strong>的动作，都不该默认放给 Claude Code 自动执行。
+          </p>
+        </section>
+
+        <section>
+          <h2>先看 4 个事实核查点</h2>
+          <ol>
+            <li>
+              <strong>Claude Code 的权限是分层的。</strong>
+              官方 permissions 文档把只读、Bash 和文件修改分开处理；是否需要审批、能否被规则预先放行，都取决于你当前的模式和规则。
+            </li>
+            <li>
+              <strong>Plan Mode 适合先看后改。</strong>
+              官方 tutorials 把它用于读代码、分析改动范围、先给计划再进入实施；这正适合内容站的“补内链、找死链、盘点 sitemap、列改动清单”。
+            </li>
+            <li>
+              <strong><code>default</code>、<code>acceptEdits</code>、<code>plan</code>、<code>bypassPermissions</code> 不是效率等级，而是风险边界。</strong>
+              模式越激进，越要求任务范围、写入目录和验证动作预先写清。
+            </li>
+            <li>
+              <strong>X 上本月公开讨论的热点，仍然集中在 plan first、多会话协作和权限收口。</strong>
+              这能说明用户痛点，但不能当事实来源；具体行为以官方文档当天版本为准。
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>哪些操作必须人工确认</h2>
+          <div class="info-grid">
+            <div class="info-box">
+              <strong>1. 登录、注册、验证码</strong>
+              <p>包括网站登录、邮箱验证码、reCAPTCHA、Cloudflare、人机校验。它们既有账号风险，也常常意味着策略判断，不该默认自动做。</p>
+            </div>
+            <div class="info-box">
+              <strong>2. 付款、税务、KYC</strong>
+              <p>包括 PayPal、Wise、银行卡、税表、Dub banking info、身份材料上传。这里不是“帮你填表”，而是法律与主体责任边界。</p>
+            </div>
+            <div class="info-box">
+              <strong>3. 外部发布与对外互动</strong>
+              <p>包括发 X、发 newsletter、评论、私信、论坛发帖、提交联盟申请、点广告后台按钮。可以准备草稿，但最终发布应由人确认。</p>
+            </div>
+            <div class="info-box">
+              <strong>4. 删除、覆盖、危险同步</strong>
+              <p>例如大范围删除文件、覆盖发布目录、跨仓库同步、生产环境写入、带 <code>--delete</code> 的同步命令。没有回滚点就不应放权。</p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>内容站场景下，权限模式怎么用</h2>
+          <ul>
+            <li>
+              <strong><code>plan</code>：</strong>先用于盘点文章、审查题库、找缺失入口、列需要修改的文件和验证步骤。适合“先想清楚再动手”的小时迭代。
+            </li>
+            <li>
+              <strong><code>default</code>：</strong>适合单篇文章补 FAQ、补事实来源、补内链、改首页入口这类中低风险动作。优点是保留确认点，不会让会话一路滑向大改。
+            </li>
+            <li>
+              <strong><code>acceptEdits</code>：</strong>只适合你已经明确写入范围时使用，比如统一 canonical、补披露文案、同步 `sitemap.xml`、修一批确定的相对路径。
+            </li>
+            <li>
+              <strong><code>bypassPermissions</code>：</strong>不适合公开站点发布链路。除非你在完全隔离、完全可回滚的环境里做内部实验，否则不要把它当默认模式。
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>中文用户最容易忽略的边界</h2>
+          <ul>
+            <li><strong>不是所有“能联网”的动作都该让 Agent 做：</strong>搜索公开资料可以，替你提交表单、点击后台确认、处理收款主体不可以。</li>
+            <li><strong>不是所有“站内改动”都低风险：</strong>像 `rsync -a --delete`、批量替换链接、重写 `robots.txt`、清理目录，都要当成高风险动作看。</li>
+            <li><strong>不是所有“没报错”都算成功：</strong>内容站至少要补 HTML 解析、站内链接检查、标题校验和最终页面可访问检查。</li>
+            <li><strong>不是所有“经验帖”都能复用：</strong>X 上有人会分享多会话、多 subagents、超激进权限设置；你的环境、目录结构、发布链路和合规边界未必一样。</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>适合 / 不适合交给 Claude Code 的任务</h2>
+          <div class="info-grid">
+            <div class="info-box">
+              <strong>适合</strong>
+              <ul>
+                <li>补 1-2 篇文章的事实核查点、FAQ、适合/不适合和站内内链。</li>
+                <li>同步首页、Hub、`sitemap.xml`、`llms.txt` 这类结构性入口。</li>
+                <li>先做内容计划、文件清单、验证清单，再由人确认进入实施。</li>
+              </ul>
+            </div>
+            <div class="info-box">
+              <strong>不适合</strong>
+              <ul>
+                <li>自动登录后台、提交联盟申请、处理 CAPTCHA、处理付款或税务材料。</li>
+                <li>直接把大量草稿外发到 X、邮件列表、论坛或公众号。</li>
+                <li>在没有验证与回滚的前提下批量生成几十篇薄内容。</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>一条可直接复用的任务模板</h2>
+          <p>如果你希望 Claude Code 改内容站，任务里至少写清下面 5 件事：</p>
+          <ol>
+            <li>只改哪些目录和文件，不能碰哪些目录。</li>
+            <li>这次最多新增几篇文章或改几类页面，不要无限扩写。</li>
+            <li>哪些动作必须停下来等人确认：登录、表单、支付、删除、发布。</li>
+            <li>验证命令是什么：HTML 解析、站内链接检查、`curl` 200 和标题校验。</li>
+            <li>提交条件是什么：先本地验证通过，再 git commit，不提交 `.env`、token、密码或未授权截图。</li>
+          </ol>
+          <p>
+            如果这 5 件事你还没写清，先回去开 <code>plan</code> 模式，而不是直接让它“开始做”。
+          </p>
+        </section>
+
+        <section>
+          <h2>下一步读什么</h2>
+          <ul>
+            <li><a class="inline-link" href="./claude-code-content-project.html">Claude Code 第一个内容项目：上下文、计划、修改、验证</a></li>
+            <li><a class="inline-link" href="./ai-agent-preflight-audit-checklist.html">AI Agent 自动化前的任务审计清单</a></li>
+            <li><a class="inline-link" href="./agents-md-content-site.html">AGENTS.md 怎么写，才能让 Agent 真懂边界</a></li>
+            <li><a class="inline-link" href="./obsidian-notes-to-seo-pipeline.html">从 Obsidian 笔记到 SEO 文章：一条可复用的内容管线</a></li>
+            <li><a class="inline-link" href="../disclosure.html">Affiliate 披露与推荐边界</a></li>
+          </ul>
+        </section>
+
+        <section class="source-box">
+          <h2>来源</h2>
+          <ul>
+            <li>
+              Claude Code docs：
+              <a class="inline-link" href="https://code.claude.com/docs/en/permissions" target="_blank" rel="noopener">Configure permissions</a>
+            </li>
+            <li>
+              Claude Code docs：
+              <a class="inline-link" href="https://code.claude.com/docs/en/permission-modes" target="_blank" rel="noopener">Choose a permission mode</a>
+            </li>
+            <li>
+              Anthropic docs：
+              <a class="inline-link" href="https://docs.anthropic.com/en/docs/claude-code/tutorials" target="_blank" rel="noopener">Common workflows</a>
+            </li>
+            <li>
+              X 公开讨论（趋势信号，不作为事实锚点）：
+              <a class="inline-link" href="https://x.com/NickSpisak_/status/2042993832531275882" target="_blank" rel="noopener">Claude Code Ultraplan</a>
+            </li>
+            <li>
+              X 公开讨论（趋势信号，不作为事实锚点）：
+              <a class="inline-link" href="https://x.com/yanndine/status/2026382902406123654" target="_blank" rel="noopener">Plan Mode / subagents / safe permissions setup</a>
+            </li>
+          </ul>
+        </section>
+
+        <p class="article-updated">持续更新中 · 最近核对：2026-05-15</p>
+      </article>
+    </main>
+  </body>
+</html>
