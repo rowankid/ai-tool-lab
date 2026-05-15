@@ -6,7 +6,7 @@
     <title>AGENTS.md 怎么写，才能让 Agent 真懂边界？</title>
     <meta
       name="description"
-      content="内容站如何编写 AGENTS.md：站点定位、文件结构、发布规则、SEO/GEO 质量门槛、合规边界、验证命令和不能自动执行的事项。"
+      content="内容站如何编写 AGENTS.md：站点定位、文件结构、发布规则、权限模式、SEO/GEO 质量门槛、验证命令和必须人工确认的事项。"
     />
     <link rel="canonical" href="https://blog.luowq.cn/ai-tool-lab/articles/agents-md-content-site.html" />
     <link rel="stylesheet" href="../styles.css" />
@@ -42,6 +42,10 @@
             AGENTS.md 不是写给人看的愿望清单，而是写给 Agent 的操作边界。它要告诉 Agent：
             站点是什么、哪些文件能改、什么叫高质量内容、哪些动作必须停下来等用户确认。
           </p>
+          <p>
+            如果你同时在用 Claude Code、Codex 这类能读文件、改文件、跑命令的 agent，AGENTS.md 还应该顺手定义权限默认值与验证闭环。
+            否则 Agent 很可能“会做很多事”，但做出来的不是你想要的那一套。
+          </p>
         </section>
 
         <section>
@@ -63,7 +67,20 @@
               <strong>禁止动作</strong>
               <p>不伪造日期、不刷量、不自动外发、不处理 KYC/税务/收款/验证码。</p>
             </div>
+            <div class="info-box">
+              <strong>权限默认值</strong>
+              <p>先说明哪些任务默认只读/先计划，哪些任务才允许改文件与跑验证命令。</p>
+            </div>
           </div>
+        </section>
+
+        <section>
+          <h2>先写 3 个官方事实：边界不是靠“常识”自己长出来的</h2>
+          <ul>
+            <li><strong>Claude Code 的 permission modes 是风险边界，不是效率开关：</strong><code>plan</code>、<code>default</code>、<code>acceptEdits</code>、<code>bypassPermissions</code> 适合的任务强度不同。</li>
+            <li><strong>Codex / Claude Code 这类工具会持续演化：</strong>教程和工作流要写“核验日期”与官方来源，避免旧命令或旧行为误导读者。</li>
+            <li><strong>Google 对内容质量的核心要求没有因为 AI 搜索而改变：</strong>AGENTS.md 里仍要把首段结论、事实核查、内链与适用边界写成硬门槛。</li>
+          </ul>
         </section>
 
         <section>
@@ -84,12 +101,39 @@
 - 至少 3 个内部链接。
 - 有适合/不适合人群或风险边界。
 
+# 权限模式
+- 默认先用 plan / 只读方式盘点范围。
+- 批量改动前先列文件清单和验证命令。
+- 验证通过前不要自动发布到外部平台。
+
 # 必须暂停的动作
 验证码、登录、注册最终提交、外部发帖、投放、购买、提现、税务、银行卡、KYC。</code></pre>
         </section>
 
         <section>
-          <h2>为什么这对 SEO 有帮助</h2>
+          <h2>权限模式怎么写进 AGENTS.md</h2>
+          <div class="info-grid">
+            <div class="info-box">
+              <strong><code>plan</code></strong>
+              <p>适合盘点文章、找死链、列文件清单和判断是补旧文还是新开页。小时级运营迭代优先从这里开始。</p>
+            </div>
+            <div class="info-box">
+              <strong><code>default</code></strong>
+              <p>适合单页补来源、补 FAQ、补内链这类中低风险动作；仍应保留验证和人工复查。</p>
+            </div>
+            <div class="info-box">
+              <strong><code>acceptEdits</code></strong>
+              <p>只适合你已经明确写入范围和验证命令的批量修正，例如统一 canonical、披露或 sitemap 入口。</p>
+            </div>
+            <div class="info-box">
+              <strong><code>bypassPermissions</code></strong>
+              <p>不该成为公开站点发布链路的默认选择；没有明确回滚点时不要放开。</p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>为什么这对 SEO/GEO 有帮助</h2>
           <p>
             Agent 最大的问题不是不会写，而是太容易把站点写散。AGENTS.md 把定位、内链、披露和质量门槛固定下来，
             让每次批量写作都沿着同一套框架推进。长期看，这比一次性生成很多文章更重要。
@@ -97,9 +141,21 @@
         </section>
 
         <section>
+          <h2>一个更实用的任务模板</h2>
+          <ul>
+            <li><strong>目标：</strong>只补强 1-2 篇既有高价值页面，并同步首页、相关 Hub、`sitemap.xml`。</li>
+            <li><strong>范围：</strong>只允许改 `ai-affiliate-site/` 与项目看板文档；不碰 secrets、账号配置和未授权截图。</li>
+            <li><strong>质量：</strong>首段结论、3 个事实核查点、中文用户角度、适合/不适合、3 个以上内部链接。</li>
+            <li><strong>验证：</strong>HTML 解析、站内链接检查、`rsync` 到 `/tmp`、`curl` 标题核验。</li>
+            <li><strong>停止条件：</strong>登录、注册、验证码、KYC、收款、外部发布、删除型同步都必须停下等人确认。</li>
+          </ul>
+        </section>
+
+        <section>
           <h2>常见错误</h2>
           <ul>
             <li>只写“请写高质量文章”，但没有定义高质量。</li>
+            <li>没有说明默认先 plan，结果一上来就让 Agent 同时改首页、文章、sitemap 和外部发布链路。</li>
             <li>没有说明哪些外部动作不能自动做。</li>
             <li>没有把 secrets、账号、验证码和公开内容分开。</li>
             <li>没有要求验证命令，导致发布后才发现死链。</li>
@@ -111,6 +167,8 @@
           <h2>下一步读什么</h2>
           <ul>
             <li><a class="inline-link" href="./claude-code-content-project.html">Claude Code 第一个内容项目</a></li>
+            <li><a class="inline-link" href="./ai-agent-preflight-audit-checklist.html">AI Agent 自动化前的任务审计清单</a></li>
+            <li><a class="inline-link" href="./codex-cli-goal-content-ops.html">Codex CLI /goal 怎么用</a></li>
             <li><a class="inline-link" href="./geo-publishing-checklist.html">GEO 内容页发布前检查清单</a></li>
             <li><a class="inline-link" href="./ai-content-fact-checking.html">AI 内容事实核查清单</a></li>
             <li><a class="inline-link" href="../about.html">关于本站方法</a></li>
@@ -129,11 +187,21 @@
               <a class="inline-link" href="https://code.claude.com/docs/en/tutorials" target="_blank" rel="noopener">Common workflows</a>
             </li>
             <li>
+              Anthropic docs：
+              <a class="inline-link" href="https://docs.anthropic.com/en/docs/claude-code/security/permission-modes" target="_blank" rel="noopener">Permission modes</a>
+            </li>
+            <li>
               Google Search Central：
               <a class="inline-link" href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content" target="_blank" rel="noopener">Helpful content</a>
             </li>
+            <li>
+              OpenAI：
+              <a class="inline-link" href="https://github.com/openai/codex/releases" target="_blank" rel="noopener">Codex release notes</a>
+            </li>
           </ul>
         </section>
+
+        <p class="article-updated">最后更新：2026-05-15</p>
       </article>
     </main>
   </body>
