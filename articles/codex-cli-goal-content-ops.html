@@ -44,7 +44,8 @@
           <h2>一句话结论</h2>
           <p>
             /goal 的价值不在于“更聪明的提示词”，而在于把模糊需求变成<strong>可验收</strong>、<strong>可回滚</strong>、<strong>可复现</strong>的任务：
-            让 Agent 知道要改哪些文件、什么算完成、以及怎么验证没把站点改坏。
+            让 Agent 知道要改哪些文件、什么算完成、以及怎么验证没把站点改坏。到了 <strong>2026 年 5 月</strong>，
+            你甚至可以在手机上继续审阅和批准长任务，但越是能“随时接力”，越要把完成条件和人工边界写清楚。
           </p>
         </section>
 
@@ -62,6 +63,21 @@
               <strong>命令与行为变化很快：</strong>截至 2026-05-15，OpenAI 的 Codex GitHub releases 页面仍在持续更新
               <code>0.131.0-alpha.*</code> 预发布版本（2026-05-12、2026-05-14 均有新条目），所以旧教程很容易过时，release notes 应该成为你的事实源。
             </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>2026-05-14 之后，/goal 还要补哪一层</h2>
+          <p>
+            OpenAI 在 <strong>2026-05-14</strong> 发布的 <em>Work with Codex from anywhere</em> 说明里，正式把
+            <strong>手机侧接力审批</strong>、<strong>远程环境线程继续推进</strong> 和 <strong>实时回看截图、diff、测试结果</strong>
+            讲清楚了。对内容站运营来说，这不是鼓励你“随时随地乱改站”，而是在提醒你：
+            <strong>任务越来越长、接力点越来越多，完成条件和停止条件必须更明确</strong>。
+          </p>
+          <ul>
+            <li><strong>手机适合做判断，不适合做模糊指挥：</strong>你可以批准、改方向、补一句上下文，但不要只发“顺手优化一下”。</li>
+            <li><strong>远程接力不改变合规边界：</strong>账号登录、验证码、KYC、收款、外部发布，仍然必须人工完成，不因为能手机接力就变成可自动化动作。</li>
+            <li><strong>线程越长，越要把验证前置：</strong>让 Agent 明确输出 diff、测试结果、标题校验和链接检查，而不是只回一句“已完成”。</li>
           </ul>
         </section>
 
@@ -96,7 +112,7 @@
 
         <section>
           <h2>中文内容站最容易漏掉的 /goal 字段</h2>
-          <p>对内容站来说，真正让任务可复现的，往往不是“多写两句提示词”，而是把下面 4 类约束写死。</p>
+          <p>对内容站来说，真正让任务可复现的，往往不是“多写两句提示词”，而是把下面 5 类约束写死。</p>
           <ol>
             <li>
               <strong>入口同步：</strong>新增或重写文章后，是否必须同步首页、主题 Hub、<code>sitemap.xml</code>、必要时同步
@@ -110,6 +126,10 @@
             </li>
             <li>
               <strong>发布验证：</strong>是否要做 HTML 解析、站内链接检查、<code>rsync</code> 到临时目录、本地 HTTP + <code>curl</code> 校验标题存在。
+            </li>
+            <li>
+              <strong>接力边界：</strong>哪些决定可以在手机上批准，哪些事情必须回到桌面人工处理；例如“继续写 / 继续校验”可以远程批准，
+              但“提交税务、发布邮件、发送社媒”不行。
             </li>
           </ol>
         </section>
@@ -139,6 +159,7 @@
           </ul>
           <p>
             如果你希望 Agent 推进这些事情，正确方式是：让它做<strong>材料准备</strong>与<strong>检查清单</strong>，并在关键节点停下来等你确认。
+            这一点在手机接力场景里更重要，因为“可远程批准”很容易让人误以为“可以远程代办”。
           </p>
         </section>
 
@@ -151,7 +172,27 @@
             <li><strong>禁区</strong>：禁止做的事情（例如：不外部发布、不伪造发布日期、不提交任何表单、不处理验证码）。</li>
             <li><strong>质量门槛</strong>：首段给结论；至少 3 个事实核查点；中文用户角度；适合/不适合；≥3 个内部链接；披露与外链 rel。</li>
             <li><strong>验证</strong>：HTML 解析、站内链接检查、sitemap/llms.txt 更新、rsync 到 `/tmp`、curl 校验关键标题。</li>
+            <li><strong>人工检查点</strong>：哪些节点允许手机审批，哪些节点必须回到桌面人工确认。</li>
           </ol>
+        </section>
+
+        <section>
+          <h2>把“安全边界”写进 /goal，而不是写进脑子里</h2>
+          <p>
+            OpenAI 在 <strong>2026-05-08</strong> 发布的 <em>Running Codex safely at OpenAI</em> 里，把 Codex 的治理拆成了几层：
+            <strong>sandbox</strong>、<strong>approval policy</strong>、<strong>network policy</strong> 和
+            <strong>agent-native telemetry</strong>。这对内容站运营的启发很直接：不要把“别乱改站点”当口头提醒，而要把它变成任务里的结构。
+          </p>
+          <ul>
+            <li><strong>sandbox</strong> 决定 Agent 能写哪里、能不能联网，不该放任它碰整个机器。</li>
+            <li><strong>approval policy</strong> 决定什么动作必须停下来问你，越高风险越不能“顺手放行”。</li>
+            <li><strong>network policy</strong> 决定它能访问哪些域名，避免把公开调研变成无边界抓网。</li>
+            <li><strong>telemetry</strong> 决定事后能不能复盘：为什么动了这个文件、为什么批准了那个命令。</li>
+          </ul>
+          <p>
+            对中文内容站最实用的做法不是照抄企业配置，而是把这四层翻译成自己的发布 SOP：
+            <strong>改哪些目录、允许查哪些来源、哪些动作停下来、失败后看哪类日志</strong>。
+          </p>
         </section>
 
         <section>
@@ -184,6 +225,14 @@
             <li>
               OpenAI：Introducing Codex（产品定位、独立执行环境、日志与测试证据、AGENTS.md 作用）：
               <a class="inline-link" href="https://openai.com/index/introducing-codex/">https://openai.com/index/introducing-codex/</a>
+            </li>
+            <li>
+              OpenAI：Running Codex safely at OpenAI（2026-05-08，sandbox、approval policy、network policy、telemetry）：
+              <a class="inline-link" href="https://openai.com/index/running-codex-safely/">https://openai.com/index/running-codex-safely/</a>
+            </li>
+            <li>
+              OpenAI：Work with Codex from anywhere（2026-05-14，手机接力、远程环境、实时审批与回看）：
+              <a class="inline-link" href="https://openai.com/index/work-with-codex-from-anywhere/">https://openai.com/index/work-with-codex-from-anywhere/</a>
             </li>
             <li>
               Codex GitHub releases（命令与行为变化以这里为准）：
