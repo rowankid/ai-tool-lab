@@ -24,6 +24,7 @@ Site: https://blog.luowq.cn/ai-tool-lab/
 - 内容增长路线图（题库→内链→发布）：https://blog.luowq.cn/ai-tool-lab/articles/ai-search-content-growth-roadmap.html
 - GEO 发布前检查清单（质量门槛）：https://blog.luowq.cn/ai-tool-lab/articles/geo-publishing-checklist.html
 - AI 内容事实核查清单（哪些必须人工确认）：https://blog.luowq.cn/ai-tool-lab/articles/ai-content-fact-checking.html
+- AI Overviews / AI Mode 下的可控项（SEO 底座→复访关系层）：https://blog.luowq.cn/ai-tool-lab/articles/ai-overviews-owned-audience.html
 - FAQ schema 在 2026 后怎么用（别再期待富摘要）：https://blog.luowq.cn/ai-tool-lab/articles/faq-schema-after-google-faq-rich-results.html
 - 薄 affiliate 防线（thin affiliate）：https://blog.luowq.cn/ai-tool-lab/articles/avoid-thin-affiliate-ai-content.html
 - llms.txt 的用途与写法：https://blog.luowq.cn/ai-tool-lab/articles/llms-txt-for-content-sites.html
@@ -40,4 +41,5 @@ Site: https://blog.luowq.cn/ai-tool-lab/
 - Substack vs beehiiv 选型：https://blog.luowq.cn/ai-tool-lab/articles/beehiiv-newsletter-monetization.html
 - Lead magnet 设计（订阅价值交换）：https://blog.luowq.cn/ai-tool-lab/articles/newsletter-lead-magnet-design.html
 - Newsletter 第二增长曲线（搜索→订阅闭环）：https://blog.luowq.cn/ai-tool-lab/articles/newsletter-second-growth-loop.html
+- AI Overviews 点击不确定时的 owned audience 框架：https://blog.luowq.cn/ai-tool-lab/articles/ai-overviews-owned-audience.html
 - double opt-in / Smart Nudge 取舍：https://blog.luowq.cn/ai-tool-lab/articles/newsletter-double-opt-in-smart-nudge.html
