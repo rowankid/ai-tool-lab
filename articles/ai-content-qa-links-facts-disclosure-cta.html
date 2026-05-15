@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>用 AI 做内容 QA：链接、事实、披露、CTA 先查什么</title>
+    <meta
+      name="description"
+      content="把 AI 用在内容发布前 QA，而不是只用来写草稿：一份面向中文内容站的链接、事实、披露与 CTA 检查流程，含 Google、OpenAI、Anthropic 官方边界。"
+    />
+    <link
+      rel="canonical"
+      href="https://blog.luowq.cn/ai-tool-lab/articles/ai-content-qa-links-facts-disclosure-cta.html"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark">AI</span>
+        <span>
+          <strong>AI 内容增长实验室</strong>
+          <small>内容变成流量与收入资产</small>
+        </span>
+      </a>
+      <nav aria-label="主导航">
+        <a href="../index.html#tools">工具</a>
+        <a href="../index.html#hubs">主题</a>
+        <a href="../learn/ai-learning.html">AI 学习</a>
+        <a href="../disclosure.html">披露</a>
+      </nav>
+    </header>
+
+    <main class="article-page">
+      <article class="article">
+        <p class="eyebrow">Content QA / Agent Workflow</p>
+        <h1>用 AI 做内容 QA：链接、事实、披露、CTA 先查什么</h1>
+        <p class="disclosure-note">
+          披露：本文不新增任何 affiliate 推荐动作。目的不是让 Agent 替你自动发内容，而是把发布前最容易漏掉的链接、事实、披露和 CTA
+          检查写成一套可复用流程。
+        </p>
+
+        <section>
+          <h2>一句话结论</h2>
+          <p>
+            AI 最适合先接管内容发布前的 <strong>QA</strong>，而不是先接管“多写几篇”。对中文内容站来说，最值得自动化的通常是
+            <strong>站内链接检查、事实核查清单、披露一致性和 CTA 边界提醒</strong>；最终发布、外部发帖、登录和收款仍应人工确认。
+          </p>
+        </section>
+
+        <section>
+          <h2>为什么这轮该补“内容 QA”，不是再开一篇新热词</h2>
+          <ul>
+            <li>
+              <strong>X 上的公开讨论已经从“要不要用 Agent”转向“怎么减少返工”：</strong>
+              <a class="inline-link" href="https://x.com/theo/status/2030522346097008816" target="_blank" rel="noopener">Theo 关于多个 Codex 窗口的公开提问</a>
+              与
+              <a class="inline-link" href="https://x.com/yanndine/status/2026382902406123654" target="_blank" rel="noopener">Yann 关于多会话、Plan Mode、subagents 与 safe permissions 的公开帖</a>
+              都说明，大家现在更关心“怎么把执行噪音和返工降下来”，而不是再学一个新命令。
+            </li>
+            <li>
+              <strong>Google 关心的是 people-first 与可靠性，不是你是不是用了 AI：</strong>
+              如果首段不回答问题、事实点模糊、链接断掉、商业披露不清楚，内容再“高效”也很难形成长期资产。
+            </li>
+            <li>
+              <strong>OpenAI 和 Anthropic 的官方口径也在强调验证与审批：</strong>
+              这意味着 Agent 更适合做“预检、提示、对照”，不适合默默替你发布、登录或处理收益动作。
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>先抓 4 个事实核查点</h2>
+          <ol>
+            <li>
+              <strong>Google Search Central 仍把 helpful、reliable、people-first content 放在最前面：</strong>
+              对内容站最直接的翻译就是，正文必须先回答用户问题，再补来源、边界和更新责任。
+            </li>
+            <li>
+              <strong>Google 对 AI 生成内容的核心判断仍是质量，而不是“是否由 AI 参与”：</strong>
+              所以 QA 的重点不该停在“像不像 AI 写的”，而该看有没有原创增量、事实支撑和明确受众。
+            </li>
+            <li>
+              <strong>OpenAI 在 2026-05-08 的安全说明里把治理拆成 sandbox、approval policy、network policy 和 telemetry：</strong>
+              这说明发布前 QA 不只是语言润色，而是要把“能改哪里、能查哪些来源、哪些动作必须停”写进流程。
+            </li>
+            <li>
+              <strong>Anthropic 的 common workflows / permission 设计也把 plan first、验证输出和人工确认放在前面：</strong>
+              这更适合拿来做内容 QA，而不是拿来直接放飞自动发布。
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>内容 QA 先查哪 4 层</h2>
+          <div class="info-grid">
+            <div class="info-box">
+              <strong>1. 链接层</strong>
+              <p>检查站内入口、相对路径、canonical、sitemap 与必要的 Hub 链接，避免新页上线后没人能找到。</p>
+            </div>
+            <div class="info-box">
+              <strong>2. 事实层</strong>
+              <p>检查日期、价格、功能边界、官方术语、政策变化与引用来源，优先退回官方文档核验。</p>
+            </div>
+            <div class="info-box">
+              <strong>3. 披露层</strong>
+              <p>检查是否包含 affiliate 关系说明、`rel=\"sponsored\"`、未获批工具是否仍只放普通官方链接。</p>
+            </div>
+            <div class="info-box">
+              <strong>4. CTA 层</strong>
+              <p>检查 CTA 是否与正文承诺一致，有没有把“继续阅读/订阅/试用”写成误导性强推。</p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>一篇内容发布前，AI 最适合做的 6 个 QA 动作</h2>
+          <ol>
+            <li>
+              <strong>扫站内链接：</strong>检查新页是否至少接入首页、相关 Hub 或学习页，并确认没有新增死链。
+            </li>
+            <li>
+              <strong>抽出待核事实点：</strong>把价格、发布日期、产品能力、地区限制、投递规则等句子单独列出来，要求人工逐条过一遍。
+            </li>
+            <li>
+              <strong>比对披露一致性：</strong>识别页面里是否提到商业关系，却没有同步披露文案或外链属性。
+            </li>
+            <li>
+              <strong>检查 CTA 是否越界：</strong>例如把“继续了解”写成“立即赚钱”、把未获批工具写成推荐注册链接，或把普通信息页硬改成销售页。
+            </li>
+            <li>
+              <strong>生成验证清单：</strong>把 HTML 解析、链接检查、`rsync` 预发布与 `curl` 标题校验列成执行顺序，而不是只说“请检查一下”。
+            </li>
+            <li>
+              <strong>回传摘要而不是噪音：</strong>让 Agent 输出“发现了哪 3-7 个问题”，不要把大段日志直接塞回主会话。
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>最容易漏掉的 4 个问题</h2>
+          <ul>
+            <li><strong>漏入口：</strong>正文写完了，但首页、学习页、Hub 或 sitemap 没接进去，结果页面存在却没人能到达。</li>
+            <li><strong>漏边界：</strong>把 X 上看到的热词直接写成产品事实，没有回到官方文档核验。</li>
+            <li><strong>漏披露：</strong>文章已经开始推荐工具，却没有在推荐附近明确说明商业关系，或没补 `rel="sponsored"`。</li>
+            <li><strong>漏意图：</strong>CTA 和文章搜索意图不匹配，读者本来想找检查清单，却被强行推去注册工具。</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>一条适合中文内容站的 QA 顺序</h2>
+          <ol>
+            <li><strong>先看首段：</strong>是否在前两段内给出结论，而不是铺垫一大圈。</li>
+            <li><strong>再看事实：</strong>至少列出 3 个可核验点，并标记是否来自官方来源。</li>
+            <li><strong>再看边界：</strong>有没有“适合谁 / 不适合谁”、地区/价格/权限/投递限制。</li>
+            <li><strong>再看内链：</strong>至少 3 个内部链接，且跨主题有下一步阅读路径。</li>
+            <li><strong>最后看 CTA：</strong>是否与本文承诺一致，是否保留披露，是否仍然尊重未获批工具的普通链接边界。</li>
+          </ol>
+          <p>
+            这个顺序的好处是，先保证“能回答问题”，再保证“能被验证”，最后才考虑“怎么承接转化”。
+          </p>
+        </section>
+
+        <section>
+          <h2>适合谁 / 不适合谁</h2>
+          <ul>
+            <li>
+              <strong>适合：</strong>已经有题库、内链规则和发布路径，但经常漏链接、漏来源、漏披露，或者每次都要手工复查一遍的内容团队与一人公司。
+            </li>
+            <li>
+              <strong>不适合：</strong>想把外部发布、联盟申请、登录、付款、KYC、验证码和收益动作一并自动化的人。
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>一个可直接复用的“内容 QA 提示结构”</h2>
+          <p>把下面 5 件事写进你的 Agent 任务里，通常比“帮我检查文章”有效得多。</p>
+          <ol>
+            <li><strong>范围：</strong>只检查哪篇文章、哪些入口文件、哪些链接类型。</li>
+            <li><strong>重点：</strong>优先报链接、事实、披露、CTA 四类问题，不要泛泛提风格建议。</li>
+            <li><strong>来源：</strong>如果发现事实可疑，优先指向官方来源或当前页内证据，不要拿 X 讨论当定论。</li>
+            <li><strong>输出：</strong>只返回 3 到 7 条最重要问题，每条给“问题 + 影响 + 建议修法”。</li>
+            <li><strong>禁区：</strong>不自动发布、不提交表单、不处理登录、付款、验证码与外部互动。</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>如果你只补一件事，先补哪件</h2>
+          <p>
+            先补<strong>链接与事实的联合 QA</strong>。因为它最容易影响搜索可见性、用户信任和后续转化，而且最适合由 Agent 先扫出问题，再由人做最终判断。
+            披露与 CTA 当然也重要，但前提是这篇内容本身先值得被读者看到、愿意继续读下去。
+          </p>
+        </section>
+
+        <section>
+          <h2>下一步读什么（站内内链）</h2>
+          <ul>
+            <li><a class="inline-link" href="./ai-agent-preflight-audit-checklist.html">AI Agent 自动化前的任务审计清单</a></li>
+            <li><a class="inline-link" href="./ai-content-fact-checking.html">AI 内容事实核查清单：哪些必须人工确认</a></li>
+            <li><a class="inline-link" href="./geo-publishing-checklist.html">GEO 内容页发布前检查清单</a></li>
+            <li><a class="inline-link" href="./multi-agent-content-workflows.html">多 Agent 协作什么时候有用，什么时候浪费</a></li>
+            <li><a class="inline-link" href="./codex-cli-goal-content-ops.html">Codex CLI /goal 怎么用：把内容站迭代变成可复现任务</a></li>
+            <li><a class="inline-link" href="../disclosure.html">Affiliate 披露说明</a></li>
+          </ul>
+        </section>
+
+        <section class="source-box">
+          <h2>来源（官方/可信）</h2>
+          <ul>
+            <li>
+              X 公开讨论线索：
+              <a class="inline-link" href="https://x.com/theo/status/2030522346097008816" target="_blank" rel="noopener">Theo 关于多个 Codex 窗口的公开提问</a>
+              与
+              <a class="inline-link" href="https://x.com/yanndine/status/2026382902406123654" target="_blank" rel="noopener">Yann 关于多会话 / Plan Mode / subagents / safe permissions 的公开帖</a>
+            </li>
+            <li>
+              Google Search Central：
+              <a class="inline-link" href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content" target="_blank" rel="noopener">Creating helpful, reliable, people-first content</a>
+            </li>
+            <li>
+              Google Search Central Blog：
+              <a class="inline-link" href="https://developers.google.com/search/blog/2023/02/google-search-and-ai-content" target="_blank" rel="noopener">Google Search's guidance about AI-generated content</a>
+            </li>
+            <li>
+              OpenAI 官方安全说明：
+              <a class="inline-link" href="https://openai.com/index/running-codex-safely/" target="_blank" rel="noopener">Running Codex safely at OpenAI</a>
+            </li>
+            <li>
+              Anthropic 文档：
+              <a class="inline-link" href="https://docs.anthropic.com/en/docs/claude-code/tutorials" target="_blank" rel="noopener">Claude Code common workflows</a>
+            </li>
+          </ul>
+        </section>
+
+        <p class="article-updated">最后更新：2026-05-16</p>
+      </article>
+    </main>
+
+    <footer>
+      <span>AI 内容增长实验室</span>
+      <span class="footer-links">
+        <a href="../about.html">About</a>
+        <a href="../disclosure.html">Disclosure</a>
+        <a href="../privacy.html">Privacy</a>
+        <a href="../contact.html">Contact</a>
+      </span>
+      <span>持续更新中</span>
+    </footer>
+  </body>
+</html>

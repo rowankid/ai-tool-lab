@@ -49,21 +49,26 @@
         </section>
 
         <section>
-          <h2>先看 4 个事实：为什么现在大家都在讨论多 agent</h2>
+          <h2>先看 5 个事实：为什么 2026 年 5 月还要重写这篇</h2>
           <ul>
             <li>
               <strong>X 上的公开讨论已经从“会不会用 agent”转到“怎么并行跑”：</strong>例如
-              <a class="inline-link" href="https://x.com/yanndine/status/2026382902406123654" target="_blank" rel="noopener">Yann 的公开帖</a>
-              把“10 到 15 个 Claude 会话、Plan Mode、subagent、safe permissions setup”打包成增长卖点，说明痛点已从单次提示词转到工作流设计。
+              <a class="inline-link" href="https://x.com/theo/status/2030522346097008816" target="_blank" rel="noopener">Theo 关于“为什么要开多个 Codex 窗口”的公开提问</a>
+              与
+              <a class="inline-link" href="https://x.com/yanndine/status/2026382902406123654" target="_blank" rel="noopener">Yann 把多会话、Plan Mode、subagent、safe permissions setup 打包成工作流卖点的公开帖</a>，
+              说明用户痛点已从单次提示词转到并行协作与边界设计。
             </li>
             <li>
-              <strong>Anthropic 官方把 subagent 定义成“上下文隔离器”：</strong>官方文档明确说，适合在搜索结果、日志、文件内容会淹没主会话时，把侧任务交给 subagent，在独立上下文里做完后只回传摘要。
+              <strong>Anthropic 官方把 subagent 定义成“上下文隔离器”：</strong>官方文档明确说，Claude 遇到匹配描述的任务时，会把它委派给 subagent，让它在独立窗口里工作后返回结果；这更接近“隔离研究噪音”，不是“多开越多越强”。
             </li>
             <li>
-              <strong>Anthropic 也明确区分了何时该并行：</strong>官方 tutorials 直接把 `worktrees`、`plan mode` 和 “delegate research to subagents” 列为常见工作流，说明并行不是黑科技，而是可预期的协作模式。
+              <strong>OpenAI 在 2026-05-14 把“远程接力”正式做成产品能力：</strong>Codex 现在可以在手机上审阅输出、批准命令、看 diff 和测试结果。并行因此更常见，但也更要求你提前写清谁负责判断、谁只负责执行。
             </li>
             <li>
-              <strong>OpenAI 官方也把多 agent 视为正式工作流：</strong>Codex app 的产品介绍写明，多个 agent 可以在独立线程和内建 worktrees 里并行工作，彼此不冲突；Codex CLI 官方文档也把 “Use subagents to parallelize complex tasks” 作为标准入口。
+              <strong>OpenAI 在 2026-05-08 进一步把安全边界讲具体了：</strong>官方把 agent 治理拆成 sandbox、approval policy、network policy 和 agent-native telemetry，等于告诉你并行不是只追求吞吐，而是先划清技术边界与审计边界。
+            </li>
+            <li>
+              <strong>GitHub 在 2026-02-13 也给了同一方向的信号：</strong>Agentic Workflows 允许用 Markdown 描述自动化目标，而且工作流默认只读、写操作走预批准的安全输出。行业信号已经很一致了: 真正成熟的并行体系，先约束，再放权。
             </li>
           </ul>
         </section>
@@ -137,12 +142,33 @@
         </section>
 
         <section>
+          <h2>发布前先过一遍这个 6 问检查表</h2>
+          <ol>
+            <li><strong>任务是否彼此独立？</strong> 如果两个 agent 最终都要反复改同一篇正文，就别并行。</li>
+            <li><strong>主会话会不会被日志淹没？</strong> 如果会，研究、测试、抓链接更适合拆给子 agent。</li>
+            <li><strong>结果是否容易汇总？</strong> 最好能回传成 3 到 7 条结论，而不是一长串原始输出。</li>
+            <li><strong>是否涉及登录、支付、验证码或外部发布？</strong> 涉及这些动作就不要交给并行 agent 自动推进。</li>
+            <li><strong>写清谁能改文件、谁只能读吗？</strong> 没写清 ownership，最后大概率是合并冲突和重复劳动。</li>
+            <li><strong>有没有验证闭环？</strong> 至少要约定 HTML 解析、站内链接检查、入口同步和 `curl` 标题校验由谁负责。</li>
+          </ol>
+        </section>
+
+        <section>
           <h2>最常见的 4 个误区</h2>
           <ul>
             <li><strong>误区 1：</strong>任务一复杂就该多开。实际上，高耦合任务更需要单线程判断。</li>
             <li><strong>误区 2：</strong>多 agent 一定更快。很多时候你只是把串行思考换成了并行返工。</li>
             <li><strong>误区 3：</strong>subagent 越多越专业。Anthropic 官方也提醒，返回结果过多仍会消耗主会话上下文。</li>
             <li><strong>误区 4：</strong>用了 worktree 就等于安全。worktree 只隔离文件改动，不替你决定哪些动作必须人工确认。</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>FAQ：3 个最容易问错的问题</h2>
+          <ul>
+            <li><strong>多 agent 会不会天然更快？</strong> 不会。只有在子任务独立、回传可摘要时才会更快；高耦合写作任务往往更慢。</li>
+            <li><strong>手机能审批了，是不是就能远程发布？</strong> 不是。远程审批解决的是接力，不是合规替代；发布、收款、KYC、外部发帖仍要人工确认。</li>
+            <li><strong>GitHub/Claude/Codex 都在讲 agent，是不是应该马上全盘并行？</strong> 也不是。官方共同强调的是受控环境、默认边界和可审计，而不是无上限拆任务。</li>
           </ul>
         </section>
 
@@ -183,6 +209,8 @@
           <ul>
             <li>
               X 公开讨论线索：
+              <a class="inline-link" href="https://x.com/theo/status/2030522346097008816" target="_blank" rel="noopener">Theo 关于多个 Codex 窗口的公开提问</a>
+              与
               <a class="inline-link" href="https://x.com/yanndine/status/2026382902406123654" target="_blank" rel="noopener">Yann 关于多会话 / Plan Mode / subagents / safe permissions setup 的公开帖</a>
             </li>
             <li>
@@ -190,21 +218,21 @@
               <a class="inline-link" href="https://code.claude.com/docs/en/sub-agents" target="_blank" rel="noopener">Create custom subagents</a>
             </li>
             <li>
-              Anthropic 官方文档：
-              <a class="inline-link" href="https://code.claude.com/docs/en/tutorials" target="_blank" rel="noopener">Common workflows</a>
+              OpenAI 官方安全说明：
+              <a class="inline-link" href="https://openai.com/index/running-codex-safely/" target="_blank" rel="noopener">Running Codex safely at OpenAI</a>
             </li>
             <li>
               OpenAI 官方产品页：
-              <a class="inline-link" href="https://openai.com/index/introducing-the-codex-app/" target="_blank" rel="noopener">Introducing the Codex app</a>
+              <a class="inline-link" href="https://openai.com/index/work-with-codex-from-anywhere/" target="_blank" rel="noopener">Work with Codex from anywhere</a>
             </li>
             <li>
-              OpenAI 官方开发者文档：
-              <a class="inline-link" href="https://developers.openai.com/codex/cli" target="_blank" rel="noopener">Codex CLI</a>
+              GitHub 官方 changelog：
+              <a class="inline-link" href="https://github.blog/changelog/2026-02-13-github-agentic-workflows-are-now-in-technical-preview/" target="_blank" rel="noopener">GitHub Agentic Workflows are now in technical preview</a>
             </li>
           </ul>
         </section>
 
-        <p class="article-updated">最后更新：2026-05-15</p>
+        <p class="article-updated">最后更新：2026-05-16</p>
       </article>
     </main>
 
