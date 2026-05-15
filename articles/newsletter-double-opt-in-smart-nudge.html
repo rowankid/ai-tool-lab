@@ -47,6 +47,29 @@
             冷启动阶段可以优先保证订阅路径顺畅，但要用 Smart Nudge/欢迎邮件/退订投诉监控守住底线；
             一旦你开始遇到“垃圾订阅、退订高、投诉风险或投递波动”，就应该更倾向开启 double opt-in 或更严格的质量控制。
           </p>
+          <p>
+            更直接一点说：如果你现在还没有稳定的订阅承诺、欢迎邮件和投递基线，先别把全部希望压在“开关一个设置”上。
+            对中文冷启动内容站更有效的顺序通常是：先把订阅后的价值和回访路径讲清楚，再用 double opt-in 决定你愿意牺牲多少表面增长来换名单质量。
+          </p>
+        </section>
+
+        <section>
+          <h2>先核对 4 个事实点，再决定开不开</h2>
+          <ul>
+            <li>
+              <strong>beehiiv 的 Pending 订阅者不会进入正常发送：</strong>官方文档明确写到，未确认的新订阅者在确认前不会收到 newsletter 帖子，也不会收到 welcome email。
+            </li>
+            <li>
+              <strong>beehiiv Smart Nudge 不是无限提醒：</strong>它的官方定义是对 Pending 订阅者在首次确认邮件后 48 小时发送 1 次跟进提醒，而不是持续追发。
+            </li>
+            <li>
+              <strong>Substack 官方明确提醒：开启确认会减少实际收到邮件的读者数。</strong>这不是 bug，而是你主动用更高门槛换更干净名单。
+            </li>
+            <li>
+              <strong>Google 的邮件发送者指南把“确认收件人想订阅”和“易于退订”都视为投递基础，而不是增长技巧。</strong>
+              如果你发往 Gmail 的量变大，这些要求会更像底线而不是建议。
+            </li>
+          </ul>
         </section>
 
         <section>
@@ -99,6 +122,12 @@
             对多数中文创作者来说，最实用的做法不是“永远开/永远不开”，而是把它当作一个可以切换的<strong>风控阀门</strong>：
             当你的内容节奏、欢迎邮件和站内内链已经稳定，且你观察到名单质量开始下滑，就提高门槛。
           </p>
+          <ul>
+            <li><strong>Pending 不会进入正常发送：</strong>这意味着错误地址、无效地址和没兴趣确认的人，不会直接拖累你的日常打开率与退信。</li>
+            <li><strong>Smart Nudge 只有 1 次、在 48 小时后触发：</strong>它更像“补救确认漏点”，不是拿来替代欢迎邮件或内容承诺。</li>
+            <li><strong>welcome email 会被顺延：</strong>开启 double opt-in 后，beehiiv 的 welcome email 只会在确认之后触发，所以你必须重新设计“确认之后用户立刻看到什么”。</li>
+            <li><strong>嵌入式表单还能单独要求 double opt-in：</strong>如果你不想全站一刀切，可以只对高风险来源或特定表单加门槛。</li>
+          </ul>
           <p>
             如果你用的是 beehiiv，可以先从“Smart Nudge/欢迎邮件/订阅来源”把基础打牢，再决定是否改成 double opt-in。
             平台说明见官方帮助文档（下方“事实核查点”）。
@@ -115,7 +144,32 @@
             Substack 的 double opt-in 适合把“名单干净”放在优先级更高的位置的创作者。
             如果你发现订阅里混入太多无效地址，开启 double opt-in 往往能减少后续的投递与互动噪音。
           </p>
+          <p>
+            但 Substack 官方也直接提醒：开启后会减少真正收到邮件的读者数。换句话说，它更适合你已经有稳定内容节奏、
+            更在意名单质量和 consent 的阶段，而不是“首页还没讲清楚价值、先把每一个订阅都留下来”的阶段。
+          </p>
           <p>配置方式以 Substack 官方帮助中心为准（见下方“事实核查点”）。</p>
+        </section>
+
+        <section>
+          <h2>给中文冷启动站点的更实用决策顺序</h2>
+          <ol>
+            <li>
+              <strong>先问来源：</strong>订阅主要来自站内文章、社媒导流、还是嵌入式表单？如果来源已经很杂，优先考虑在高风险来源上先加门槛。
+            </li>
+            <li>
+              <strong>再问承诺：</strong>订阅后 5 分钟内，读者会拿到什么？如果答案说不清楚，先回去补
+              <a href="./newsletter-lead-magnet-design.html">Lead magnet 设计</a>
+              和
+              <a href="./welcome-email-sequence-owned-audience.html">欢迎邮件 5 封序列</a>。
+            </li>
+            <li>
+              <strong>再看风控信号：</strong>如果你已经看到异常订阅、退订偏高、垃圾投诉或投递波动，就把门槛往上拉；如果还在验证定位，先不要全站强开。
+            </li>
+            <li>
+              <strong>最后才是平台设置：</strong>beehiiv 可以用 publication 级 + form 级的组合，Substack 更像 publication 级的整体选择；不要把“工具能不能开”当成“策略是不是成立”。
+            </li>
+          </ol>
         </section>
 
         <section>
@@ -175,9 +229,9 @@
             <li>
               Substack：double opt-in 配置（官方帮助中心）：
               <a
-                href="https://support.substack.com/hc/en-us/articles/4405772339348-How-do-I-require-readers-to-double-opt-in"
+                href="https://support.substack.com/hc/en-us/articles/23248358108692-How-do-I-require-new-subscribers-to-confirm-their-email-on-Substack"
                 rel="noopener"
-                >Require readers to double opt-in</a
+                >How do I require new subscribers to confirm their email on Substack?</a
               >
             </li>
             <li>
@@ -193,7 +247,7 @@
               <a href="https://support.google.com/mail/answer/81126" rel="noopener">Email sender guidelines</a>
             </li>
           </ul>
-          <p><small>最后更新：2026-05-15（持续更新中）</small></p>
+          <p><small>最后更新：2026-05-15（23:31 CST，持续更新中）</small></p>
         </section>
 
         <section>
