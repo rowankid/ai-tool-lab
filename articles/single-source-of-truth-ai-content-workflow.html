@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI 内容工作流里的单一事实源怎么建：别让 Agent 在 5 份上下文里来回猜</title>
+    <meta
+      name="description"
+      content="中文创作者用 Claude Code、Codex、Obsidian 和自动化做内容时，真正该先补的不是更多提示词，而是一份单一事实源。本文拆解内容事实、执行边界、发布资产和自动化摘要该分别放在哪里。"
+    />
+    <link
+      rel="canonical"
+      href="https://blog.luowq.cn/ai-tool-lab/articles/single-source-of-truth-ai-content-workflow.html"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark">AI</span>
+        <span>
+          <strong>AI 内容增长实验室</strong>
+          <small>内容变成流量与收入资产</small>
+        </span>
+      </a>
+      <nav aria-label="主导航">
+        <a href="../index.html#tools">工具</a>
+        <a href="../index.html#hubs">主题</a>
+        <a href="../learn/ai-learning.html">AI 学习</a>
+        <a href="../disclosure.html">披露</a>
+      </nav>
+    </header>
+
+    <main class="article-page">
+      <article class="article">
+        <p class="eyebrow">Agent / Obsidian / Content Ops</p>
+        <h1>AI 内容工作流里的单一事实源怎么建：别让 Agent 在 5 份上下文里来回猜</h1>
+        <p class="disclosure-note">
+          披露：本文不包含必须点击的商业链接。目标不是鼓励你再加一个“知识管理系统”，而是把内容事实、执行边界、
+          发布资产和自动化摘要分开，减少 Agent 返工、误改和重复贴上下文。
+        </p>
+
+        <section>
+          <h2>一句话结论</h2>
+          <p>
+            如果你已经在用 Claude Code、Codex、Obsidian 或定时自动化做内容，真正该先补的通常不是新提示词，而是
+            <strong>单一事实源</strong>：把<strong>事实与来源</strong>放在一处，把<strong>执行边界</strong>放在一处，把<strong>公开资产</strong>放在站点仓库里，
+            再让自动化只负责整理、补链、校验和汇总。否则 Agent 每次都会在聊天记录、零散 Markdown、旧页面和临时想法之间来回猜。
+          </p>
+        </section>
+
+        <section>
+          <h2>为什么这题现在值得单独写</h2>
+          <p>
+            2026 年公开讨论里，一个很明显的信号是：大家已经不满足于“让 Agent 帮我写一段”，而是在讨论如何把
+            Obsidian、Claude Code、Codex 和定时任务接成长期系统。问题也随之变化成：
+            <strong>同一条事实到底放哪？下次自动化回来该信哪份版本？手机审批时又该看什么摘要？</strong>
+          </p>
+          <ul>
+            <li><strong>X 的公开痛点在变：</strong>有人把 Claude Code + Obsidian 当成第二大脑，也有人强调 Codex 真正的 unlock 是“给更高层目标和上下文”，不是不断给碎命令。</li>
+            <li><strong>官方能力已经支持长期工作流：</strong>Anthropic 和 OpenAI 都把 recurring tasks、session history、instructions、skills、remote/mobile 接力写进公开文档。</li>
+            <li><strong>中文内容站最容易在这里返工：</strong>同一事实散落在笔记、灵感库、HTML、自动化线程和手动复盘里，最后谁都不确定哪份才是最新版本。</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>先看 4 个事实锚点</h2>
+          <ol>
+            <li>
+              <strong>Anthropic 已把持久指令和记忆写成正式能力：</strong>
+              `CLAUDE.md` 会在会话开始时读取，auto memory 会跨会话保存 learnings，Claude Code 也支持 schedule recurring tasks。
+            </li>
+            <li>
+              <strong>OpenAI 已把“回到同一线程继续推进”定义成自动化场景：</strong>
+              2026-04-23 的 OpenAI Academy `Automations` 页面明确写到，部分 automations 可以回到同一 conversation，沿用已有上下文继续做事。
+            </li>
+            <li>
+              <strong>手机接力不是替代事实源，而是减少返工：</strong>
+              OpenAI 在 2026-05-14 的 `Work with Codex from anywhere` 说明里强调，quick check-in 能防止 unnecessary rework，但前提是线程里已经有足够清楚的上下文和审阅节点。
+            </li>
+            <li>
+              <strong>Google 仍要求独特、有价值、页面体验清楚：</strong>
+              2025-05-21 的 Search Central Blog 继续强调 AI 搜索里仍该优先做 unique, valuable content 和 good page experience，这意味着“事实源混乱”最终会伤害公开页面质量。
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>单一事实源不等于“所有东西放一个文件”</h2>
+          <p>
+            很多人把 single source of truth 理解成“找一个超大文档，全都塞进去”。这会让 Agent 更难用，因为事实、策略、操作边界、草稿和发布资产混在一起。
+            对内容站更稳的做法是：<strong>一个系统里只有一份主记录，但不同类型的信息分层存放</strong>。
+          </p>
+          <div class="info-grid">
+            <div class="info-box">
+              <strong>事实层</strong>
+              <p>放可核验来源、日期、结论、冲突和待确认项。适合存在 Obsidian / wiki 页面，而不是散在聊天记录里。</p>
+            </div>
+            <div class="info-box">
+              <strong>执行边界层</strong>
+              <p>放 AGENTS.md、CLAUDE.md、automation prompt、允许修改范围和禁止动作。这里回答的是“能做什么、不能做什么”。</p>
+            </div>
+            <div class="info-box">
+              <strong>发布资产层</strong>
+              <p>放最终 HTML、首页入口、Hub、sitemap 和披露文案。这里是公开版本，不再承担原始研究记录。</p>
+            </div>
+            <div class="info-box">
+              <strong>复盘摘要层</strong>
+              <p>放每小时看板、数据表、自动化记忆。它们是索引和状态，不应该反过来成为正文事实源。</p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>一条适合中文内容站的最小结构</h2>
+          <ol>
+            <li><strong>原始事实只进知识库：</strong>官方链接、X 公开讨论、日期、问题定义、风险判断，统一写进 wiki 页面或灵感库。</li>
+            <li><strong>执行规则只进 agent 指令：</strong>例如允许改哪些目录、哪些动作必须人工确认、哪些平台只能观察不能登录互动。</li>
+            <li><strong>公开页面只放整理后的结论：</strong>首段给结论，正文给读者可执行框架，来源放在文末，避免把研究笔记原样贴进 HTML。</li>
+            <li><strong>自动化只写回两个地方：</strong>灵感库/看板和站点文件。不要让它额外生成一份平行“主记录”。</li>
+            <li><strong>每次迭代都标日期：</strong>尤其是 Claude Code / Codex / Google 这类变化快的主题，写清核验日期，避免下轮自动化拿旧说法继续扩写。</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>适合 / 不适合这样做的人</h2>
+          <div class="info-grid">
+            <div class="info-box">
+              <strong>更适合</strong>
+              <ul>
+                <li>已经有 Obsidian、Markdown 知识库或固定站点仓库的人。</li>
+                <li>已经开始跑 Agent/automation，正在被“重复贴上下文”和“版本打架”拖慢的人。</li>
+                <li>想把内容做成长期资产，而不是只求一两次爆文的人。</li>
+              </ul>
+            </div>
+            <div class="info-box">
+              <strong>不太适合</strong>
+              <ul>
+                <li>你现在连题库、页面结构和发布边界都还没有，先别急着做复杂分层。</li>
+                <li>你只想全自动堆量，不准备人工核事实、核披露、核外部动作。</li>
+                <li>你的团队仍然把聊天记录当最终决定，却不愿维护公开可追溯的项目页。</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>最容易翻车的 5 个点</h2>
+          <ul>
+            <li><strong>把灵感库当正文仓库：</strong>灵感库只该记录候选题、痛点和来源，不该承载成稿事实。</li>
+            <li><strong>把 AGENTS.md 写成项目百科：</strong>边界文件只写长期规则和入口索引，细节回到独立 Markdown 页。</li>
+            <li><strong>让自动化生成第二份“总结真相”：</strong>日报和 memory 应该摘要本轮动作，不应变成另一套事实数据库。</li>
+            <li><strong>页面改了，知识库没改：</strong>下轮自动化又会按旧结论继续扩写，造成“站点和 wiki 互相打架”。</li>
+            <li><strong>把外部讨论当硬规则：</strong>X 适合找问题线索，不适合当产品行为和搜索规则的最终依据。</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>这套结构怎么反过来提升 SEO/GEO</h2>
+          <p>
+            单一事实源的价值不只在“Agent 少返工”，还在于它能让公开页面更稳定地满足搜索意图。因为你会被迫区分：
+            哪些是事实、哪些是推断、哪些是中文用户边界、哪些只是临时观察。这样写出来的页面更容易做到：
+          </p>
+          <ul>
+            <li>首段直接回答问题，而不是先讲工具背景。</li>
+            <li>至少 3 个事实点能回到官方来源核对。</li>
+            <li>站内内链更清楚：方法页、QA 页、Hub 页、关系层页各自承担不同角色。</li>
+            <li>更新时能优先补旧页，而不是每次都新开一篇相似薄内容。</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>站内下一步阅读</h2>
+          <ul>
+            <li><a href="./obsidian-notes-to-seo-pipeline.html">从 Obsidian 笔记到 SEO 文章：AI 内容管线实战</a></li>
+            <li><a href="./codex-automations-content-ops.html">Codex automations 怎么用：每小时内容迭代适合自动跑什么</a></li>
+            <li><a href="./ai-content-qa-links-facts-disclosure-cta.html">用 AI 做内容 QA：链接、事实、披露、CTA 先查什么</a></li>
+            <li><a href="./google-ai-search-firsthand-sources.html">Google AI 搜索开始高亮公开讨论与订阅来源后，内容站该补什么</a></li>
+            <li><a href="./geo-publishing-checklist.html">GEO 内容页发布前检查清单</a></li>
+            <li><a href="./newsletter-second-growth-loop.html">Newsletter 为什么是 AI 内容站的第二增长曲线</a></li>
+            <li><a href="../learn/ai-learning.html">AI 学习路线：Claude、Codex、知识库和自动化</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>来源（可核验）</h2>
+          <ul>
+            <li>
+              Anthropic：<a href="https://code.claude.com/docs/en/overview" rel="nofollow noopener" target="_blank">Claude Code overview</a>
+            </li>
+            <li>
+              OpenAI Academy：<a href="https://openai.com/academy/codex-automations/" rel="nofollow noopener" target="_blank">Automations</a>
+            </li>
+            <li>
+              OpenAI：<a href="https://openai.com/index/work-with-codex-from-anywhere/" rel="nofollow noopener" target="_blank">Work with Codex from anywhere</a>
+            </li>
+            <li>
+              Google Search Central Blog：<a href="https://developers.google.com/search/blog/2025/05/succeeding-in-ai-search" rel="nofollow noopener" target="_blank">Top ways to ensure your content performs well in Google's AI experiences on Search</a>
+            </li>
+            <li>
+              X 公开讨论线索：<a href="https://x.com/VibeMarketer_/status/2042621646914101647" rel="nofollow noopener" target="_blank">Claude Code + Obsidian second brain 讨论</a>、
+              <a href="https://x.com/sch/status/2018398527177801999" rel="nofollow noopener" target="_blank">Codex higher objectives / context 讨论</a>
+            </li>
+          </ul>
+          <p class="last-updated">持续更新中 · 最近核对：2026-05-16</p>
+        </section>
+      </article>
+    </main>
+
+    <footer class="footer">
+      <p>© 2026 AI 内容增长实验室 · 持续更新中</p>
+    </footer>
+  </body>
+</html>
