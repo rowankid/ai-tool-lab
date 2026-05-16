@@ -141,6 +141,24 @@
         </section>
 
         <section>
+          <h2>把 OpenAI 的简报字段反过来当主记录质检</h2>
+          <p>
+            2026-05-15 的 OpenAI Academy `How business operations teams use Codex` 虽然写的是 business ops，但它给了内容团队一个很实用的反向检查法：
+            <strong>如果你的主记录没法稳定拆出 recommendation、risks、assumptions、decision ask 和 unresolved questions，说明它还不够像主记录。</strong>
+          </p>
+          <ul>
+            <li><strong>recommendation / next action：</strong>应该来自已核定页面与项目页，而不是 memory 里一段“上轮大概想这么做”。</li>
+            <li><strong>risks：</strong>应该回到灵感库、看板或 QA 记录里能追溯到来源和日期的条目。</li>
+            <li><strong>assumptions：</strong>要明确标出这是推断、还是已经被官方资料核过的事实。</li>
+            <li><strong>decision ask：</strong>应该只保留 1-2 个真的需要人拍板的问题，避免上下文文件越写越像杂谈。</li>
+            <li><strong>unresolved questions：</strong>优先写进主记录的开放问题，而不是藏在自动化摘要里等下轮继续误用。</li>
+          </ul>
+          <p>
+            换句话说，<strong>简报字段是输出模板，主记录分层是输入纪律</strong>。两者接不起来时，问题通常不在 Agent，而在主记录本身还不够清楚。
+          </p>
+        </section>
+
+        <section>
           <h2>Memory 不是主记录：它更像召回层，不是公开结论层</h2>
           <p>
             随着 Claude 和 Codex 都越来越强调 memory、persistent thread 和 mobile check-in，最容易出现的新误区是：既然工具更会“记住”，是不是就能少维护主记录。更稳的答案是否定的。
@@ -225,6 +243,11 @@
           <h3>Memory、滚动上下文文件和知识库主记录，应该先信谁？</h3>
           <p>
             优先级应该是<strong>知识库事实主记录 &gt; 已核定公开 HTML &gt; 滚动上下文文件 / automation memory</strong>。前两者负责“什么是真的、什么已经对外发布”，后两者负责“这轮发生了什么、下轮从哪接着做”。
+          </p>
+
+          <h3>怎么判断一份主记录已经可以喂给 Agent，而不是还在半成品状态？</h3>
+          <p>
+            最简单的检查法是看它能不能稳定拆成 5 格：<strong>确认事实、风险、假设、决策请求、下一步</strong>。如果一份记录只能讲“最近聊了很多”“上轮改了不少”，却拆不出这 5 格，它更像聊天摘要，不像主记录。
           </p>
         </section>
 
