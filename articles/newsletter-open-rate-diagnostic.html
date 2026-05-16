@@ -69,6 +69,25 @@
         </section>
 
         <section>
+          <h2>2026 年这轮最该补上的 3 个诊断信号</h2>
+          <ul>
+            <li>
+              <strong>beehiiv 2026-03-05 的 deliverability triad 把诊断拆成三层：</strong>先看域名和 IP 信任，再看整体内容历史与互动趋势，最后才看单个收件人的个性化收件箱落点。也就是说，
+              <strong>不是每次都应该先改文案</strong>。
+            </li>
+            <li>
+              <strong>beehiiv 2026-04-23 的 open rate 诊断明确写到一个重要不确定项：</strong>Gmail 在 2026 年初的打开率下降，
+              可能和 image prefetch 频率变化有关，但 Google 并没有公开确认这个机制。所以更稳的写法不是“Gmail 已经改规则”，而是
+              “先把 open 下降当成测量与投递都可能变化”。
+            </li>
+            <li>
+              <strong>同一篇诊断还提到 2026 年 2 月底 Outlook/Hotmail 的广泛 rate limiting：</strong>这意味着如果你某几封邮件突然变差，
+              不该先默认是标题失手，也可能是 provider 级延迟与落点变化。
+            </li>
+          </ul>
+        </section>
+
+        <section>
           <h2>第一步不是改文案，而是先判断你看到的是哪一种下滑</h2>
           <div class="info-grid">
             <div class="info-box">
@@ -112,6 +131,42 @@
         </section>
 
         <section>
+          <h2>一个更像 2026 年的排查顺序</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>先查什么</th>
+                  <th>为什么先查</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Provider 拆分</td>
+                  <td>先确认是 Gmail、Yahoo、Microsoft 还是全局问题，避免平均值掩盖真相。</td>
+                </tr>
+                <tr>
+                  <td>域名 / IP / 认证</td>
+                  <td>这是 deliverability triad 的第一层，基础不稳时，后面所有标题优化都像在补表面。</td>
+                </tr>
+                <tr>
+                  <td>名单质量与互动趋势</td>
+                  <td>如果最近导入低意图名单、欢迎承诺失真或长期无互动，打开率和落点会一起变差。</td>
+                </tr>
+                <tr>
+                  <td>落点与速率异常</td>
+                  <td>确认是否落到 Promotions / Spam，或遇到 Outlook 一类的 provider 级延迟。</td>
+                </tr>
+                <tr>
+                  <td>标题 / 预览文案</td>
+                  <td>只有在上面几层都没明显异常时，才值得优先开标题会。</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section>
           <h2>中文创作者最容易误判的 3 个点</h2>
           <ul>
             <li>
@@ -124,6 +179,28 @@
               <strong>把“标题优化”当成万能药：</strong>对中文冷启动 newsletter 来说，欢迎邮件承诺失真、栏目节奏混乱、退订不顺畅，往往比标题弱更伤。
             </li>
           </ul>
+        </section>
+
+        <section>
+          <h2>FAQ</h2>
+          <h3>打开率掉了，是不是 Gmail 已经确认改了规则？</h3>
+          <p>
+            目前不该这么写。beehiiv 的公开诊断只说
+            <strong>行业里观察到 Gmail open rate 下降，可能和 image prefetch 变化有关</strong>，
+            但 Google 没有公开确认具体机制。所以更稳的表述是：先把它当成测量和投递都可能变化，再用点击、回复、落点和投诉率一起判断。
+          </p>
+
+          <h3>为什么我觉得内容没变，但 Outlook 一批读者突然没反应？</h3>
+          <p>
+            这正是 2026 年该先做 provider 拆分的原因。beehiiv 的诊断提到 2026 年 2 月底曾观察到 Outlook / Hotmail 的广泛 rate limiting，
+            所以单个 provider 的异常，不该先粗暴归因到标题或写作能力。
+          </p>
+
+          <h3>打开率下降时，最不该先做什么？</h3>
+          <p>
+            最不该先做的是大改标题风格、急着导入更多名单，或把问题全归到“内容不够炸”。更稳的顺序仍然是：
+            provider、认证与域名、名单质量、落点与速率异常，最后才是文案。
+          </p>
         </section>
 
         <section>
@@ -202,6 +279,10 @@
               <a class="inline-link" href="https://www.beehiiv.com/support/article/38340775067415" target="_blank" rel="nofollow noopener">Declining open rates: A diagnostic guide</a>
             </li>
             <li>
+              beehiiv Help：
+              <a class="inline-link" href="https://www.beehiiv.com/support/article/35688897802519-mastering-the-personalized-inbox-the-end-of-universal-deliverability" target="_blank" rel="nofollow noopener">Mastering the personalized inbox: The end of universal deliverability</a>
+            </li>
+            <li>
               beehiiv Blog：
               <a class="inline-link" href="https://www.beehiiv.com/blog/beehiiv-the-state-of-newsletters-2026" target="_blank" rel="nofollow noopener">The State of Newsletters 2026</a>
             </li>
@@ -214,7 +295,7 @@
               <a class="inline-link" href="https://senders.yahooinc.com/faqs/" target="_blank" rel="nofollow noopener">FAQs</a>
             </li>
           </ul>
-          <p class="last-updated">持续更新中 · 最近核对：2026-05-15</p>
+          <p class="last-updated">持续更新中 · 最近核对：2026-05-17</p>
         </section>
       </article>
     </main>

@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>OpenSpec + Superpowers + Codex 的内容生产闭环：别再把 Agent 工作流拆成 5 段</title>
+    <meta
+      name="description"
+      content="把 OpenSpec、Superpowers 和 Codex 放进中文内容团队的同一条生产闭环：OpenSpec 管规格事实，Superpowers 管执行纪律，Codex 管实际落地，避免内容工作流只剩零散命令和重复返工。"
+    />
+    <link
+      rel="canonical"
+      href="https://blog.luowq.cn/ai-tool-lab/articles/openspec-superpowers-codex-content-loop.html"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark">AI</span>
+        <span>
+          <strong>AI 内容增长实验室</strong>
+          <small>内容变成流量与收入资产</small>
+        </span>
+      </a>
+      <nav aria-label="主导航">
+        <a href="../index.html#tools">工具</a>
+        <a href="../index.html#hubs">主题</a>
+        <a href="../learn/ai-learning.html">AI 学习</a>
+        <a href="../disclosure.html">披露</a>
+      </nav>
+    </header>
+
+    <main class="article-page">
+      <article class="article">
+        <p class="eyebrow">OpenSpec / Superpowers / Codex / Content Ops</p>
+        <h1>OpenSpec + Superpowers + Codex 的内容生产闭环：别再把 Agent 工作流拆成 5 段</h1>
+        <p class="disclosure-note">
+          披露：本文不包含必须点击的商业链接。目标不是把一套开发者工作流包装成内容玄学，而是解释为什么中文内容团队一旦开始用 Agent，
+          最缺的往往不是“再多一个命令”，而是一条从规格、执行到验证都能复用的闭环。
+        </p>
+
+        <section>
+          <h2>一句话结论</h2>
+          <p>
+            如果你已经在用 Agent 做选题、改稿、补站点和写周报，真正缺的通常不是更多 prompt，而是把
+            <strong>OpenSpec、Superpowers 和 Codex 放回同一条闭环</strong>：
+            <strong>OpenSpec 管“这轮到底要变什么”</strong>，
+            <strong>Superpowers 管“Agent 该按什么纪律推进”</strong>，
+            <strong>Codex 管“实际改文件、跑验证、交结果”</strong>。
+            这样才能避免内容工作流反复停在“想到一个方向”“跑了一轮自动化”“结果又回头补边界”的碎片循环里。
+          </p>
+        </section>
+
+        <section>
+          <h2>为什么这题现在值得补上</h2>
+          <p>
+            最近几轮公开讨论和官方更新都在往同一个方向收敛：
+            <strong>Agent 不再只做单次命令，而是在接手更长的工作流</strong>。问题也从“它能不能写”变成“它到底该按什么规格执行、谁来约束质量、哪里停下来让人拍板”。
+            对中文内容团队来说，这正好对应 3 个现实痛点：
+          </p>
+          <ul>
+            <li><strong>方向漂移：</strong>每小时都在补页面，但没有一份清楚的行为变更定义。</li>
+            <li><strong>执行散乱：</strong>有时先写草稿，有时先补内链，有时先跑 QA，顺序不稳定。</li>
+            <li><strong>验证缺席：</strong>页面改了，但入口、sitemap、事实核查和风险边界没有一起跟上。</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>先看 5 个事实锚点</h2>
+          <ol>
+            <li>
+              <strong>OpenSpec 的官方定位就是 spec-driven development：</strong>
+              Fission-AI 的官方仓库把它定义成面向 AI coding assistants 的 spec-driven development 框架，重点是 proposal、design、tasks 和 spec delta，而不是让需求只存在聊天记录里。
+            </li>
+            <li>
+              <strong>Superpowers 的官方定位不是“技能包”，而是完整方法论：</strong>
+              obra 的官方仓库直接把它写成“an agentic skills framework and software development methodology”，也就是它强调的不只是工具，而是 brainstorming、计划、验证、review 这些执行纪律。
+            </li>
+            <li>
+              <strong>OpenAI 已经把 recurring work 讲成 Codex 的正式场景：</strong>
+              2026-04-23 的 OpenAI Academy `Automations` 页面明确把 recurring tasks、同线程续跑和可审阅结果写成公开能力。
+            </li>
+            <li>
+              <strong>OpenAI 也把“简报与决策包”讲成内容团队能借用的模板：</strong>
+              2026-05-15 的 `How business operations teams use Codex` 里，把 scattered context 收束成 decision-ready briefs、updates 和 packets。
+            </li>
+            <li>
+              <strong>手机接力和远程推进会放大流程差异：</strong>
+              2026-05-14 的 `Work with Codex from anywhere` 说明，线程会跨设备继续推进；这反而更要求你把规格、执行纪律和验证节点提前写清楚。
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>这三层各自负责什么</h2>
+          <div class="info-grid">
+            <div class="info-box">
+              <strong>OpenSpec：规格事实层</strong>
+              <p>回答“这轮到底改什么、为什么改、什么不改、什么算验收通过”。适合承接 proposal、design、tasks 和非目标。</p>
+            </div>
+            <div class="info-box">
+              <strong>Superpowers：执行纪律层</strong>
+              <p>回答“Agent 应该先澄清、先计划、先验证还是先并行”，避免每次都凭感觉切流程。</p>
+            </div>
+            <div class="info-box">
+              <strong>Codex：落地执行层</strong>
+              <p>回答“具体改哪些文件、跑哪些检查、输出哪些结果、哪些动作必须停下来给人看”。</p>
+            </div>
+            <div class="info-box">
+              <strong>知识库 / 站点：沉淀层</strong>
+              <p>知识库留主记录，公开站点留对外版本；不让一次聊天记录反过来变成长期事实源。</p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>把它翻译成中文内容团队能执行的闭环</h2>
+          <ol>
+            <li><strong>OpenSpec 先定变化：</strong>例如“这轮要补的是 open rate 诊断顺序，而不是新写一篇泛 newsletter 工具页”。</li>
+            <li><strong>Superpowers 再定推进方法：</strong>先读现状、再判断补旧页还是新开页、再决定验证顺序，而不是一上来就扩写。</li>
+            <li><strong>Codex 最后执行：</strong>改 HTML、补内链、更新入口、更新 sitemap、跑 HTML 解析和站内链接检查。</li>
+            <li><strong>看板与数据表只记录这轮变化：</strong>不重新发明第二套事实源。</li>
+          </ol>
+          <p>
+            如果你已经读过
+            <a class="inline-link" href="./single-source-of-truth-ai-content-workflow.html">单一事实源</a>、
+            <a class="inline-link" href="./codex-content-ops-decision-briefs.html">运营简报</a>、
+            <a class="inline-link" href="./codex-automations-content-ops.html">automations 边界</a>
+            和
+            <a class="inline-link" href="./ai-content-qa-links-facts-disclosure-cta.html">内容 QA</a>，
+            这篇就是把它们串回同一条完整路径。
+          </p>
+        </section>
+
+        <section>
+          <h2>最容易误解的 4 个点</h2>
+          <ul>
+            <li><strong>误解 1：</strong>OpenSpec 只适合工程需求。其实内容系统里一样有“行为变化”“非目标”“验收标准”。</li>
+            <li><strong>误解 2：</strong>Superpowers 只是让 Agent 更啰嗦。真正价值在于固定顺序和验证纪律，减少返工。</li>
+            <li><strong>误解 3：</strong>Codex 负责所有判断。更稳的分工是它负责执行与汇总，最终取舍仍由人拍板。</li>
+            <li><strong>误解 4：</strong>闭环等于多写文档。不是。闭环的目标是减少重复解释、重复返工和重复补洞。</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>一条适合内容站的最小执行顺序</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>阶段</th>
+                  <th>要回答的问题</th>
+                  <th>对应工具层</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>规格</td>
+                  <td>这轮要改什么，不改什么，验收标准是什么</td>
+                  <td>OpenSpec</td>
+                </tr>
+                <tr>
+                  <td>计划</td>
+                  <td>先补旧页还是先开新页，要不要并行，哪些文件会受影响</td>
+                  <td>Superpowers</td>
+                </tr>
+                <tr>
+                  <td>执行</td>
+                  <td>具体改哪些 HTML / Markdown / sitemap / 入口页</td>
+                  <td>Codex</td>
+                </tr>
+                <tr>
+                  <td>验证</td>
+                  <td>HTML 能否解析，站内链接是否正常，标题和入口是否命中</td>
+                  <td>Codex + Superpowers</td>
+                </tr>
+                <tr>
+                  <td>沉淀</td>
+                  <td>这轮变化、风险和下一步写回哪里</td>
+                  <td>知识库 / 看板 / 数据表</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section>
+          <h2>适合谁 / 不适合谁</h2>
+          <div class="info-grid">
+            <div class="info-box">
+              <strong>更适合</strong>
+              <ul>
+                <li>已经有知识库、站点和自动化，但总在“页面补了一半又换方向”的团队。</li>
+                <li>想把 Agent 用在长期内容资产，而不是一次性聊天出稿的人。</li>
+                <li>愿意把外部发布、支付、KYC、登录等高风险动作保留人工边界的人。</li>
+              </ul>
+            </div>
+            <div class="info-box">
+              <strong>不太适合</strong>
+              <ul>
+                <li>还没有基本题库、看板和站点入口，先别把流程叠太重。</li>
+                <li>只想批量堆页，不准备做事实核查和验证的人。</li>
+                <li>希望 Agent 直接代替你做最终商业决策或对外发布的人。</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>如果你今天只落一个模板</h2>
+          <p>把每一轮内容迭代都压成下面 5 格，比继续补碎 prompt 更有用：</p>
+          <ol>
+            <li><strong>本轮变化：</strong>到底要补哪一页、哪一种缺口。</li>
+            <li><strong>非目标：</strong>这轮明确不碰哪些相似页和外部动作。</li>
+            <li><strong>执行顺序：</strong>读现状、改文件、补入口、跑检查、写回看板。</li>
+            <li><strong>验证证据：</strong>HTML 解析、链接检查、`curl` 标题命中、`sitemap.xml` `lastmod`。</li>
+            <li><strong>人工检查点：</strong>是否值得发布、是否要继续扩题、是否涉及外部动作。</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>站内下一步阅读</h2>
+          <ul>
+            <li><a class="inline-link" href="./codex-cli-goal-content-ops.html">Codex CLI /goal 怎么用：把内容站迭代变成可复现任务</a></li>
+            <li><a class="inline-link" href="./claude-code-scheduled-tasks-vs-codex-automations.html">Claude Code 定时任务、Routines 和 Codex automations 怎么选</a></li>
+            <li><a class="inline-link" href="./single-source-of-truth-ai-content-workflow.html">AI 内容工作流里的单一事实源怎么建</a></li>
+            <li><a class="inline-link" href="./codex-content-ops-decision-briefs.html">内容运营团队怎么用 Codex：把散落上下文变成可决策简报</a></li>
+            <li><a class="inline-link" href="./ai-content-qa-links-facts-disclosure-cta.html">用 AI 做内容 QA：链接、事实、披露、CTA 先查什么</a></li>
+          </ul>
+        </section>
+
+        <section class="source-box">
+          <h2>来源（官方/可信）</h2>
+          <ul>
+            <li>
+              OpenSpec 官方仓库：
+              <a class="inline-link" href="https://github.com/Fission-AI/OpenSpec" target="_blank" rel="nofollow noopener">Fission-AI/OpenSpec</a>
+            </li>
+            <li>
+              Superpowers 官方仓库：
+              <a class="inline-link" href="https://github.com/obra/superpowers" target="_blank" rel="nofollow noopener">obra/superpowers</a>
+            </li>
+            <li>
+              OpenAI Academy：
+              <a class="inline-link" href="https://openai.com/academy/codex-automations/" target="_blank" rel="nofollow noopener">Automations</a>
+            </li>
+            <li>
+              OpenAI Academy：
+              <a class="inline-link" href="https://openai.com/academy/codex-for-work/how-business-operations-teams-use-codex/" target="_blank" rel="nofollow noopener">How business operations teams use Codex</a>
+            </li>
+            <li>
+              OpenAI：
+              <a class="inline-link" href="https://openai.com/index/work-with-codex-from-anywhere/" target="_blank" rel="nofollow noopener">Work with Codex from anywhere</a>
+            </li>
+          </ul>
+          <p class="last-updated">持续更新中 · 最近核对：2026-05-17</p>
+        </section>
+      </article>
+    </main>
+
+    <footer class="footer">
+      <p>© 2026 AI 内容增长实验室 · 持续更新中</p>
+    </footer>
+  </body>
+</html>
