@@ -123,6 +123,24 @@
         </section>
 
         <section>
+          <h2>滚动上下文文件怎么维护，才不会把主记录越写越乱</h2>
+          <p>
+            这轮公开讨论里，一个很有代表性的用法是：把定时任务用来
+            <strong>持续更新一份 Markdown 上下文文件</strong>，让 Agent 在上下文窗口之外也能接上长期工作流。这个方向值得借，但要先分清
+            <strong>什么能定时写回，什么不能</strong>。
+          </p>
+          <ul>
+            <li><strong>适合定时写回的内容：</strong>本轮新增来源、已完成动作、验证结果、阻塞项、下次要看的页面或文件。</li>
+            <li><strong>不适合定时写回主记录的内容：</strong>未经核验的事实结论、会影响公开表述的判断、对外发布时间、商业关系变化。</li>
+            <li><strong>更稳的分工：</strong>让 scheduled tasks 或 automations 只更新“复盘摘要层”，再由你把确认后的结论写回知识库主记录和 HTML 页面。</li>
+          </ul>
+          <p>
+            对内容站来说，最容易失控的不是“没有上下文文件”，而是把上下文文件误当成事实源本身。更稳的做法是：
+            <strong>上下文文件负责续航，主记录负责定版</strong>。
+          </p>
+        </section>
+
+        <section>
           <h2>适合 / 不适合这样做的人</h2>
           <div class="info-grid">
             <div class="info-box">
@@ -170,8 +188,29 @@
         </section>
 
         <section>
+          <h2>FAQ</h2>
+          <h3>自动化应该定时写回哪一类文件？</h3>
+          <p>
+            优先写回灵感库、运营看板、每日数据表、automation memory 这类
+            <strong>摘要层文件</strong>。这些文件适合记录本轮观察、验证、风险和下一步。主记录型 wiki 页面与公开 HTML 页面，更适合在你确认后再更新。
+          </p>
+
+          <h3>如果同一条事实在知识库、HTML 和简报里不一致，先改哪份？</h3>
+          <p>
+            先改<strong>知识库里的事实主记录</strong>，再同步公开 HTML，最后让简报摘要引用新版本。否则下轮自动化会继续从旧主记录里扩写，造成“公开页已变、内部判断还停在旧版本”的返工。
+          </p>
+
+          <h3>需要额外维护一份“超大上下文文件”吗？</h3>
+          <p>
+            通常不需要。更好的做法是保留分层结构：知识库记事实，`AGENTS.md` 或 `CLAUDE.md` 记边界，公开站点记对外版本，日报和看板记本轮摘要。只有当你确实需要
+            <strong>跨多轮续跑同一任务</strong> 时，才额外维护一份滚动上下文文件，而且它不该替代主记录。
+          </p>
+        </section>
+
+        <section>
           <h2>站内下一步阅读</h2>
           <ul>
+            <li><a href="./codex-content-ops-decision-briefs.html">内容运营团队怎么用 Codex：把散落上下文变成可决策简报</a></li>
             <li><a href="./obsidian-notes-to-seo-pipeline.html">从 Obsidian 笔记到 SEO 文章：AI 内容管线实战</a></li>
             <li><a href="./codex-automations-content-ops.html">Codex automations 怎么用：每小时内容迭代适合自动跑什么</a></li>
             <li><a href="./ai-content-qa-links-facts-disclosure-cta.html">用 AI 做内容 QA：链接、事实、披露、CTA 先查什么</a></li>
@@ -192,6 +231,9 @@
               OpenAI Academy：<a href="https://openai.com/academy/codex-automations/" rel="nofollow noopener" target="_blank">Automations</a>
             </li>
             <li>
+              OpenAI Academy：<a href="https://openai.com/academy/codex-for-work/how-business-operations-teams-use-codex/" rel="nofollow noopener" target="_blank">How business operations teams use Codex</a>
+            </li>
+            <li>
               OpenAI：<a href="https://openai.com/index/work-with-codex-from-anywhere/" rel="nofollow noopener" target="_blank">Work with Codex from anywhere</a>
             </li>
             <li>
@@ -199,10 +241,11 @@
             </li>
             <li>
               X 公开讨论线索：<a href="https://x.com/VibeMarketer_/status/2042621646914101647" rel="nofollow noopener" target="_blank">Claude Code + Obsidian second brain 讨论</a>、
-              <a href="https://x.com/sch/status/2018398527177801999" rel="nofollow noopener" target="_blank">Codex higher objectives / context 讨论</a>
+              <a href="https://x.com/sch/status/2018398527177801999" rel="nofollow noopener" target="_blank">Codex higher objectives / context 讨论</a>、
+              <a href="https://x.com/zackbshapiro/status/2026733034871935349" rel="nofollow noopener" target="_blank">定时更新 Markdown 上下文文件的讨论</a>
             </li>
           </ul>
-          <p class="last-updated">持续更新中 · 最近核对：2026-05-16</p>
+          <p class="last-updated">持续更新中 · 最近核对：2026-05-17</p>
         </section>
       </article>
     </main>
