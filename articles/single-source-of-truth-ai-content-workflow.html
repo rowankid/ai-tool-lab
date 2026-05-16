@@ -141,6 +141,22 @@
         </section>
 
         <section>
+          <h2>Memory 不是主记录：它更像召回层，不是公开结论层</h2>
+          <p>
+            随着 Claude 和 Codex 都越来越强调 memory、persistent thread 和 mobile check-in，最容易出现的新误区是：既然工具更会“记住”，是不是就能少维护主记录。更稳的答案是否定的。
+            <strong>memory 更适合减少重复解释、续上工作语境；它不该替代你对事实、披露、发布日期和公开表述的定版。</strong>
+          </p>
+          <ul>
+            <li><strong>Anthropic 在 2026-03-02 把 memory 扩到所有 Claude 用户：</strong>这说明“跨会话记住上下文”正在变成默认能力，但它记住的是相关上下文，不是你已经核定的公开版本。</li>
+            <li><strong>Anthropic 在 2026-02-25 公布 scheduled tasks：</strong>更适合定时整理摘要、列阻塞项、回顾变化，而不是替你改写事实主记录。</li>
+            <li><strong>OpenAI 在 2026-05-14 公开手机接力：</strong>官方强调的是 quick check-in、change direction 和 prepare a concise briefing，本质上仍是帮助你更快判断，不是免掉主记录维护。</li>
+          </ul>
+          <p>
+            如果你把 memory 直接当真相源，最常见的后果就是：X 上的问题线索、上轮 automation 的临时判断、旧版 FAQ 和新版 HTML 一起混进“长期记忆”，下轮又被当成事实继续扩写。
+          </p>
+        </section>
+
+        <section>
           <h2>适合 / 不适合这样做的人</h2>
           <div class="info-grid">
             <div class="info-box">
@@ -205,6 +221,11 @@
             通常不需要。更好的做法是保留分层结构：知识库记事实，`AGENTS.md` 或 `CLAUDE.md` 记边界，公开站点记对外版本，日报和看板记本轮摘要。只有当你确实需要
             <strong>跨多轮续跑同一任务</strong> 时，才额外维护一份滚动上下文文件，而且它不该替代主记录。
           </p>
+
+          <h3>Memory、滚动上下文文件和知识库主记录，应该先信谁？</h3>
+          <p>
+            优先级应该是<strong>知识库事实主记录 &gt; 已核定公开 HTML &gt; 滚动上下文文件 / automation memory</strong>。前两者负责“什么是真的、什么已经对外发布”，后两者负责“这轮发生了什么、下轮从哪接着做”。
+          </p>
         </section>
 
         <section>
@@ -226,6 +247,9 @@
           <ul>
             <li>
               Anthropic：<a href="https://code.claude.com/docs/en/overview" rel="nofollow noopener" target="_blank">Claude Code overview</a>
+            </li>
+            <li>
+              Anthropic Help：<a href="https://support.claude.com/en/articles/12138966-release-notes" rel="nofollow noopener" target="_blank">Release notes</a>
             </li>
             <li>
               OpenAI Academy：<a href="https://openai.com/academy/codex-automations/" rel="nofollow noopener" target="_blank">Automations</a>

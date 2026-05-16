@@ -228,6 +228,19 @@
         </section>
 
         <section>
+          <h2>手机 briefing 很方便，但别把它变成“随手拍板”</h2>
+          <p>
+            OpenAI 在 2026-05-14 把 Codex 手机接力公开后，一个很容易被误读的点是：既然能在手机上 review outputs、approve commands、refresh summary，简报是不是可以更随意。更稳的理解正好相反：
+            <strong>越是跨设备推进，越要把简报字段固定，避免你在路上只看到一句模糊摘要就误判下一步。</strong>
+          </p>
+          <ul>
+            <li><strong>适合手机确认的：</strong>这轮目标有没有跑偏、哪个风险升级了、下一步该继续补旧页还是暂停。</li>
+            <li><strong>不适合手机直接拍板的：</strong>外部发布、商业关系变更、争议措辞、没有核过来源的结论。</li>
+            <li><strong>更稳的做法：</strong>让 Codex 先准备 concise briefing，再把“确认事实”和“未决风险”拆开给你看。</li>
+          </ul>
+        </section>
+
+        <section>
           <h2>FAQ</h2>
           <h3>运营简报和运营看板是同一回事吗？</h3>
           <p>
@@ -243,6 +256,11 @@
           <h3>Codex 适合直接给出最终推荐吗？</h3>
           <p>
             它适合先给出<strong>基于证据的第一版推荐</strong>，但最终拍板仍该由人来做，尤其是涉及外部分发、商业关系、争议措辞和资源分配时。
+          </p>
+
+          <h3>运营简报能不能直接用 memory 或聊天记录自动生成？</h3>
+          <p>
+            可以用来起草，但不要直接把它当最终版本。更稳的来源顺序是：<strong>主记录文件、验证结果、已发布页面变更</strong>优先，memory 和聊天记录只负责补充这轮变化。否则简报会越来越像“这轮聊了什么”，而不是“这轮真正发生了什么”。
           </p>
         </section>
 
@@ -275,6 +293,10 @@
             <li>
               OpenAI：Work with Codex from anywhere（2026-05-14）：
               <a class="inline-link" href="https://openai.com/index/work-with-codex-from-anywhere/" target="_blank" rel="noopener">https://openai.com/index/work-with-codex-from-anywhere/</a>
+            </li>
+            <li>
+              Anthropic Help：Release notes（2026-02-25 / 2026-03-02 memory 与 scheduled tasks 变更）：
+              <a class="inline-link" href="https://support.claude.com/en/articles/12138966-release-notes" target="_blank" rel="noopener">https://support.claude.com/en/articles/12138966-release-notes</a>
             </li>
             <li>
               X 公开讨论线索：
