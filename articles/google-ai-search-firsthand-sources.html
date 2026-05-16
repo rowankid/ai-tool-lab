@@ -54,7 +54,7 @@
             <li><strong>Google 2025-06-16 的文档更新写明：</strong>AI Mode 数据计入 Search Console Performance report 的总量，不会给你一个单独的 AI Mode 报表。</li>
             <li><strong>Google 2026-05-06 的产品更新写明：</strong>AI Mode / AI Overviews 会新增“继续探索”链接、突出用户自己的订阅来源，并在部分回答里展示 public online discussions、social media 和 other firsthand sources。</li>
             <li><strong>同一篇 2026-05-06 更新还写到：</strong>桌面端会提供更多 inline links 和网站预览，帮助用户判断要不要点进原站。</li>
-            <li><strong>Google 还单独强调了两个常被忽略的基础项：</strong>AI features 的 supporting link 只要求页面已索引、可在普通搜索里带 snippet 展示，没有额外技术门槛；同时，AI 搜索来的访问更该看页面体验与停留质量，而不是只看 CTR。</li>
+            <li><strong>Google 还单独强调了两个常被忽略的基础项：</strong>AI features 的 supporting link 只要求页面已索引、可在普通搜索里带 snippet 展示，并满足 Search 的技术要求，没有额外 GEO 技术门槛；同时，AI 搜索来的访问更该看页面体验、主内容辨识度和停留质量，而不是只看 CTR。</li>
           </ol>
         </section>
 
@@ -108,9 +108,36 @@
           </p>
           <ul>
             <li><strong>先看首屏解释力：</strong>标题、首段、目录和第一屏 CTA 是否在 10 秒内说清问题、结论和下一步。</li>
-            <li><strong>再看引用资格：</strong>页面是否已索引、能展示 snippet、没有把主内容藏在脚本或不可抓取区块里。</li>
+            <li><strong>再看引用资格：</strong>页面是否已索引、能展示 snippet、返回成功状态、没有把主内容藏在脚本或不可抓取区块里。</li>
             <li><strong>最后看继续探索：</strong>是否有 FAQ、比较页、检查清单和订阅入口，把“看完摘要后的深挖读者”接住。</li>
           </ul>
+        </section>
+
+        <section>
+          <h2>supporting link 基线，不是另一套“GEO 特殊设置”</h2>
+          <p>
+            很多中文站长看到 AI Overviews / AI Mode 会先问：是不是还得专门配一套 GEO 设置，页面才有资格被当作 supporting link。按 Google 目前公开口径，
+            <strong>更稳的答案是否定的。</strong>
+            先把普通搜索的基础资格补齐，再谈页面解释力和继续探索路径，优先级会更现实。
+          </p>
+          <div class="info-grid">
+            <div class="info-box">
+              <strong>先满足的基线</strong>
+              <ul>
+                <li>页面返回可抓取、可索引的成功状态。</li>
+                <li>主内容在 HTML / DOM 里清楚可见，不靠脚本注入后才出现。</li>
+                <li>页面能在普通搜索里展示 snippet，没有被更严格的预览控制直接压掉。</li>
+              </ul>
+            </div>
+            <div class="info-box">
+              <strong>不要先神化的东西</strong>
+              <ul>
+                <li>不是先补一份神秘 GEO 参数表。</li>
+                <li>不是先追“有没有独立 AI Search 报表”。</li>
+                <li>不是把 llms.txt、FAQ 或 schema 当成被引保证。</li>
+              </ul>
+            </div>
+          </div>
         </section>
 
         <section>
@@ -161,6 +188,20 @@
         </section>
 
         <section>
+          <h2>FAQ</h2>
+          <h3>要不要专门做一套 GEO 技术设置，页面才有 supporting link 资格？</h3>
+          <p>
+            目前更该先补的是<strong>普通搜索的技术基线</strong>：可抓取、可索引、可展示 snippet、主内容清楚可见。Google 公开文档没有给 supporting link 单列一套神秘配置表。对中文内容站来说，先把页面解释力、内链分支和订阅承接补齐，通常比继续找“额外开关”更值。
+          </p>
+
+          <h3>如果 Search Console 不单独拆 AI Mode，怎么判断 AI 搜索访问值不值得？</h3>
+          <p>
+            先别只盯总 CTR。更稳的顺序是：看这页有没有新增更长尾的查询意图、看首段和 FAQ 是否更能接住“已经看过摘要的人”、再看后续页面访问、订阅动作或继续阅读路径。也就是说，
+            <strong>先看访问后的质量，再看展示前的波动。</strong>
+          </p>
+        </section>
+
+        <section>
           <h2>相关内容</h2>
           <ul>
             <li><a class="inline-link" href="./ai-overviews-owned-audience.html">AI Overviews / AI Mode 让点击更不确定时，内容站还能控制什么？</a></li>
@@ -206,7 +247,7 @@
               <a class="inline-link" href="https://x.com/aleyda/status/2040876488631710125" target="_blank" rel="noopener">Aleyda Solis 汇总 Search Console / AI Search 周报的公开帖</a>
             </li>
           </ul>
-          <p class="last-updated">持续更新中 · 最近核对：2026-05-17 CST</p>
+          <p class="last-updated">持续更新中 · 最近核对：2026-05-17 07:07 CST</p>
         </section>
       </article>
     </main>
