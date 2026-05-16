@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Claude Code 定时任务、Routines 和 Codex automations 怎么选：中文内容团队先看云端、本地和边界</title>
+    <meta
+      name="description"
+      content="想把 AI agent 用到每小时内容运营，不要先比谁功能多。本文从中文内容团队角度比较 Claude Code 的 scheduled tasks、Routines 与 Codex automations 的云端/本地、会话持续性、权限和高风险边界。"
+    />
+    <link
+      rel="canonical"
+      href="https://blog.luowq.cn/ai-tool-lab/articles/claude-code-scheduled-tasks-vs-codex-automations.html"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark">AI</span>
+        <span>
+          <strong>AI 内容增长实验室</strong>
+          <small>内容变成流量与收入资产</small>
+        </span>
+      </a>
+      <nav aria-label="主导航">
+        <a href="../index.html#tools">工具</a>
+        <a href="../index.html#hubs">主题</a>
+        <a href="../learn/ai-learning.html">AI 学习</a>
+        <a href="../disclosure.html">披露</a>
+      </nav>
+    </header>
+
+    <main class="article-page">
+      <article class="article">
+        <p class="eyebrow">Claude Code / Codex / Content Ops</p>
+        <h1>Claude Code 定时任务、Routines 和 Codex automations 怎么选：中文内容团队先看云端、本地和边界</h1>
+        <p class="disclosure-note">
+          披露：本文不包含必须点击的商业链接。目标不是鼓励你把内容站“全自动托管”，而是把 Claude Code 与 Codex
+          的定时执行能力翻译成中文内容团队真正会遇到的选择题：该用云端还是本地、该保留哪份上下文、哪些动作必须停在人类手里。
+        </p>
+
+        <section>
+          <h2>一句话结论</h2>
+          <p>
+            如果你要的是<strong>离开电脑后也能稳定执行</strong>，并且任务更像“固定 prompt + 明确仓库/连接器 + 定时或事件触发”，先看
+            <strong>Claude Code Routines</strong>；如果你要的是<strong>在本地文件和当前项目上下文里每小时巡检</strong>，先看
+            <strong>Claude Code scheduled tasks / Desktop tasks</strong>；如果你最看重的是<strong>沿用同一线程继续推进长期内容任务</strong>，
+            并且要把手机审批、diff、测试摘要和项目记忆接到一起，优先看 <strong>Codex automations</strong>。
+            但无论选哪一个，<strong>登录、付款、KYC、验证码、外部发布和 secrets</strong> 都不该交给自动化无人值守执行。
+          </p>
+        </section>
+
+        <section>
+          <h2>为什么这题现在值得单独写</h2>
+          <p>
+            最近一轮公开讨论里，焦点已经不只是“要不要用 Agent”，而是“内容运营的定时活到底该放哪一层跑”。一边是
+            Claude Code 把 <strong>scheduled tasks</strong> 和 <strong>Routines</strong> 讲得越来越清楚；另一边是 OpenAI 在
+            <strong>2026-04-16</strong> 到 <strong>2026-05-14</strong> 之间，连续把 Codex 的
+            <strong>ongoing and repeatable work</strong>、<strong>同线程继续推进</strong>、<strong>手机接力审批</strong> 公开化。
+            对中文内容团队来说，真正缺的不是再抄一份新功能总结，而是判断：
+            <strong>灵感整理、旧页补强、站内 QA、日报汇总，到底该放在会话内、本地机器，还是云端 routine 上。</strong>
+          </p>
+          <ul>
+            <li><strong>X 上的痛点越来越像运营问题：</strong>有人在卖“Claude Code 自动跑内容”，也有人开始讨论 second brain、rules、hooks 和 scheduled tasks 如何减少返工。</li>
+            <li><strong>官方产品线已经分层：</strong>Anthropic 把会话内定时任务、本地桌面任务和云端 Routines 明确拆开；OpenAI 则把同线程 automations、memory 和手机接力接成一条线。</li>
+            <li><strong>中文团队更容易踩边界坑：</strong>把本地巡检误当成云服务，把云端 routine 误当成能代发社媒，把“可以定时跑”误当成“可以不写停止条件”。</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>先看 5 个事实点</h2>
+          <ol>
+            <li><strong>Claude Code 的会话内 scheduled tasks 是有时效和上下文边界的：</strong>Anthropic 文档写明，tasks 属于当前会话；新开对话会清掉它们，重复任务默认 7 天后过期，而且只在 Claude Code 运行且空闲时触发。</li>
+            <li><strong>同一文档已把三种调度方式拆开比较：</strong>`Cloud / Desktop / /loop` 的差异已经明确到“需不需要机器开着、是否能访问本地文件、是否有 approval prompts、最短调度间隔”。</li>
+            <li><strong>Claude Code Routines 是云端配置，不依赖你电脑开着：</strong>Anthropic 在 `Automate work with routines` 文档里写明，Routines 运行在 Anthropic-managed cloud infrastructure，可以由 schedule、API 或 GitHub 事件触发。</li>
+            <li><strong>Codex 的自动化这轮强调的是“沿用已有线程继续干活”：</strong>OpenAI 在 2026-04-16 的 `Codex for (almost) everything` 里说明，automations 已扩展到可复用现有 conversation threads，保留之前积累的上下文，并能在几天甚至几周后自动醒来继续任务。</li>
+            <li><strong>Codex 的手机接力已进入公开预览：</strong>OpenAI 在 2026-05-14 的 `Work with Codex from anywhere` 里说明，手机端可以查看线程、审批命令、阅读 diff、测试结果和截图，但文件、凭据和权限仍留在运行 Codex 的机器上。</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>最短判断表：你该先选哪一个</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>场景</th>
+                  <th>更适合</th>
+                  <th>原因</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>每小时在本地仓库里查死链、补 sitemap、改首页入口</td>
+                  <td>Claude Code scheduled tasks / Desktop tasks</td>
+                  <td>需要本地文件访问，且任务更像“本机巡检”而不是跨工具云工作流。</td>
+                </tr>
+                <tr>
+                  <td>每晚按 GitHub 事件或 API 触发整理 issue / review / docs drift</td>
+                  <td>Claude Code Routines</td>
+                  <td>云端运行，不依赖你电脑开着，适合固定仓库和连接器组合。</td>
+                </tr>
+                <tr>
+                  <td>沿用同一线程持续推进内容实验、保留已讨论的站点边界与判断</td>
+                  <td>Codex automations</td>
+                  <td>它强调复用已有 conversation thread，更适合连续几轮补旧页、补内链、补 FAQ。</td>
+                </tr>
+                <tr>
+                  <td>你经常在手机上只想审批、改方向、看验证摘要</td>
+                  <td>Codex automations</td>
+                  <td>手机接力和实时线程状态是它当前更强的公开能力。</td>
+                </tr>
+                <tr>
+                  <td>想把“定时任务”直接变成外部发帖、登录后台、付款或 KYC</td>
+                  <td>都不适合</td>
+                  <td>这不是调度能力问题，而是高风险动作本身就该保留人工边界。</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section>
+          <h2>中文内容团队先看这 4 条边界</h2>
+          <ol>
+            <li><strong>是否必须碰本地文件：</strong>要改本地 HTML、跑本地检查、读本地知识库，先考虑本地会话或 Desktop task；纯云端例行任务再考虑 Routines。</li>
+            <li><strong>是否必须沿用已有判断：</strong>如果你每轮都要承接上一轮的站点边界和取舍，Codex automations 的 thread continuity 更有价值。</li>
+            <li><strong>是否需要中途审批：</strong>要在执行中逐步批准或看 diff 摘要，Codex 更强；Routines 则更适合“提前写死成功条件、自动跑到底”。</li>
+            <li><strong>是否会碰高风险动作：</strong>只要涉及外部发布、登录、支付、税务、验证码、账号配置，三者都不应无人值守执行。</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>更适合谁，不适合谁</h2>
+          <div class="info-grid">
+            <div class="info-box">
+              <strong>更适合先用 Claude 定时任务 / Desktop tasks</strong>
+              <ul>
+                <li>你的工作主要在本地仓库里，想做周期性巡检与轻量修复。</li>
+                <li>你愿意保持本机环境与会话连续性。</li>
+                <li>你想先验证“这类任务值不值得自动化”，而不是一上来就搭云端工位。</li>
+              </ul>
+            </div>
+            <div class="info-box">
+              <strong>更适合先用 Claude Routines</strong>
+              <ul>
+                <li>任务明确、重复、可触发，而且不依赖你电脑开着。</li>
+                <li>你已经能把 prompt、仓库和连接器边界写得很明确。</li>
+                <li>产物更像 summary、review、draft、triage，而不是需要反复人机来回的长任务。</li>
+              </ul>
+            </div>
+            <div class="info-box">
+              <strong>更适合先用 Codex automations</strong>
+              <ul>
+                <li>你已经在用 Codex 做连续内容实验，想保留 thread 和记忆。</li>
+                <li>你会在手机上做审批、看验证摘要、改方向。</li>
+                <li>你更重视“每小时补旧页、补入口、补 FAQ”的连贯执行，而不是单次云端 job。</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>最容易翻车的 5 个误区</h2>
+          <ul>
+            <li><strong>误区 1：</strong>把云端 routine 当成能安全代发的机器人。</li>
+            <li><strong>误区 2：</strong>把 thread history 当成唯一事实源。</li>
+            <li><strong>误区 3：</strong>把 scheduled tasks 当“永久后台”。</li>
+            <li><strong>误区 4：</strong>因为能手机批准，就不写验证摘要。</li>
+            <li><strong>误区 5：</strong>把“能自动做”当成“应该自动做”。</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>一个更稳的落地顺序</h2>
+          <ol>
+            <li><strong>先用本地会话任务试一周：</strong>把 HTML 检查、站内链接检查、旧页补 FAQ 跑顺。</li>
+            <li><strong>再决定哪些可以上云：</strong>只有当 prompt、范围和成功条件稳定后，再把它们迁到 Claude Routines。</li>
+            <li><strong>长期连续任务再交给 Codex automations：</strong>尤其是需要承接同一 thread、在手机上审批、持续几轮补同一主题的内容运营任务。</li>
+            <li><strong>高风险动作始终拆开：</strong>自动化只准备材料和验证结果，最终提交、发布、登录和收款都停在人类节点。</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>站内下一步阅读</h2>
+          <ul>
+            <li><a class="inline-link" href="./codex-automations-content-ops.html">Codex automations 怎么用：每小时内容迭代适合自动跑什么，哪些必须停在人工检查</a></li>
+            <li><a class="inline-link" href="./codex-cli-goal-content-ops.html">Codex CLI /goal 怎么用：把内容站迭代变成可复现任务</a></li>
+            <li><a class="inline-link" href="./single-source-of-truth-ai-content-workflow.html">AI 内容工作流里的单一事实源怎么建</a></li>
+            <li><a class="inline-link" href="./ai-content-qa-links-facts-disclosure-cta.html">用 AI 做内容 QA：链接、事实、披露、CTA 先查什么</a></li>
+            <li><a class="inline-link" href="./claude-code-permission-modes-human-checkpoints.html">Claude Code 权限设置：哪些操作必须人工确认</a></li>
+            <li><a class="inline-link" href="../learn/ai-learning.html">AI 学习路线：Claude、Codex、知识库和自动化</a></li>
+          </ul>
+        </section>
+
+        <section class="source-box">
+          <h2>来源（官方/可信）</h2>
+          <ul>
+            <li>
+              Anthropic：Run prompts on a schedule：
+              <a class="inline-link" href="https://code.claude.com/docs/en/scheduled-tasks" target="_blank" rel="noopener">https://code.claude.com/docs/en/scheduled-tasks</a>
+            </li>
+            <li>
+              Anthropic：Automate work with routines：
+              <a class="inline-link" href="https://code.claude.com/docs/en/web-scheduled-tasks" target="_blank" rel="noopener">https://code.claude.com/docs/en/web-scheduled-tasks</a>
+            </li>
+            <li>
+              OpenAI：Codex for (almost) everything：
+              <a class="inline-link" href="https://openai.com/my-MM/index/codex-for-almost-everything/" target="_blank" rel="noopener">https://openai.com/my-MM/index/codex-for-almost-everything/</a>
+            </li>
+            <li>
+              OpenAI：Work with Codex from anywhere：
+              <a class="inline-link" href="https://openai.com/index/work-with-codex-from-anywhere/" target="_blank" rel="noopener">https://openai.com/index/work-with-codex-from-anywhere/</a>
+            </li>
+            <li>
+              OpenAI：Codex for work：
+              <a class="inline-link" href="https://openai.com/codex/for-work/" target="_blank" rel="noopener">https://openai.com/codex/for-work/</a>
+            </li>
+            <li>
+              X 公开讨论线索：
+              <a class="inline-link" href="https://x.com/yanndine/status/2026382902406123654" target="_blank" rel="noopener">Yann 关于 Claude Code sessions / hooks / safe permissions 的公开帖</a>，
+              <a class="inline-link" href="https://x.com/ai_escapingcorp/status/2035489545299390889" target="_blank" rel="noopener">AI 脱社畜关于云端 scheduled tasks 的公开帖</a>。
+            </li>
+          </ul>
+          <p class="last-updated">持续更新中 · 最近核对：2026-05-16</p>
+        </section>
+      </article>
+    </main>
+
+    <footer class="footer">
+      <p>© 2026 AI 内容增长实验室 · 持续更新中</p>
+    </footer>
+  </body>
+</html>
