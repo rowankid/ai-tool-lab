@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Codex CLI /goal 怎么用：把内容站迭代变成可复现任务（含验证与安全边界）</title>
+    <title>Codex CLI /goal 怎么用：把内容站迭代变成可复现任务（含手机接力、验证与安全边界）</title>
     <meta
       name="description"
-      content="用中文内容站的视角拆解 Codex CLI 的 /goal：如何把“写文章/改站点/补内链”从一句话需求，变成可复现的任务描述、验收标准与验证清单。"
+      content="用中文内容站的视角拆解 Codex CLI 的 /goal：如何把“写文章/改站点/补内链”从一句话需求，变成可复现的任务描述、验收标准，以及适合手机接力审批的验证清单。"
     />
     <link
       rel="canonical"
@@ -34,7 +34,7 @@
     <main class="article-page">
       <article class="article">
         <p class="eyebrow">Codex CLI / Agent Workflow</p>
-        <h1>Codex CLI /goal 怎么用：把内容站迭代变成可复现任务（含验证与安全边界）</h1>
+        <h1>Codex CLI /goal 怎么用：把内容站迭代变成可复现任务（含手机接力、验证与安全边界）</h1>
         <p class="disclosure-note">
           披露：本文不包含任何必须点击的商业链接；本站其他页面可能包含 affiliate 链接。本文目标是把“怎么让 Agent
           稳定推进内容站迭代”讲清楚，并给你一份可复用的任务模板。
@@ -55,6 +55,14 @@
             <li>
               <strong>Codex 的任务本来就是“隔离执行”的：</strong>OpenAI 在产品介绍里明确把 Codex 定义为可并行处理任务的工程 agent，
               每个任务在独立环境里运行，可读写代码并执行测试、lint 和类型检查。
+            </li>
+            <li>
+              <strong>移动端接力已经不是概念，而是正式预览能力：</strong>OpenAI 在 <strong>2026-05-14</strong> 的官方文章里写明，
+              Codex 已进入 ChatGPT 手机 App 预览版，并支持从手机查看线程、审批命令、阅读 diff、测试结果和截图。
+            </li>
+            <li>
+              <strong>这套工作流已经在真实规模上运行：</strong>同一篇官方文章提到，<strong>每周有超过 400 万人使用 Codex</strong>。
+              对内容站运营来说，这说明“长任务 + 中途接力 + 审批点前移”已经是主流使用方式，不是少数人的极客玩法。
             </li>
             <li>
               <strong>它会给你可验证证据：</strong>官方说明强调，完成任务后会附带终端日志和测试输出引用；这意味着你不该只看“写完了没有”，而要把验证标准写进任务本身。
@@ -78,6 +86,8 @@
             <li><strong>手机适合做判断，不适合做模糊指挥：</strong>你可以批准、改方向、补一句上下文，但不要只发“顺手优化一下”。</li>
             <li><strong>远程接力不改变合规边界：</strong>账号登录、验证码、KYC、收款、外部发布，仍然必须人工完成，不因为能手机接力就变成可自动化动作。</li>
             <li><strong>线程越长，越要把验证前置：</strong>让 Agent 明确输出 diff、测试结果、标题校验和链接检查，而不是只回一句“已完成”。</li>
+            <li><strong>远程环境更值得写死范围：</strong>Remote SSH 已经正式可用，说明任务可能跑在你的远程开发机上；这时更要写清允许修改的目录和允许访问的来源域名。</li>
+            <li><strong>自动化入口变多，但权限不该更松：</strong>OpenAI 同期把 Hooks 设为正式可用、programmatic access tokens 面向团队开放；你越想把内容站做成长期自动化，越要先把 secrets、验证步骤和禁止动作写清楚。</li>
           </ul>
         </section>
 
@@ -160,6 +170,25 @@
           <p>
             如果你希望 Agent 推进这些事情，正确方式是：让它做<strong>材料准备</strong>与<strong>检查清单</strong>，并在关键节点停下来等你确认。
             这一点在手机接力场景里更重要，因为“可远程批准”很容易让人误以为“可以远程代办”。
+          </p>
+        </section>
+
+        <section>
+          <h2>手机接力最适合的 3 类内容站节点</h2>
+          <ol>
+            <li>
+              <strong>方向确认：</strong>Agent 已经给出 2 个可行方案，你只需要在通勤、排队或开会间隙选一个继续推进。
+            </li>
+            <li>
+              <strong>低风险批准：</strong>你已经提前写明允许修改的目录、验证命令和来源范围，此时只需要批准继续跑检查、继续补内链或继续生成摘要。
+            </li>
+            <li>
+              <strong>结果快读：</strong>先在手机上看 diff、测试结果、标题命中和链接检查摘要，判断这轮有没有明显跑偏；真正需要逐段细改时再回桌面。
+            </li>
+          </ol>
+          <p>
+            反过来说，凡是需要你<strong>长时间逐句编辑正文</strong>、<strong>登录后台</strong>、<strong>处理支付或验证码</strong>的节点，
+            仍然应该留在桌面完成。手机接力适合“推进判断”，不适合“代替收尾”。
           </p>
         </section>
 
