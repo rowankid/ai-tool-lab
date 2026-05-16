@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Codex automations 怎么用：每小时内容迭代适合自动跑什么，哪些必须停在人工检查</title>
+    <meta
+      name="description"
+      content="结合 OpenAI 2026 年 2-5 月公开资料，拆解 Codex automations 在中文内容站里的正确位置：哪些任务适合定时自动跑，哪些必须留给人工审批、验证和最终发布。"
+    />
+    <link
+      rel="canonical"
+      href="https://blog.luowq.cn/ai-tool-lab/articles/codex-automations-content-ops.html"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark">AI</span>
+        <span>
+          <strong>AI 内容增长实验室</strong>
+          <small>内容变成流量与收入资产</small>
+        </span>
+      </a>
+      <nav aria-label="主导航">
+        <a href="../index.html#tools">工具</a>
+        <a href="../index.html#hubs">主题</a>
+        <a href="../learn/ai-learning.html">AI 学习</a>
+        <a href="../disclosure.html">披露</a>
+      </nav>
+    </header>
+
+    <main class="article-page">
+      <article class="article">
+        <p class="eyebrow">Codex / Automations / Content Ops</p>
+        <h1>Codex automations 怎么用：每小时内容迭代适合自动跑什么，哪些必须停在人工检查</h1>
+        <p class="disclosure-note">
+          披露：本文不包含必须点击的商业链接。目标不是鼓励你“把内容站全自动化”，而是把
+          Codex automations 放回中文内容站的真实边界里：哪些值得定时跑，哪些绝不能越过人工检查点。
+        </p>
+
+        <section>
+          <h2>一句话结论</h2>
+          <p>
+            Codex automations 最适合自动跑的是
+            <strong>重复、低风险、易复核</strong> 的内容运营工作，例如热点观察、灵感整理、旧页补强建议、站内链接检查和日报汇总；最不适合自动跑的是
+            <strong>登录、付款、KYC、验证码、外部发布和模糊的“顺手优化一下”</strong>。如果你把完成条件、允许改动范围和验证步骤写清楚，automations
+            会成为内容站的执行层；如果你只给一句泛目标，它只会更快地产生返工。
+          </p>
+        </section>
+
+        <section>
+          <h2>为什么这个题现在值得单独写一页</h2>
+          <p>
+            2026 年 2 月到 5 月，OpenAI 连续把 Codex 的并行协作、自动化、手机接力和安全边界公开讲清楚了。与此同时，X
+            上关于“多线程跑起来了”“高层目标比碎任务更重要”“终于能自动做重复活”的公开讨论明显增多。对中文创作者来说，真正缺的不是再看一遍产品发布，而是把这些信号翻译成：
+            <strong>什么该让 Agent 每小时帮你做，什么必须停下来等你确认</strong>。
+          </p>
+          <ul>
+            <li><strong>公开讨论在升温：</strong>OpenAI 团队公开强调 Codex app 支持并行工作、skills 和 repetitive tasks automation；也有人把核心收束成“给高层目标和上下文，而不是一串碎命令”。</li>
+            <li><strong>官方产品能力已经成型：</strong>Automations、手机接力、Remote SSH、Hooks 和 programmatic tokens 已经不是概念图。</li>
+            <li><strong>内容站正好是适合这类自动化的场景：</strong>每天都在重复采集、整理、补链、验证和复盘，但又有明确的人类边界。</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>先看 5 个事实点</h2>
+          <ol>
+            <li>
+              <strong>OpenAI 已把 Automations 定义为“定时回到同一线程继续做事”：</strong>
+              2026-04-23 的 OpenAI Academy 页面明确写到，Codex 可以按 schedule 自动回来执行任务，而且某些 automations 可以沿用同一线程上下文继续推进，不必每次从零开始。
+            </li>
+            <li>
+              <strong>官方示例本身就偏向重复运营工作：</strong>
+              同一页面列出的例子包括周报、晨报、汇总新增文件、清理数据导出、检查缺漏和项目状态更新，这与内容站的灵感库、旧页巡检和看板更新高度相似。
+            </li>
+            <li>
+              <strong>本地运行仍有现实前提：</strong>
+              OpenAI 同页提醒，如果你在本地运行 Codex，automations 更适合在电脑唤醒且 Codex 运行时工作。这意味着你不能把本地自动化误当成“永远在线的云发布器”。
+            </li>
+            <li>
+              <strong>手机接力是用来审批和改方向，不是代替你完成高风险动作：</strong>
+              OpenAI 在 2026-05-14 的文章里写明，手机端可以看 diff、终端输出、测试结果和审批请求，也能切模型、补上下文和继续线程。
+            </li>
+            <li>
+              <strong>OpenAI 公开强调安全边界不是可选项：</strong>
+              2026-05-08 的安全文章把 sandbox、approval、network policy 和 telemetry 当成默认控制层，而且明确说不会给 Codex 开放式的任意外联。
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>对中文内容站来说，真正适合自动跑的 4 类任务</h2>
+          <div class="info-grid">
+            <div class="info-box">
+              <strong>1. 热点观察与灵感整理</strong>
+              <p>每小时看公开趋势、抄回来源、标注痛点、补进灵感库。这类任务重复度高，但最终是否立题仍由你判断。</p>
+            </div>
+            <div class="info-box">
+              <strong>2. 旧页补强建议</strong>
+              <p>优先给已有文章补事实锚点、FAQ、检查清单、内链和“适合/不适合”，比盲目新开薄页更适合自动化推进。</p>
+            </div>
+            <div class="info-box">
+              <strong>3. 站内 QA 与一致性维护</strong>
+              <p>检查 HTML、站内链接、标题、sitemap、首页入口和披露文案，这些工作最适合写成可反复执行的验证闭环。</p>
+            </div>
+            <div class="info-box">
+              <strong>4. 看板与日报汇总</strong>
+              <p>自动写本轮做了什么、没做什么、验证是否通过、下一步建议是什么，减少你回忆与补录的成本。</p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>不适合交给 automations 自动推进的 6 类动作</h2>
+          <ul>
+            <li><strong>任何需要登录或越权的动作：</strong>后台登录、验证码、人机验证、邮箱确认、KYC、税务、付款、提现。</li>
+            <li><strong>任何外部发布：</strong>X、公众号、邮件群发、论坛发帖、点赞、关注、私信或评论互动。</li>
+            <li><strong>任何会修改商业关系的动作：</strong>申请联盟、提交收款资料、替换未确认的 affiliate link。</li>
+            <li><strong>任何没有明确完成条件的“大概优化”：</strong>例如“把站点再做强一点”“顺手调整一下转化”。</li>
+            <li><strong>任何需要主观品牌判断的最终成稿：</strong>尤其是标题定调、争议措辞、对外承诺和收益表达。</li>
+            <li><strong>任何会碰 secrets 的操作：</strong>读取、整理、复制或外发本地账号信息、token、未授权截图和后台数据。</li>
+          </ul>
+          <p>
+            中文创作者最容易误判的一点是：<strong>能定时执行，不等于适合无人值守</strong>。对于内容站，automations 更像“稳定的研究员和巡检员”，不是“替你对外发言的人”。
+          </p>
+        </section>
+
+        <section>
+          <h2>一条更稳的每小时内容迭代链路</h2>
+          <ol>
+            <li><strong>先观察：</strong>看公开趋势、查官方资料、记录事实与痛点，不在这一步下最终结论。</li>
+            <li><strong>再判断：</strong>优先补强已有高价值页，只有站内确实没有空位时才新开题。</li>
+            <li><strong>再执行：</strong>写页面、补内链、改首页或 Hub、更新 sitemap 和看板。</li>
+            <li><strong>最后验证：</strong>解析 HTML、检查内链、同步到临时发布目录，再看标题是否命中。</li>
+            <li><strong>高风险步骤始终停住：</strong>外部发布、账号操作和任何付款/KYC 都必须人工确认。</li>
+          </ol>
+          <p>
+            这条链路的关键不是“快”，而是<strong>每一步都有证据</strong>。Automations 适合推进流程，不适合跳过流程。
+          </p>
+        </section>
+
+        <section>
+          <h2>如果你要开定时任务，最少要写清楚的 5 个字段</h2>
+          <ol>
+            <li><strong>目标：</strong>例如“更新灵感库并推进最多 1 篇高价值页”，不要写成“保持增长”。</li>
+            <li><strong>允许修改的范围：</strong>指定目录和文件，避免把自动化任务变成全仓乱动。</li>
+            <li><strong>来源边界：</strong>允许查哪些平台、哪些域名必须以官方文档为准、哪些内容只做趋势线索。</li>
+            <li><strong>高风险禁区：</strong>明确不登录、不发帖、不提交表单、不处理 secrets。</li>
+            <li><strong>验证方法：</strong>HTML 解析、站内链接检查、sitemap 更新、临时目录同步、标题命中校验。</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>适合谁，不适合谁</h2>
+          <div class="info-grid">
+            <div class="info-box">
+              <strong>更适合</strong>
+              <ul>
+                <li>已经有内容站、知识库或固定选题池的人。</li>
+                <li>愿意先定义边界、再让 Agent 定时执行的人。</li>
+                <li>更在意长期资产质量，而不是一天铺几十页的人。</li>
+              </ul>
+            </div>
+            <div class="info-box">
+              <strong>暂时不适合</strong>
+              <ul>
+                <li>还没想清楚站点定位，只想让 Agent 自己找方向的人。</li>
+                <li>希望自动化替自己完成注册、发帖、推广和收款的人。</li>
+                <li>没有验证闭环，却想把“执行次数”当结果的人。</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>中文用户最该先防的 5 个误区</h2>
+          <ul>
+            <li><strong>把自动化当内容策略：</strong>自动化只决定执行节奏，不决定该写什么。</li>
+            <li><strong>把并行当产能保证：</strong>并行能减少等待，但不会自动提升内容质量。</li>
+            <li><strong>把手机接力当成远程代办：</strong>手机更适合批准与纠偏，不适合代替桌面做高风险收尾。</li>
+            <li><strong>把“有趋势”当“该发页”：</strong>X 热度只能定义问题，不能替代官方来源和站内空位判断。</li>
+            <li><strong>把验证当可选项：</strong>没有 HTML、链接、标题和入口检查，自动化只会更快地放大错误。</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>内容站可以直接复用的一份 automation 任务框架</h2>
+          <ol>
+            <li><strong>输入：</strong>本轮时间、必读项目文档、灵感库、题库、站点目录。</li>
+            <li><strong>观察：</strong>抓 2-4 条公开趋势，再找 2-4 个官方来源交叉核实。</li>
+            <li><strong>决策：</strong>优先补旧页；如果没有对应页，再新开 1 篇。</li>
+            <li><strong>站内同步：</strong>更新首页、起始页、学习页、Hub、sitemap 与看板。</li>
+            <li><strong>验证：</strong>跑解析和站内链接检查，输出本轮验证摘要。</li>
+            <li><strong>停止条件：</strong>遇到登录、付款、KYC、验证码、外部发布或 secrets，立即停住并上报。</li>
+          </ol>
+          <p>
+            你会发现，这种框架和
+            <a class="inline-link" href="./codex-cli-goal-content-ops.html">/goal 的写法</a>
+            本质上是同一件事：先把边界写出来，再谈自动化。
+          </p>
+        </section>
+
+        <section>
+          <h2>下一步读什么（站内内链）</h2>
+          <ul>
+            <li><a class="inline-link" href="./codex-cli-goal-content-ops.html">Codex CLI /goal 怎么用：把内容站迭代变成可复现任务</a></li>
+            <li><a class="inline-link" href="./multi-agent-content-workflows.html">多 Agent 协作什么时候有用，什么时候浪费</a></li>
+            <li><a class="inline-link" href="./ai-content-qa-links-facts-disclosure-cta.html">用 AI 做内容 QA：链接、事实、披露、CTA 先查什么</a></li>
+            <li><a class="inline-link" href="./agents-md-content-site.html">AGENTS.md 怎么写，才能让 Agent 真懂边界？</a></li>
+            <li><a class="inline-link" href="./first-20-ai-content-queue.html">第一批 20 篇 AI 内容增长文章应该怎么排队</a></li>
+          </ul>
+        </section>
+
+        <section class="source-box">
+          <h2>来源（官方/可信）</h2>
+          <ul>
+            <li>
+              OpenAI Academy：Automations（2026-04-23，定时任务、同线程上下文、适合复核的 recurring work）：
+              <a class="inline-link" href="https://openai.com/academy/codex-automations/" target="_blank" rel="noopener">https://openai.com/academy/codex-automations/</a>
+            </li>
+            <li>
+              OpenAI：Work with Codex from anywhere（2026-05-14，手机接力、Remote SSH、Hooks、programmatic tokens）：
+              <a class="inline-link" href="https://openai.com/index/work-with-codex-from-anywhere/" target="_blank" rel="noopener">https://openai.com/index/work-with-codex-from-anywhere/</a>
+            </li>
+            <li>
+              OpenAI：Running Codex safely at OpenAI（2026-05-08，sandbox、approval、network policy、telemetry）：
+              <a class="inline-link" href="https://openai.com/index/running-codex-safely/" target="_blank" rel="noopener">https://openai.com/index/running-codex-safely/</a>
+            </li>
+            <li>
+              OpenAI：Introducing the Codex app（2026-02-02，并行工作、worktrees、skills、长期任务协作）：
+              <a class="inline-link" href="https://openai.com/index/introducing-the-codex-app/" target="_blank" rel="noopener">https://openai.com/index/introducing-the-codex-app/</a>
+            </li>
+            <li>
+              X 公开讨论线索：
+              <a class="inline-link" href="https://x.com/ajambrosino/status/2018385459936923656" target="_blank" rel="noopener">Andrew Ambrosino 关于 Codex app、并行与 repetitive task automation 的公开帖</a>
+              ，以及
+              <a class="inline-link" href="https://x.com/sch/status/2018398527177801999" target="_blank" rel="noopener">Michael Schade 关于“给高层目标与上下文”的公开帖</a>。
+            </li>
+          </ul>
+          <p class="last-updated">持续更新中 · 最近核对：2026-05-16</p>
+        </section>
+      </article>
+    </main>
+
+    <footer class="footer">
+      <p>© 2026 AI 内容增长实验室 · 持续更新中</p>
+    </footer>
+  </body>
+</html>
