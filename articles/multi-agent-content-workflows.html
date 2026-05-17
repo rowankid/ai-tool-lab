@@ -178,6 +178,10 @@
               </ul>
             </div>
           </div>
+          <p>
+            这轮再补一个容易被忽略的官方边界：`codex-plugin-cc` 还提供 review gate，但 README 明确提醒它可能把 Claude 和 Codex
+            拉成长时间循环，并快速消耗 usage limits。对内容团队来说，这更像<strong>高压出货前的短时守门</strong>，不适合作为“默认一直开着”的内容写作模式。
+          </p>
         </section>
 
         <section>
@@ -200,6 +204,7 @@
             <li><strong>误区 3：</strong>subagent 越多越专业。Anthropic 官方也提醒，返回结果过多仍会消耗主会话上下文。</li>
             <li><strong>误区 4：</strong>装了 plugin 就等于流程也有了。实际上 plugin 只是接能力，skill 或 SOP 才决定它怎么用、什么时候停。</li>
             <li><strong>误区 5：</strong>用了 worktree 或桥接插件就等于安全。它们只降低协作摩擦，不替你决定哪些动作必须人工确认。</li>
+            <li><strong>误区 6：</strong>review gate 适合默认常开。实际上它更适合短时守门；如果没有人盯着结果，它可能把本该收束的会话拖成长循环。</li>
           </ul>
         </section>
 
@@ -211,6 +216,7 @@
             <li><strong>GitHub/Claude/Codex 都在讲 agent，是不是应该马上全盘并行？</strong> 也不是。官方共同强调的是受控环境、默认边界和可审计，而不是无上限拆任务。</li>
             <li><strong>Claude Code 里直接调 Codex 值不值得？</strong> 值得先放在 second pass：只读 review、adversarial review、救援卡住任务，比“两个 agent 一起写同一段正文”更稳，也更容易验证 ownership。</li>
             <li><strong>plugin、skill、subagent 应该先补哪层？</strong> 先补 skill 或你自己的 SOP，再决定要不要接 plugin 或多开 subagent。没有流程层，桥接能力只会放大分叉。</li>
+            <li><strong>review gate 要不要默认打开？</strong> 不建议。除非你正盯着高风险改动做短时出货检查，否则更稳的是按需跑 `review` 或 `adversarial-review`，别让常驻守门反过来吞掉注意力和额度。</li>
           </ul>
         </section>
 
