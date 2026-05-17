@@ -70,6 +70,11 @@
             <li>
               <strong>GitHub 在 2026-02-13 也给了同一方向的信号：</strong>Agentic Workflows 允许用 Markdown 描述自动化目标，而且工作流默认只读、写操作走预批准的安全输出。行业信号已经很一致了: 真正成熟的并行体系，先约束，再放权。
             </li>
+            <li>
+              <strong>2026-03-30 之后，“双 agent second pass” 已经从概念变成了可直接安装的路径：</strong>OpenAI 官方
+              `codex-plugin-cc` README 把 `/codex:review`、`/codex:adversarial-review` 和 `/codex:rescue` 明确成 Claude
+              Code 里的可用命令。对内容团队来说，更该讨论“什么时候值得让另一个 agent 来 second pass”，而不是继续停留在“要不要多开”的抽象层。
+            </li>
           </ul>
         </section>
 
@@ -142,6 +147,32 @@
         </section>
 
         <section>
+          <h2>2026 年更实用的双 agent 用法：先 second pass，再决定要不要并行共写</h2>
+          <p>
+            `codex-plugin-cc` 这类官方桥接能力，把“再叫一个 agent 来看第二遍”变成了更低摩擦的动作。对中文内容站来说，
+            <strong>最值得先借另一个 agent 的，不是共同写正文，而是 review、challenge review 和 rescue</strong>。
+          </p>
+          <div class="info-grid">
+            <div class="info-box">
+              <strong>先用 second pass 的场景</strong>
+              <ul>
+                <li>正文已经成型，但你想让另一个 agent 只查论点漏洞、来源缺口和过度承诺。</li>
+                <li>主会话已经改完页面，想让第二个 agent 只做读模式审查，避免再把结构改散。</li>
+                <li>某个自动化线程卡住了，需要另一个 agent 接手补完验证或排查阻塞，而不是重写整条链路。</li>
+              </ul>
+            </div>
+            <div class="info-box">
+              <strong>不要先共写正文的场景</strong>
+              <ul>
+                <li>标题、结论和商业边界还没定，两个 agent 同时写只会让判断分叉。</li>
+                <li>站点还没有主记录、FAQ 结构和验证清单，多开只会放大混乱。</li>
+                <li>你真正缺的是一页 decision brief，而不是更多并发输出。</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section>
           <h2>发布前先过一遍这个 6 问检查表</h2>
           <ol>
             <li><strong>任务是否彼此独立？</strong> 如果两个 agent 最终都要反复改同一篇正文，就别并行。</li>
@@ -159,16 +190,17 @@
             <li><strong>误区 1：</strong>任务一复杂就该多开。实际上，高耦合任务更需要单线程判断。</li>
             <li><strong>误区 2：</strong>多 agent 一定更快。很多时候你只是把串行思考换成了并行返工。</li>
             <li><strong>误区 3：</strong>subagent 越多越专业。Anthropic 官方也提醒，返回结果过多仍会消耗主会话上下文。</li>
-            <li><strong>误区 4：</strong>用了 worktree 就等于安全。worktree 只隔离文件改动，不替你决定哪些动作必须人工确认。</li>
+            <li><strong>误区 4：</strong>用了 worktree 或桥接插件就等于安全。它们只降低协作摩擦，不替你决定哪些动作必须人工确认。</li>
           </ul>
         </section>
 
         <section>
-          <h2>FAQ：3 个最容易问错的问题</h2>
+          <h2>FAQ：4 个最容易问错的问题</h2>
           <ul>
             <li><strong>多 agent 会不会天然更快？</strong> 不会。只有在子任务独立、回传可摘要时才会更快；高耦合写作任务往往更慢。</li>
             <li><strong>手机能审批了，是不是就能远程发布？</strong> 不是。远程审批解决的是接力，不是合规替代；发布、收款、KYC、外部发帖仍要人工确认。</li>
             <li><strong>GitHub/Claude/Codex 都在讲 agent，是不是应该马上全盘并行？</strong> 也不是。官方共同强调的是受控环境、默认边界和可审计，而不是无上限拆任务。</li>
+            <li><strong>Claude Code 里直接调 Codex 值不值得？</strong> 值得先放在 second pass：只读 review、adversarial review、救援卡住任务，比“两个 agent 一起写同一段正文”更稳，也更容易验证 ownership。</li>
           </ul>
         </section>
 
@@ -215,6 +247,8 @@
             </li>
             <li>
               Anthropic 官方文档：
+              <a class="inline-link" href="https://code.claude.com/docs/en/features-overview" target="_blank" rel="noopener">Extend Claude Code</a>
+              与
               <a class="inline-link" href="https://code.claude.com/docs/en/sub-agents" target="_blank" rel="noopener">Create custom subagents</a>
             </li>
             <li>
@@ -226,13 +260,19 @@
               <a class="inline-link" href="https://openai.com/index/work-with-codex-from-anywhere/" target="_blank" rel="noopener">Work with Codex from anywhere</a>
             </li>
             <li>
+              OpenAI 官方插件说明：
+              <a class="inline-link" href="https://openai.com/academy/codex-plugins-and-skills/" target="_blank" rel="noopener">Plugins and skills</a>
+              与
+              <a class="inline-link" href="https://github.com/openai/codex-plugin-cc/blob/main/README.md" target="_blank" rel="noopener">codex-plugin-cc README</a>
+            </li>
+            <li>
               GitHub 官方 changelog：
               <a class="inline-link" href="https://github.blog/changelog/2026-02-13-github-agentic-workflows-are-now-in-technical-preview/" target="_blank" rel="noopener">GitHub Agentic Workflows are now in technical preview</a>
             </li>
           </ul>
         </section>
 
-        <p class="article-updated">最后更新：2026-05-16</p>
+        <p class="article-updated">最后更新：2026-05-17</p>
       </article>
     </main>
 
