@@ -1,7 +1,7 @@
 # AI 内容增长实验室（AI Tool Lab）
 #
 # 目的：给 LLM/agent 一个“先看什么”的入口目录，降低误读与错过关键页面的概率。
-# 更新时间（真实）：2026-05-15
+# 更新时间（真实）：2026-05-17 13:15 CST
 # 说明：这不是 sitemap/robots 的替代品；不保证被任何 AI 引用或用于排名。
 
 Site: https://blog.luowq.cn/ai-tool-lab/
@@ -24,9 +24,12 @@ Site: https://blog.luowq.cn/ai-tool-lab/
 - 内容增长路线图（题库→内链→发布）：https://blog.luowq.cn/ai-tool-lab/articles/ai-search-content-growth-roadmap.html
 - GEO 发布前检查清单（质量门槛）：https://blog.luowq.cn/ai-tool-lab/articles/geo-publishing-checklist.html
 - AI 内容事实核查清单（哪些必须人工确认）：https://blog.luowq.cn/ai-tool-lab/articles/ai-content-fact-checking.html
+- Google AI 搜索第一手来源与订阅入口：https://blog.luowq.cn/ai-tool-lab/articles/google-ai-search-firsthand-sources.html
+- AI Mode 进入 Search Console 后的数据解释：https://blog.luowq.cn/ai-tool-lab/articles/search-console-ai-mode-reporting.html
 - AI Overviews / AI Mode 下的可控项（SEO 底座→复访关系层）：https://blog.luowq.cn/ai-tool-lab/articles/ai-overviews-owned-audience.html
 - FAQ schema 在 2026 后怎么用（别再期待富摘要）：https://blog.luowq.cn/ai-tool-lab/articles/faq-schema-after-google-faq-rich-results.html
 - 薄 affiliate 防线（thin affiliate）：https://blog.luowq.cn/ai-tool-lab/articles/avoid-thin-affiliate-ai-content.html
+- Affiliate 披露写法模板：https://blog.luowq.cn/ai-tool-lab/articles/affiliate-disclosure-without-killing-conversion.html
 - llms.txt 的用途与写法：https://blog.luowq.cn/ai-tool-lab/articles/llms-txt-for-content-sites.html
 
 ## Agent / content workflow
@@ -34,6 +37,12 @@ Site: https://blog.luowq.cn/ai-tool-lab/
 - AGENTS.md 边界模板：https://blog.luowq.cn/ai-tool-lab/articles/agents-md-content-site.html
 - Agent 自动化前任务审计清单：https://blog.luowq.cn/ai-tool-lab/articles/ai-agent-preflight-audit-checklist.html
 - Codex CLI /goal 任务模板：https://blog.luowq.cn/ai-tool-lab/articles/codex-cli-goal-content-ops.html
+- Codex automations 内容运营边界：https://blog.luowq.cn/ai-tool-lab/articles/codex-automations-content-ops.html
+- Claude Code 定时任务 vs Codex automations：https://blog.luowq.cn/ai-tool-lab/articles/claude-code-scheduled-tasks-vs-codex-automations.html
+- 多 Agent 内容工作流边界：https://blog.luowq.cn/ai-tool-lab/articles/multi-agent-content-workflows.html
+- AI 内容工作流单一事实源：https://blog.luowq.cn/ai-tool-lab/articles/single-source-of-truth-ai-content-workflow.html
+- 内容运营团队的 Codex 决策简报：https://blog.luowq.cn/ai-tool-lab/articles/codex-content-ops-decision-briefs.html
+- OpenSpec + Superpowers + Codex 内容生产闭环：https://blog.luowq.cn/ai-tool-lab/articles/openspec-superpowers-codex-content-loop.html
 - Obsidian 笔记→SEO 文章内容管线：https://blog.luowq.cn/ai-tool-lab/articles/obsidian-notes-to-seo-pipeline.html
 
 ## Newsletter / owned audience
@@ -43,3 +52,21 @@ Site: https://blog.luowq.cn/ai-tool-lab/
 - Newsletter 第二增长曲线（搜索→订阅闭环）：https://blog.luowq.cn/ai-tool-lab/articles/newsletter-second-growth-loop.html
 - AI Overviews 点击不确定时的 owned audience 框架：https://blog.luowq.cn/ai-tool-lab/articles/ai-overviews-owned-audience.html
 - double opt-in / Smart Nudge 取舍：https://blog.luowq.cn/ai-tool-lab/articles/newsletter-double-opt-in-smart-nudge.html
+- beehiiv / Kit / Substack 自动化差异：https://blog.luowq.cn/ai-tool-lab/articles/beehiiv-kit-substack-newsletter-automation.html
+- Newsletter 打开率诊断：https://blog.luowq.cn/ai-tool-lab/articles/newsletter-open-rate-diagnostic.html
+- 欢迎邮件 5 封序列：https://blog.luowq.cn/ai-tool-lab/articles/welcome-email-sequence-owned-audience.html
+- beehiiv 订阅弹窗怎么选：https://blog.luowq.cn/ai-tool-lab/articles/beehiiv-content-gate-email-capture.html
+- Newsletter 推荐网络怎么用：https://blog.luowq.cn/ai-tool-lab/articles/newsletter-recommendation-network.html
+- SEO 文章改 newsletter 选题：https://blog.luowq.cn/ai-tool-lab/articles/seo-article-to-newsletter-idea.html
+
+## Repurposing / media workflow
+- YouTube 长视频转 SEO 文章：https://blog.luowq.cn/ai-tool-lab/articles/youtube-long-video-to-seo-article.html
+- 播客转博客的 AI 工作流：https://blog.luowq.cn/ai-tool-lab/articles/podcast-to-blog-ai-workflow.html
+- AI 视频一稿多发版权与披露清单：https://blog.luowq.cn/ai-tool-lab/articles/ai-video-repurpose-copyright-checklist.html
+- Descript 中文创作者一稿多发：https://blog.luowq.cn/ai-tool-lab/articles/descript-chinese-creator-repurpose.html
+
+## Commercial and sponsorship candidates
+- AI 工具测评模板：https://blog.luowq.cn/ai-tool-lab/articles/ai-tool-review-template.html
+- 内容 QA：链接、事实、披露、CTA：https://blog.luowq.cn/ai-tool-lab/articles/ai-content-qa-links-facts-disclosure-cta.html
+- 第一批 20 篇内容排队：https://blog.luowq.cn/ai-tool-lab/articles/first-20-ai-content-queue.html
+- 广告 / 赞助网络候选只作为只读研究与媒体包准备，不代表已接入广告位或收款：https://blog.luowq.cn/ai-tool-lab/disclosure.html
