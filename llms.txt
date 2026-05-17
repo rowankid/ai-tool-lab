@@ -1,7 +1,7 @@
 # AI 内容增长实验室（AI Tool Lab）
 #
 # 目的：给 LLM/agent 一个“先看什么”的入口目录，降低误读与错过关键页面的概率。
-# 更新时间（真实）：2026-05-17 13:15 CST
+# 更新时间（真实）：2026-05-17 16:15 CST
 # 说明：这不是 sitemap/robots 的替代品；不保证被任何 AI 引用或用于排名。
 
 Site: https://blog.luowq.cn/ai-tool-lab/
@@ -69,4 +69,5 @@ Site: https://blog.luowq.cn/ai-tool-lab/
 - AI 工具测评模板：https://blog.luowq.cn/ai-tool-lab/articles/ai-tool-review-template.html
 - 内容 QA：链接、事实、披露、CTA：https://blog.luowq.cn/ai-tool-lab/articles/ai-content-qa-links-facts-disclosure-cta.html
 - 第一批 20 篇内容排队：https://blog.luowq.cn/ai-tool-lab/articles/first-20-ai-content-queue.html
+- Newsletter sponsor 媒体包准备：https://blog.luowq.cn/ai-tool-lab/articles/newsletter-sponsor-media-kit.html
 - 广告 / 赞助网络候选只作为只读研究与媒体包准备，不代表已接入广告位或收款：https://blog.luowq.cn/ai-tool-lab/disclosure.html
