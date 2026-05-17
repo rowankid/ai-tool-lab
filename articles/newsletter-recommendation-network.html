@@ -101,6 +101,10 @@
               订阅后步骤可以是 login、signup 或 show recommendations modal，这意味着推荐网络已经和订阅流程深度绑定，而不是一个孤立插件。
             </li>
             <li>
+              <strong>但 beehiiv 的外站嵌入表单并不会自动走 signup flow：</strong>官方帮助中心明确区分了 Website Builder 里的原生 subscribe form
+              和外部网站的 embedded subscribe form。后者可以收集邮箱、触发自动化或跳转 URL，但不会触发多步 signup flow。
+            </li>
+            <li>
               <strong>beehiiv 自己的 2026 报告把 recommendations 定义成高效增长杠杆：</strong>官方《The State of Newsletters 2026》写到，
               参与 Recommendation Network 的 newsletter 增长更快，推荐别人也更容易被推荐回来。
             </li>
@@ -171,6 +175,7 @@
             <li><strong>适合：</strong>你已经有清楚的 welcome email、站内 3 篇高价值文章、并且愿意把推荐对象当成品牌延伸，而不是流量租借。</li>
             <li><strong>不适合：</strong>你还在冷启动，连自己的订阅承诺都没写清楚，就急着把推荐网络当核心增长引擎。</li>
             <li><strong>中文用户边界：</strong>如果你主要靠中文站内长文承接，推荐对象最好也能解释清楚为什么和你同路，而不是只因为“对方可能会回推”。</li>
+            <li><strong>静态站边界：</strong>如果你的订阅入口主要放在自有站、外部博客或其他页面里的 beehiiv 嵌入表单，别默认以为 Top 4 会像原生 subscribe form 一样自动接上；这时要先核对你用的是 Website Builder 原生表单，还是 external embed。</li>
           </ul>
           <p>
             如果你已经要走“内容站 + newsletter”路线，可以先看
@@ -229,6 +234,10 @@
               其他 publication 仍然可以推荐你；如果你不想和某个 publication 绑定，处理方式是 block 对方，而不是以为“我先不配置就没关系”。
             </li>
             <li>
+              <strong>beehiiv 原生表单和外站 embed 是两套入口：</strong>官方 signup flow 文档与 embedded form 文档都写明，
+              只有 Website Builder 里的 subscribe form 才能挂接多步 signup flow；外站 embed 即使放在你自己的页面上，也不会自动触发 recommendations modal。
+            </li>
+            <li>
               <strong>Substack Welcome page 的背书位不是无限加：</strong>官方文档说明 welcome page 最多显示 3 个 endorsement，
               而且只有已经启用 Recommendations、并且已经推荐过你的 publication 才能被选进 welcome page。更重要的是，这些 blurbs 在移动端并不显示。
               它更像“桌面端公开背书位”，不是任意堆 social proof。
@@ -274,6 +283,7 @@
           <ol>
             <li><strong>先写欢迎承诺：</strong>订阅后 7 天内，读者会收到什么。</li>
             <li><strong>先准备 3 篇站内承接页：</strong>至少有 welcome、栏目、代表作或 FAQ。</li>
+            <li><strong>先分清订阅入口类型：</strong>如果你用的是 beehiiv Website Builder 原生 subscribe form，可以继续设计 signup flow；如果你用的是外站 embedded form，就别把 recommendations modal 当成默认会发生的下一步。</li>
             <li><strong>再选推荐网络模型：</strong>想要订阅后分流与网络增长，优先 beehiiv；想先要作者背书与社区发现，优先 Substack。</li>
             <li><strong>推荐少而准：</strong>不为凑满 4 个位置乱放 publication。</li>
             <li><strong>先按真实访问设备判断：</strong>如果你的新订阅读者大多来自手机，就别把 Substack welcome page blurbs 当成主要承接位。</li>
@@ -312,6 +322,10 @@
             <li>
               beehiiv Help：
               <a class="inline-link" href="https://www.beehiiv.com/support/article/33701445445271" target="_blank" rel="nofollow noopener">Adding signup flows to your website subscribe forms</a>
+            </li>
+            <li>
+              beehiiv Help：
+              <a class="inline-link" href="https://www.beehiiv.com/support/article/12977090590487-creating-an-embedded-subscribe-form" target="_blank" rel="nofollow noopener">Creating an embedded subscribe form</a>
             </li>
             <li>
               beehiiv Blog：
