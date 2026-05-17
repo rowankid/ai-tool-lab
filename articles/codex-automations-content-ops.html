@@ -84,10 +84,46 @@
               OpenAI 在 2026-05-14 的文章里写明，手机端可以看 diff、终端输出、测试结果和审批请求，也能切模型、补上下文和继续线程。
             </li>
             <li>
+              <strong>远程接力依赖 secure relay，而不是把你的机器直接暴露到公网：</strong>
+              OpenAI 同一篇 2026-05-14 文章说明，Codex 通过 secure relay 让受信任机器跨设备可达，同时把 files、credentials、permissions 和 local setup 留在原机器上。
+            </li>
+            <li>
               <strong>OpenAI 公开强调安全边界不是可选项：</strong>
               2026-05-08 的安全文章把 sandbox、approval、network policy 和 telemetry 当成默认控制层，而且明确说不会给 Codex 开放式的任意外联。
             </li>
           </ol>
+        </section>
+
+        <section>
+          <h2>这一轮真正新增的判断：remote approvals 和 scoped tokens，不等于无人值守发布</h2>
+          <p>
+            X 上最近关于 Claude Code <code>/ultraplan</code>、browser review、remote execute 的公开讨论，真正指向的是
+            <strong>“先把计划和审批做成一等对象”</strong>，不是“终于可以把所有外部动作都交给 Agent”。
+            对中文内容站来说，更该补的是一层清楚的执行分工。
+          </p>
+          <div class="info-grid">
+            <div class="info-box">
+              <strong>适合继续自动化的</strong>
+              <ul>
+                <li>同线程回访、旧页补事实、FAQ、检查清单和内链。</li>
+                <li>把 diff、测试结果、标题命中和链接检查汇总成可审批摘要。</li>
+                <li>在受控目录里跑验证命令、同步临时发布目录和更新看板。</li>
+              </ul>
+            </div>
+            <div class="info-box">
+              <strong>仍然必须人工停住的</strong>
+              <ul>
+                <li>任何对外发帖、邮件群发、评论互动和平台发布。</li>
+                <li>任何需要登录后台、验证码、Stripe、PayPal、KYC 或税务资料的动作。</li>
+                <li>任何会把 scoped token 误当成“可代替人工判断”的公共分发链路。</li>
+              </ul>
+            </div>
+          </div>
+          <p>
+            也就是说，<strong>secure relay 解决的是“你在哪里审批”</strong>，
+            <strong>programmatic access tokens 解决的是“内部自动化怎么拿到受限凭据”</strong>，
+            它们都没有把“要不要对外发布、要不要碰收款和身份资料”的责任从人身上拿走。
+          </p>
         </section>
 
         <section>
@@ -153,6 +189,16 @@
         </section>
 
         <section>
+          <h2>如果你准备把 automation 接到团队环境，再多补 4 条</h2>
+          <ol>
+            <li><strong>审批介面：</strong>写清哪些动作只允许在桌面批准，哪些可以手机只读或继续执行。</li>
+            <li><strong>凭据范围：</strong>scoped token 只给 CI、release workflow 或内部自动化，别让它覆盖公开发布、社媒或支付链路。</li>
+            <li><strong>网络边界：</strong>允许访问的官方域名和可信来源要写死，陌生域名默认不继续。</li>
+            <li><strong>审计留痕：</strong>保留本轮 prompt、批准记录、验证输出和 diff 摘要，方便回滚和复盘。</li>
+          </ol>
+        </section>
+
+        <section>
           <h2>适合谁，不适合谁</h2>
           <div class="info-grid">
             <div class="info-box">
@@ -180,6 +226,7 @@
             <li><strong>把自动化当内容策略：</strong>自动化只决定执行节奏，不决定该写什么。</li>
             <li><strong>把并行当产能保证：</strong>并行能减少等待，但不会自动提升内容质量。</li>
             <li><strong>把手机接力当成远程代办：</strong>手机更适合批准与纠偏，不适合代替桌面做高风险收尾。</li>
+            <li><strong>把 scoped token 当成“可直接放权”：</strong>token 只解决受限认证，不解决品牌判断、合规审核和对外责任。</li>
             <li><strong>把“有趋势”当“该发页”：</strong>X 热度只能定义问题，不能替代官方来源和站内空位判断。</li>
             <li><strong>把验证当可选项：</strong>没有 HTML、链接、标题和入口检查，自动化只会更快地放大错误。</li>
           </ul>
@@ -213,6 +260,21 @@
           </ul>
         </section>
 
+        <section>
+          <h2>FAQ</h2>
+          <h3>Programmatic access tokens 能不能直接拿来做外部发布或群发？</h3>
+          <p>
+            更稳的答案是否定的。OpenAI 2026-05-14 的公开口径把它定位在
+            <strong>CI pipelines、release workflows 和 internal automations</strong>。
+            对内容站来说，它更适合内部验证、构建、受控同步，而不是直接去发 X、发 newsletter、改支付或处理后台身份资料。
+          </p>
+
+          <h3>手机能看到 approvals 之后，是不是任何自动化都可以远程继续？</h3>
+          <p>
+            不是。手机接力更适合<strong>低风险继续执行</strong>和<strong>方向审批</strong>，不适合需要长时间逐句改正文、登录后台、处理验证码、KYC、收款或最终外部发布的节点。对这些动作，最稳的做法仍是让 automation 停住并上报。
+          </p>
+        </section>
+
         <section class="source-box">
           <h2>来源（官方/可信）</h2>
           <ul>
@@ -229,17 +291,19 @@
               <a class="inline-link" href="https://openai.com/index/running-codex-safely/" target="_blank" rel="noopener">https://openai.com/index/running-codex-safely/</a>
             </li>
             <li>
-              OpenAI：Introducing the Codex app（2026-02-02，并行工作、worktrees、skills、长期任务协作）：
-              <a class="inline-link" href="https://openai.com/index/introducing-the-codex-app/" target="_blank" rel="noopener">https://openai.com/index/introducing-the-codex-app/</a>
+              Anthropic：Claude Code Security / Authentication（权限模式、approval、长时 token、敏感文件 deny）：
+              <a class="inline-link" href="https://code.claude.com/docs/en/security" target="_blank" rel="noopener">https://code.claude.com/docs/en/security</a>
+              ，
+              <a class="inline-link" href="https://code.claude.com/docs/en/iam" target="_blank" rel="noopener">https://code.claude.com/docs/en/iam</a>
             </li>
             <li>
               X 公开讨论线索：
-              <a class="inline-link" href="https://x.com/ajambrosino/status/2018385459936923656" target="_blank" rel="noopener">Andrew Ambrosino 关于 Codex app、并行与 repetitive task automation 的公开帖</a>
+              <a class="inline-link" href="https://x.com/NickSpisak_/status/2042993832531275882" target="_blank" rel="noopener">Nick Spisak 关于 Claude Code /ultraplan、browser review 与“计划先过审”的公开帖</a>
               ，以及
-              <a class="inline-link" href="https://x.com/sch/status/2018398527177801999" target="_blank" rel="noopener">Michael Schade 关于“给高层目标与上下文”的公开帖</a>。
+              <a class="inline-link" href="https://x.com/adiix_official/status/2034730013283512381" target="_blank" rel="noopener">关于“full autopilot”与账号风险的公开帖</a>。
             </li>
           </ul>
-          <p class="last-updated">持续更新中 · 最近核对：2026-05-16</p>
+          <p class="last-updated">持续更新中 · 最近核对：2026-05-17</p>
         </section>
       </article>
     </main>
