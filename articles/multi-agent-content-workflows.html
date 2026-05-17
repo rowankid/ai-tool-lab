@@ -75,6 +75,10 @@
               `codex-plugin-cc` README 把 `/codex:review`、`/codex:adversarial-review` 和 `/codex:rescue` 明确成 Claude
               Code 里的可用命令。对内容团队来说，更该讨论“什么时候值得让另一个 agent 来 second pass”，而不是继续停留在“要不要多开”的抽象层。
             </li>
+            <li>
+              <strong>OpenAI 在 2026-04-23 还把“plugin vs skill”边界讲透了：</strong>官方 Academy 明确说 plugin 解决“连到别的工具和数据源”，skill 解决“按你的流程做事”。
+              这意味着多 agent 不是只靠多装桥接能力就会更顺；如果没有先写清流程边界、ownership 和完成条件，并行只会更乱。
+            </li>
           </ul>
         </section>
 
@@ -152,6 +156,10 @@
             `codex-plugin-cc` 这类官方桥接能力，把“再叫一个 agent 来看第二遍”变成了更低摩擦的动作。对中文内容站来说，
             <strong>最值得先借另一个 agent 的，不是共同写正文，而是 review、challenge review 和 rescue</strong>。
           </p>
+          <p>
+            更稳的分工方式是：<strong>plugin 负责把第二个 agent 接进来，skill 负责限制它该按什么流程看</strong>。如果你只有桥接，没有流程，
+            第二个 agent 往往会把“再看一遍”做成“再写一版”；真正值钱的是把 second pass 限定在查来源缺口、挑战结论和补验证闭环。
+          </p>
           <div class="info-grid">
             <div class="info-box">
               <strong>先用 second pass 的场景</strong>
@@ -190,17 +198,19 @@
             <li><strong>误区 1：</strong>任务一复杂就该多开。实际上，高耦合任务更需要单线程判断。</li>
             <li><strong>误区 2：</strong>多 agent 一定更快。很多时候你只是把串行思考换成了并行返工。</li>
             <li><strong>误区 3：</strong>subagent 越多越专业。Anthropic 官方也提醒，返回结果过多仍会消耗主会话上下文。</li>
-            <li><strong>误区 4：</strong>用了 worktree 或桥接插件就等于安全。它们只降低协作摩擦，不替你决定哪些动作必须人工确认。</li>
+            <li><strong>误区 4：</strong>装了 plugin 就等于流程也有了。实际上 plugin 只是接能力，skill 或 SOP 才决定它怎么用、什么时候停。</li>
+            <li><strong>误区 5：</strong>用了 worktree 或桥接插件就等于安全。它们只降低协作摩擦，不替你决定哪些动作必须人工确认。</li>
           </ul>
         </section>
 
         <section>
-          <h2>FAQ：4 个最容易问错的问题</h2>
+          <h2>FAQ：5 个最容易问错的问题</h2>
           <ul>
             <li><strong>多 agent 会不会天然更快？</strong> 不会。只有在子任务独立、回传可摘要时才会更快；高耦合写作任务往往更慢。</li>
             <li><strong>手机能审批了，是不是就能远程发布？</strong> 不是。远程审批解决的是接力，不是合规替代；发布、收款、KYC、外部发帖仍要人工确认。</li>
             <li><strong>GitHub/Claude/Codex 都在讲 agent，是不是应该马上全盘并行？</strong> 也不是。官方共同强调的是受控环境、默认边界和可审计，而不是无上限拆任务。</li>
             <li><strong>Claude Code 里直接调 Codex 值不值得？</strong> 值得先放在 second pass：只读 review、adversarial review、救援卡住任务，比“两个 agent 一起写同一段正文”更稳，也更容易验证 ownership。</li>
+            <li><strong>plugin、skill、subagent 应该先补哪层？</strong> 先补 skill 或你自己的 SOP，再决定要不要接 plugin 或多开 subagent。没有流程层，桥接能力只会放大分叉。</li>
           </ul>
         </section>
 
