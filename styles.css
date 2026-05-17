@@ -467,6 +467,45 @@ footer {
   background: #eef4ff;
 }
 
+.service-page .article {
+  border-color: rgba(15, 124, 110, 0.36);
+}
+
+.service-subtitle {
+  max-width: 760px;
+  color: var(--muted);
+  font-size: 18px;
+}
+
+.service-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.service-strip div {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 18px;
+  background: #f5fbf8;
+}
+
+.copy-block {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 18px;
+  background: #1f2424;
+  color: #f7f4ee;
+  white-space: pre-wrap;
+}
+
+.copy-block code {
+  padding: 0;
+  background: transparent;
+  color: inherit;
+}
+
 .table-wrap {
   overflow-x: auto;
 }
@@ -523,7 +562,8 @@ code {
   .tool-grid,
   .hub-grid,
   .method,
-  .info-grid {
+  .info-grid,
+  .service-strip {
     grid-template-columns: 1fr;
   }
 

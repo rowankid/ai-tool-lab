@@ -1,7 +1,7 @@
 # AI 内容增长实验室（AI Tool Lab）
 #
 # 目的：给 LLM/agent 一个“先看什么”的入口目录，降低误读与错过关键页面的概率。
-# 更新时间（真实）：2026-05-17 16:24 CST
+# 更新时间（真实）：2026-05-17 19:55 CST
 # 说明：这不是 sitemap/robots 的替代品；不保证被任何 AI 引用或用于排名。
 
 Site: https://blog.luowq.cn/ai-tool-lab/
@@ -9,6 +9,7 @@ Site: https://blog.luowq.cn/ai-tool-lab/
 ## Start here
 - 首页（定位与入口）：https://blog.luowq.cn/ai-tool-lab/
 - 从这里开始（推广入口）：https://blog.luowq.cn/ai-tool-lab/start.html
+- 48 小时 AI 获客启动包（服务承接）：https://blog.luowq.cn/ai-tool-lab/services/48-hour-ai-lead-gen-sprint.html
 - 披露（affiliate/广告关系）：https://blog.luowq.cn/ai-tool-lab/disclosure.html
 - 关于（作者/原则）：https://blog.luowq.cn/ai-tool-lab/about.html
 - 隐私：https://blog.luowq.cn/ai-tool-lab/privacy.html
@@ -66,6 +67,7 @@ Site: https://blog.luowq.cn/ai-tool-lab/
 - Descript 中文创作者一稿多发：https://blog.luowq.cn/ai-tool-lab/articles/descript-chinese-creator-repurpose.html
 
 ## Commercial and sponsorship candidates
+- 48 小时 AI 获客启动包（不承诺会议或成交，只做名单、切入角度、邮件序列和跟进表）：https://blog.luowq.cn/ai-tool-lab/services/48-hour-ai-lead-gen-sprint.html
 - AI 工具测评模板：https://blog.luowq.cn/ai-tool-lab/articles/ai-tool-review-template.html
 - 内容 QA：链接、事实、披露、CTA：https://blog.luowq.cn/ai-tool-lab/articles/ai-content-qa-links-facts-disclosure-cta.html
 - 第一批 20 篇内容排队：https://blog.luowq.cn/ai-tool-lab/articles/first-20-ai-content-queue.html
